@@ -1,0 +1,103 @@
+$primary-color: #00bfff;
+$background-color: #1a1a1a;
+$text-color: #fff;
+$border-color: #333;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+  position: relative;
+  background-color: $background-color;
+  color: $text-color;
+  border: 1px solid $border-color;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(90%);
+  }
+}
+
+.content {
+  padding: 16px;
+}
+
+.itemImage {
+  object-fit: cover;
+  width: 270px; // Limit maximum width for larger screens
+  height: 250px; // Maintain aspect ratio
+  border-radius: 10px;
+}
+
+.itemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.itemName,
+.itemBrand {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.itemPrice {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin: 8px 0;
+}
+
+.inStock,
+.outOfStock {
+  font-size: 1rem;
+  margin: 8px 0;
+}
+
+.inStock {
+  color: green;
+}
+
+.outOfStock {
+  color: red;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 2px;
+    margin: 4px;
+    .delete {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.seeMore,
+.delete {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    filter: brightness(90%); // Darken on hover
+  }
+}
+
+.seeMore {
+  background-color: $primary-color;
+  color: $text-color;
+}
+
+.delete {
+  background-color: #dc3545;
+  color: $text-color;
+}

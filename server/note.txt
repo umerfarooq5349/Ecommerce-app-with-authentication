@@ -1,0 +1,8 @@
+git init
+git add README.md
+git commit -m "Ecommerce app with auth"
+git branch -M main
+git remote add origin https://github.com/umerfarooq5349/Ecommerce-app-with-authentication 
+git push u origin main
+git remote add origin https://github.com/umerfarooq5349/Ecommerce-app-with-authentication git branch -M main
+git push -u origin main

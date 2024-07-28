@@ -1,0 +1,152 @@
+@import "./theme/theme.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 600px; // Adjust max-width as needed
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color: $form-bg-color;
+  color: #fff;
+  border: 1px solid $form-border-color;
+
+  label {
+    position: relative;
+    flex: 1;
+
+    .input {
+      background-color: $input-bg-color;
+      color: #fff;
+      width: 100%;
+      padding: 20px 5px 5px 10px;
+      outline: 0;
+      border: 1px solid $input-border-color;
+      border-radius: 10px;
+      font-size: medium;
+      &:placeholder-shown + span {
+        display: none;
+
+        font-size: 0.9em;
+      }
+
+      &:focus + span,
+      &:valid + span {
+        color: $title-color;
+        top: 0px;
+        display: inline;
+
+        font-size: 0.7em;
+        font-weight: 600;
+      }
+      &:active,
+      &:focus {
+        border: 3px solid $title-color;
+      }
+      //   &:empty {
+      //     border: 3px solid red;
+      //   }
+    }
+
+    .input + span {
+      color: $input-placeholder-color;
+      position: absolute;
+      left: 10px;
+      top: 0px;
+
+      font-size: 0.9em;
+      cursor: text;
+      transition: 0.3s ease;
+    }
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: $title-color;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: $title-color;
+  }
+
+  &::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  &::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+    -webkit-animation: pulse 1s linear infinite;
+  }
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+
+  .input {
+    flex: 1;
+  }
+
+  label {
+    flex: 1;
+  }
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s ease;
+  background-color: $submit-bg-color;
+
+  &:hover {
+    background-color: $submit-hover-bg-color;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@next/swc-win32-x64-msvc": "^15.0.0-rc.0",
+    "@nextui-org/react": "^2.3.6",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "cookies-next": "^4.2.1",
+    "g": "^2.0.1",
+    "jose": "^5.4.0",
+    "next": "14.2.3",
+    "next-auth": "^4.24.7",
+    "next-client-cookies": "^1.1.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "sass": "^1.77.0",
+    "sweetalert2": "^11.6.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "typescript": "^5"
+  }
+}

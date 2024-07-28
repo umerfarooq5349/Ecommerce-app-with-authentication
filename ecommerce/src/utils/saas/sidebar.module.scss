@@ -1,0 +1,104 @@
+.container {
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(79, 107, 95);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    height: auto;
+    padding: 10px;
+    border-radius: 0;
+  }
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .title {
+      margin: 0;
+    }
+  }
+
+  .thumbnail {
+    width: 100%; // Adjust width for responsiveness
+    max-width: 400px; // Limit maximum width
+    height: auto; // Maintain aspect ratio
+    object-fit: cover;
+    border-radius: 20px;
+
+    @media screen and (max-width: 768px) {
+      max-width: 100%; // Ensure full width for smaller screens
+      border-radius: 10px; // Adjust border radius
+    }
+  }
+
+  .details {
+    width: 100%; // Ensure details section is responsive
+
+    .group {
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Use fractional units for flexibility
+      gap: 20px;
+
+      @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr; // Single column for smaller screens
+        gap: 10px; // Adjust gap for smaller screens
+      }
+
+      .subGroup {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 8px;
+
+        @media screen and (max-width: 768px) {
+          flex-direction: column; // Stack content vertically for smaller screens
+          align-items: flex-start; // Align items to the start
+        }
+
+        .head {
+          font-weight: bold;
+        }
+
+        .body {
+          font-weight: normal;
+        }
+      }
+    }
+
+    .description {
+      margin-bottom: 30px;
+
+      .head {
+        font-weight: bold;
+        align-items: flex-start;
+        text-align: start;
+        margin-bottom: 8px;
+      }
+
+      .body {
+        text-align: start;
+      }
+    }
+  }
+
+  .title {
+    font-size: 24px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px; // Adjust font size for smaller screens
+    }
+  }
+}
