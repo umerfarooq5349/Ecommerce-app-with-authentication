@@ -27,7 +27,7 @@ const protectedRoute = catchAsync(async (req, res, next) => {
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
-  console.log(decoded);
+  console.log(`decoded: ${decoded}`);
 
   // check if user still exists
   const logedIn_user = await User.findById(decoded.id);

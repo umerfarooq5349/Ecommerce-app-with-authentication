@@ -1,54 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as jose from "jose";
+import { getToken } from "next-auth/jwt";
 
-export default async function middleware(request: NextRequest) {
-  const BearerToken = request.headers.get("authorization") as string;
+export { default } from "next-auth/middleware";
 
-  if (!BearerToken) {
-    return new NextResponse(
-      JSON.stringify({
-        errorMessage: "Bearer token not defined",
-      }),
-      { status: 401 }
-    );
-  }
+export async function middleware(request: NextRequest) {
+  const token = await getToken({ req: request });
+  const url = request.nextUrl;
 
-  const token = BearerToken.split(" ")[1];
-
+  // If the user is not authenticated and trying to access a protected route
   if (!token) {
-    return new NextResponse(
-      JSON.stringify({
-        errorMessage: "token not defined",
-      }),
-      { status: 401 }
-    );
+    // Allow access to login and signup pages for unauthenticated users
+    if (
+      url.pathname.startsWith("/login") ||
+      url.pathname.startsWith("/signup")
+    ) {
+      return NextResponse.next();
+    }
+
+    // Redirect unauthenticated users trying to access protected routes
+    if (url.pathname.startsWith("/AddProduct")) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  } else {
+    // If the user is authenticated, redirect them away from login/signup pages
+    if (
+      url.pathname.startsWith("/login") ||
+      url.pathname.startsWith("/signup")
+    ) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
+
+  // Allow the request to proceed
+  return NextResponse.next();
 }
 
+// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api/auth/me"],
+  matcher: ["/login", "/signup", "/AddProduct"],
 };
-
-// export { default } from "next-auth/middleware";
-
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-//   pages: {
-//     signIn: "/auth/signin",
-//     signOut: "/auth/signout",
-//     error: "/auth/error",
-//     verifyRequest: "/auth/verify-request",
-//   },
-//   providers: [
-//     {
-//       id: "google",
-//       name: "Google",
-//       type: "oauth",
-//       clientId: process.env.GOOGLE_CLIENT_ID,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//     },
-//   ],
-//   matcher: ["/AddProduct"],
-// };

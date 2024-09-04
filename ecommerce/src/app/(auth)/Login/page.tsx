@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { login } from "@/app/api/auth/route";
+// import { login } from "@/app/api/auth/route";
 import styles from "@/utils/saas/login.module.scss";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
@@ -33,6 +33,10 @@ const Login = () => {
   const handlegoogleLogin = async () => {
     // google login
     await signIn("google");
+  };
+  const handlegitLogin = async () => {
+    // google login
+    await signIn("github");
   };
 
   return (
@@ -68,7 +72,7 @@ const Login = () => {
           Log in
         </button>
 
-        <Link href="/Signup">
+        <Link href="/signup">
           <p>
             Do nott have an account? <b>Signup</b>
           </p>
@@ -76,6 +80,9 @@ const Login = () => {
       </form>
       <button className={styles.submit} onClick={handlegoogleLogin}>
         Log in with Google
+      </button>
+      <button className={styles.submit} onClick={handlegitLogin}>
+        Log in with Github
       </button>
     </div>
   );

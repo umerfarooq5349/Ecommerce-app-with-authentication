@@ -20,7 +20,7 @@ app.use(cors(corsOptions));
 app.use(Express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  console.log(req.cookies);
+  // console.log(`cookies: ${req.cookies}`);
   next();
 });
 

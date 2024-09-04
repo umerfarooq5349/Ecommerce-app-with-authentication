@@ -13,9 +13,9 @@ const Navbar = () => {
   if (status === "loading") {
     return <div></div>;
   }
-  console.log(session?.session_name);
+  console.log(session?.user.name);
   const handleLogout = () => {
-    signOut({ callbackUrl: "/Login" });
+    signOut({ callbackUrl: "/login" });
   };
 
   return (
@@ -27,13 +27,13 @@ const Navbar = () => {
         <ul>
           {session ? (
             <>
-              {session && session.session_role === "admin" ? (
+              {session && session.user.role === "admin" ? (
                 <li>
                   <Link href="/AddProduct">admin</Link>
                 </li>
               ) : (
                 <li>
-                  <Link href="/AddProduct">{session.session_name}</Link>
+                  <Link href="/AddProduct">{session.user.name}</Link>
                 </li>
               )}
               <li>
@@ -48,10 +48,10 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link href="/Login">Login</Link>
+                <Link href="/login">Login</Link>
               </li>
               <li>
-                <Link href="/Signup">SignUp</Link>
+                <Link href="/signup">SignUp</Link>
               </li>
             </>
           )}

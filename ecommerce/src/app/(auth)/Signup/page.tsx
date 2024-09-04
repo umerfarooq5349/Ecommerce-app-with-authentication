@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signup } from "@/app/api/auth/route";
+import axios from "axios";
 import styles from "@/utils/saas/signup.module.scss";
 import Link from "next/link";
 
@@ -10,17 +10,35 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [role, setRole] = useState("user"); // Default role
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (password !== passwordConfirm) {
+      alert("Passwords do not match!");
+      return;
+    }
+
     try {
-      await signup(name, email, password, passwordConfirm, role);
-      router.push("/Login");
-    } catch (error) {
-      alert(error);
+      const res = await axios.post(`api/signup`, {
+        name,
+        email,
+        password,
+        passwordConfirm,
+      });
+
+      if (res) {
+        router.push("/login");
+      } else {
+        alert(res);
+      }
+    } catch (error: any) {
+      alert(
+        error.response?.data?.message || "An error occurred during signup."
+      );
+      console.log(error.response?.data?.message);
     }
   };
 
@@ -77,7 +95,7 @@ const Signup = () => {
       <button className={styles.submit} type="submit">
         Sign Up
       </button>
-      <Link href="/Login">
+      <Link href="/login">
         <p>
           Already have an account? <b>Login</b>
         </p>

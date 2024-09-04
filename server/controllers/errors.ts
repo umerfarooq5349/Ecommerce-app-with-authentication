@@ -59,4 +59,10 @@ const handleJwtError = (error: any) => {
   return new AppError(message, 404);
 };
 
-export { errorHandlerMiddleware };
+export {
+  errorHandlerMiddleware,
+  handleJwtError,
+  handleDuplicateDBError,
+  handleDBValidatorError,
+  handleDBCastError,
+};
