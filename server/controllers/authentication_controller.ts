@@ -45,6 +45,7 @@ const createSendToken = (
 
 const signUp = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
     const newUser = await User.create({
       name: req.body.name,
       email: req.body.email,
@@ -53,7 +54,7 @@ const signUp = catchAsync(
       role: req.body.role,
     });
 
-    createSendToken(newUser, 201, res);
+    const token = createSendToken(newUser, 201, res);
   }
 );
 
