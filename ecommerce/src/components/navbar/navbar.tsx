@@ -27,15 +27,12 @@ const Navbar = () => {
         <ul>
           {session ? (
             <>
-              {session && session.user.role === "admin" ? (
-                <li>
-                  <Link href="/AddProduct">admin</Link>
-                </li>
-              ) : (
-                <li>
-                  <Link href="/AddProduct">{session.user.name}</Link>
-                </li>
-              )}
+              <li>
+                <div> {session.user.name!.toUpperCase()}</div>
+              </li>
+              <li>
+                <div> {session.user.role}</div>
+              </li>
               <li>
                 <Link href="/AddProduct">Add Product</Link>
               </li>

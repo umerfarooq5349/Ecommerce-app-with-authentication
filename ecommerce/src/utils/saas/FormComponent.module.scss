@@ -6,35 +6,23 @@
   gap: 10px;
   width: 600px; // Adjust max-width as needed
   margin: 30px auto;
-  padding: 20px;
-  border-radius: 20px;
+  padding: $padding-large;
+  border-radius: $border-radius-large;
   position: relative;
-  background-color: $form-bg-color;
-  color: #fff;
-  border: 1px solid $form-border-color;
+  background-color: $background-alt-500;
+  color: $text-color-light;
+  border: 1px solid $border-color-dark;
 
   label {
     position: relative;
     flex: 1;
 
     .input {
-      background-color: $input-bg-color;
-      color: #fff;
-      width: 100%;
-      padding: 20px 5px 5px 10px;
-      outline: 0;
-      border: 1px solid $input-border-color;
-      border-radius: 10px;
-      font-size: medium;
-
-      &:placeholder-shown + span {
-        top: 12.5px;
-        font-size: 0.9em;
-      }
+      @include inputStyle(default);
 
       &:focus + span,
       &:valid + span {
-        color: $title-color;
+        color: $text-color-accent;
         top: 0px;
         font-size: 0.7em;
         font-weight: 600;
@@ -46,9 +34,9 @@
       position: absolute;
       left: 10px;
       top: 0px;
-      font-size: 0.9em;
+      font-size: $font-size-small;
       cursor: text;
-      transition: 0.3s ease;
+      transition: $transition-speed $transition-ease;
     }
   }
 
@@ -56,22 +44,22 @@
     margin-top: 10px;
     width: 100%;
     max-width: 350px;
-    border-radius: 10px;
-    border: 2px solid $input-border-color;
+    border-radius: $border-radius-medium;
+    border: 2px solid $input-border;
     object-fit: cover;
     align-self: center; // Center the thumbnail preview
   }
 }
 
 .title {
-  font-size: 28px;
+  font-size: $font-size-heading;
   font-weight: 600;
   letter-spacing: -1px;
   position: relative;
   display: flex;
   align-items: center;
   padding-left: 30px;
-  color: $title-color;
+  color: $text-color-dark;
 
   &::before,
   &::after {
@@ -81,7 +69,7 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: $title-color;
+    background-color: $accent-color;
   }
 
   &::before {
@@ -115,7 +103,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: $gap-small;
 
   .centered {
     display: flex;
@@ -125,18 +113,7 @@
 }
 
 .submit {
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transition: 0.3s ease;
-  background-color: $submit-bg-color;
-
-  &:hover {
-    background-color: $submit-hover-bg-color;
-  }
+  @include buttonStyle(primary);
 }
 
 @keyframes pulse {

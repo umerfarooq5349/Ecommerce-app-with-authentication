@@ -22,12 +22,15 @@ const Signup = () => {
     }
 
     try {
-      const res = await axios.post(`api/signup`, {
-        name,
-        email,
-        password,
-        passwordConfirm,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER}/api/signup`,
+        {
+          name,
+          email,
+          password,
+          passwordConfirm,
+        }
+      );
 
       if (res) {
         router.push("/login");

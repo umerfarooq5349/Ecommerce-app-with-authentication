@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-
-export { default } from "next-auth/middleware";
+// import { getsession } from "next-auth/jwt";
+import { auth } from "./auth";
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request });
+  const session = await auth();
   const url = request.nextUrl;
 
   // If the user is not authenticated and trying to access a protected route
-  if (!token) {
+  if (!session) {
     // Allow access to login and signup pages for unauthenticated users
     if (
       url.pathname.startsWith("/login") ||
@@ -17,8 +16,11 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Redirect unauthenticated users trying to access protected routes
     if (url.pathname.startsWith("/AddProduct")) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    // Redirect unauthenticated users trying to access protected routes
+    if (url.pathname.startsWith("/Total-Items")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   } else {
@@ -29,6 +31,13 @@ export async function middleware(request: NextRequest) {
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }
+    if (
+      url.pathname.startsWith("/AddProduct") &&
+      session.user.role != "admin"
+    ) {
+      console.log(`you are not authurize to access this page`);
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
 
   // Allow the request to proceed
@@ -37,5 +46,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/login", "/signup", "/AddProduct"],
+  matcher: ["/login", "/signup", "/AddProduct", "/Total-Items/:path*"],
 };

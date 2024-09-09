@@ -29,7 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={`${inter.className}`}>
         <div className={styles.main}>
           <AuthProvider>
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
           </AuthProvider>
           <Footer />

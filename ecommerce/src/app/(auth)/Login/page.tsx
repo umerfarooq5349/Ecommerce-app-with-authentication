@@ -36,7 +36,7 @@ const Login = () => {
   };
   const handlegitLogin = async () => {
     // google login
-    await signIn("github");
+    await signIn("facebook");
   };
 
   return (

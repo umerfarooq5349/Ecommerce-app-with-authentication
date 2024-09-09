@@ -12,12 +12,15 @@ export async function signup({
   passwordConfirm: string;
 }) {
   try {
-    const res = await axios.post(`${process.env.SERVER}/api/signup`, {
-      name,
-      email,
-      password,
-      passwordConfirm,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER}/api/signup`,
+      {
+        name,
+        email,
+        password,
+        passwordConfirm,
+      }
+    );
 
     return res.data;
   } catch (error: any) {

@@ -1,9 +1,9 @@
 @import "./theme/theme.scss";
 .container {
-  background-color: $bg-color;
-  color: $title-color;
+  background-color: $background-alt-500;
+  color: $text-color-light;
   display: flex;
-  width: 100%;
+  // width: 100%;
   flex-direction: row;
   font-weight: bold;
   justify-content: space-between;

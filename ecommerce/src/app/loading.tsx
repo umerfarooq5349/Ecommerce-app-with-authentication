@@ -1,4 +1,4 @@
-import CustomLoader from "@/components/loader/customLoader";
+import CustomLoader from "@/components/bikeAnimiation/bikeAnimiation";
 
 const Loading = () => {
   return <CustomLoader></CustomLoader>;
