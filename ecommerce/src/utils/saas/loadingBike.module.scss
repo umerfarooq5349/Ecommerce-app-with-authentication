@@ -4,20 +4,25 @@
   // position: relative;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  justify-items: center;
   justify-content: center;
-  align-items: center;
 
   // height: 100vh;
 }
 
 .loading {
+  text-align: center;
+
   font-size: $font-size-large;
   font-weight: bold;
   color: $text-color-light;
 }
 
 .bike {
-  display: block;
+  display: flex;
+  justify-content: center;
+
   width: 16em;
   height: auto;
 }

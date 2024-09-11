@@ -1,103 +1,111 @@
-$primary-color: #00bfff;
-$background-color: #1a1a1a;
-$text-color: #fff;
-$border-color: #333;
+@import "./theme/theme.scss";
 
 .card {
+  @include cardStyle(default);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-radius: 20px;
+  gap: $gap-regular;
+  border-radius: $border-radius-large;
   position: relative;
-  background-color: $background-color;
-  color: $text-color;
-  border: 1px solid $border-color;
-  transition: transform 0.3s;
+  border: 1px solid $border-color-light;
+  padding: $padding-large;
+  background-color: $background-color-light;
+  box-shadow: $box-shadow-light;
+  transition: transform $transition-speed $transition-ease,
+    box-shadow $transition-speed $transition-ease;
 
   &:hover {
     transform: scale(1.05);
-    filter: brightness(90%);
+    box-shadow: $box-shadow-dark;
   }
-}
-
-.content {
-  padding: 16px;
 }
 
 .itemImage {
   object-fit: cover;
-  width: 270px; // Limit maximum width for larger screens
-  height: 250px; // Maintain aspect ratio
-  border-radius: 10px;
+  width: 100%;
+  height: 250px;
+  border-radius: $border-radius-medium;
+  transition: transform $transition-speed $transition-ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .itemInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  margin-top: $margin-small;
 }
 
 .itemName,
 .itemBrand {
-  font-size: 1.2rem;
+  font-size: $font-size-regular;
   margin: 0;
+  color: $text-color-dark;
 }
 
 .itemPrice {
-  font-size: 1.5rem;
+  font-size: $font-size-large;
   color: $primary-color;
-  margin: 8px 0;
+  margin: $margin-small 0;
 }
 
 .inStock,
 .outOfStock {
-  font-size: 1rem;
-  margin: 8px 0;
+  font-size: $font-size-regular;
+  margin: $margin-small 0;
 }
 
 .inStock {
-  color: green;
+  color: $success-color;
 }
 
 .outOfStock {
-  color: red;
+  color: $danger-color;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
+  margin: $margin-small;
+  gap: $gap-small;
+
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    padding: 2px;
-    margin: 4px;
-    .delete {
-      margin-top: 1rem;
-    }
   }
 }
 
 .seeMore,
 .delete {
-  padding: 1rem 2rem;
+  padding: $padding-small $padding-large;
   border: none;
-  border-radius: 10px;
+  margin: 0 $margin-small;
+  width: 100%;
+  border-radius: $border-radius-medium;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-
+  font-size: $font-size-regular;
+  transition: background-color $transition-speed $transition-ease;
   &:hover {
-    filter: brightness(90%); // Darken on hover
+    background-color: darken($button-color-primary, 10%);
   }
 }
 
 .seeMore {
-  background-color: $primary-color;
-  color: $text-color;
+  @include buttonStyle(secondary);
+  // background-color: $button-color-primary;
+  // color: $text-color-light;
+
+  &:hover {
+    background-color: darken($button-color-primary, 10%);
+  }
 }
 
 .delete {
-  background-color: #dc3545;
-  color: $text-color;
+  @include buttonStyle(danger);
 }

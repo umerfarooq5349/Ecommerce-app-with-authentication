@@ -5,6 +5,12 @@ $accent-color: #a367b1; // Light Purple
 $highlight-color: #ffd1e3; // Light Pink
 $accent-color-low: #a367b176; // Light Purple
 
+// Danger and Success Colors
+$danger-color: #e74c3c; // Red for danger
+$success-color: #2ecc71; // Green for success
+$danger-light-color: lighten($danger-color, 20%);
+$success-light-color: lighten($success-color, 20%);
+
 // Text Colors
 $text-color-dark: $primary-color;
 $text-color-light: $highlight-color;
@@ -24,6 +30,8 @@ $button-color-primary: $primary-color;
 $button-color-secondary: $secondary-color;
 $button-color-accent: $accent-color;
 $button-color-light: $highlight-color;
+$button-color-danger: $danger-color;
+$button-color-success: $success-color;
 
 // Border Colors
 $border-color-dark: $primary-color;
@@ -54,7 +62,7 @@ $border-radius-small: 4px;
 $border-radius-medium: 8px;
 $border-radius-large: 12px;
 
-//font faimly
+// Font Family
 $font-family: "Roboto", sans-serif;
 
 // Font Sizes
@@ -81,13 +89,12 @@ $gap-large: 24px;
 $button-styles: (
   primary: (
     background-color: $button-color-primary,
-    border: 2px solid $button-color-secondary,
+    border: none,
+    outline: none,
     color: $text-color-light,
     font-size: $font-size-regular,
-
     box-shadow: $box-shadow-light,
     hover-background-color: $button-color-accent,
-    // hover-text-color: $button-color-primary,
     hover-box-shadow: $box-shadow-dark,
     active-background-color: darken($button-color-primary, 10%),
     disabled-background-color: lighten($button-color-secondary, 20%),
@@ -95,16 +102,41 @@ $button-styles: (
   ),
   secondary: (
     background-color: $button-color-secondary,
-    border: 1px solid $button-color-primary,
+    border: none,
+    outline: none,
     font-size: $font-size-regular,
     color: $text-color-light,
     box-shadow: $box-shadow-light,
     hover-background-color: $button-color-accent,
-    // hover-text-color: $button-color-primary,
     hover-box-shadow: $box-shadow-dark,
     active-background-color: darken($button-color-secondary, 10%),
     disabled-background-color: lighten($button-color-primary, 20%),
     disabled-color: $text-color-accent,
+  ),
+  danger: (
+    background-color: $button-color-danger,
+
+    color: $text-color-light,
+    box-shadow: $box-shadow-light,
+    border: none,
+    outline: none,
+    hover-background-color: darken($button-color-danger, 10%),
+    hover-box-shadow: $box-shadow-dark,
+    active-background-color: darken($button-color-danger, 10%),
+    disabled-background-color: lighten($button-color-danger, 30%),
+    disabled-color: $text-color-light,
+  ),
+  success: (
+    background-color: $button-color-success,
+    color: $text-color-light,
+    border: none,
+    outline: none,
+    box-shadow: $box-shadow-light,
+    hover-background-color: lighten($button-color-success, 10%),
+    hover-box-shadow: $box-shadow-dark,
+    active-background-color: darken($button-color-success, 10%),
+    disabled-background-color: lighten($button-color-success, 30%),
+    disabled-color: $text-color-light,
   ),
 );
 
@@ -112,8 +144,19 @@ $button-styles: (
 $link-styles: (
   default: (
     color: $link-color,
+
     hover-color: $link-hover-color,
     active-color: $link-active-color,
+  ),
+  danger: (
+    color: $danger-color,
+    hover-color: lighten($danger-color, 20%),
+    active-color: darken($danger-color, 10%),
+  ),
+  success: (
+    color: $success-color,
+    hover-color: lighten($success-color, 20%),
+    active-color: darken($success-color, 10%),
   ),
 );
 
@@ -124,6 +167,18 @@ $input-styles: (
     border: 1px solid $input-border,
     color: $input-text-color,
     placeholder-color: $input-placeholder-color,
+  ),
+  danger: (
+    background-color: $danger-light-color,
+    border: 1px solid $danger-color,
+    color: $danger-color,
+    placeholder-color: lighten($danger-color, 30%),
+  ),
+  success: (
+    background-color: $success-light-color,
+    border: 1px solid $success-color,
+    color: $success-color,
+    placeholder-color: lighten($success-color, 30%),
   ),
 );
 
@@ -136,6 +191,20 @@ $card-styles: (
     box-shadow: $box-shadow-light,
     padding: $padding-large,
   ),
+  danger: (
+    background-color: $danger-light-color,
+    border: 1px solid $danger-color,
+    border-radius: $border-radius-large,
+    box-shadow: $box-shadow-light,
+    padding: $padding-large,
+  ),
+  success: (
+    background-color: $success-light-color,
+    border: 1px solid $success-color,
+    border-radius: $border-radius-large,
+    box-shadow: $box-shadow-light,
+    padding: $padding-large,
+  ),
 );
 
 // Hero Styles Map
@@ -143,6 +212,22 @@ $hero-styles: (
   default: (
     background-color: $background-alt,
     color: $text-color-accent,
+    font-size: $font-size-hero,
+    padding: $padding-large,
+    text-align: center,
+    border-radius: $border-radius-large,
+  ),
+  danger: (
+    background-color: $danger-color,
+    color: $text-color-light,
+    font-size: $font-size-hero,
+    padding: $padding-large,
+    text-align: center,
+    border-radius: $border-radius-large,
+  ),
+  success: (
+    background-color: $success-color,
+    color: $text-color-light,
     font-size: $font-size-hero,
     padding: $padding-large,
     text-align: center,
@@ -165,7 +250,6 @@ $hero-styles: (
   margin: $margin-small;
   &:hover {
     background-color: map-get($styles, hover-background-color);
-    color: map-get($styles, hover-text-color);
     cursor: pointer;
     box-shadow: map-get($styles, hover-box-shadow);
   }
@@ -184,14 +268,12 @@ $hero-styles: (
 // Mixin for Link Styles
 @mixin linkStyle($type) {
   $styles: map-get($link-styles, $type);
-
-  color: map-get($styles, color);
   text-decoration: none;
+  color: map-get($styles, color);
   transition: color $transition-speed $transition-ease;
 
   &:hover {
     color: map-get($styles, hover-color);
-    cursor: pointer;
   }
 
   &:active {
@@ -207,16 +289,14 @@ $hero-styles: (
   color: map-get($styles, color);
   padding: $padding-regular;
   border-radius: $border-radius-medium;
-
-  margin: $margin-small;
   transition: border-color $transition-speed $transition-ease;
+
   &::placeholder {
     color: map-get($styles, placeholder-color);
   }
 
   &:focus {
-    border-color: $border-color-accent;
-    outline: none;
+    // border-color: darken(map-get($styles, border), 10%);
   }
 }
 
@@ -226,9 +306,10 @@ $hero-styles: (
   background-color: map-get($styles, background-color);
   border: map-get($styles, border);
   border-radius: map-get($styles, border-radius);
-  box-shadow: map-get($styles, box-shadow);
   padding: map-get($styles, padding);
+  box-shadow: map-get($styles, box-shadow);
   transition: box-shadow $transition-speed $transition-ease;
+
   &:hover {
     box-shadow: $box-shadow-dark;
   }
@@ -237,34 +318,10 @@ $hero-styles: (
 // Mixin for Hero Styles
 @mixin heroStyle($type) {
   $styles: map-get($hero-styles, $type);
-
   background-color: map-get($styles, background-color);
   color: map-get($styles, color);
   font-size: map-get($styles, font-size);
   padding: map-get($styles, padding);
-  text-align: map-get($styles, text-align);
   border-radius: map-get($styles, border-radius);
-}
-
-// // Example Usage
-// body {
-//   background-color: $background-color-dark;
-//   color: $text-color-light;
-//   font-family: "Arial, sans-serif";
-// }
-
-// h1 {
-//   font-size: $font-size-heading;
-//   color: $text-color-primary;
-//   margin-bottom: $margin-regular;
-// }
-
-// p {
-//   font-size: $font-size-regular;
-//   margin-bottom: $margin-regular;
-// }
-
-.container {
-  padding: $padding-large;
-  margin: auto;
+  text-align: map-get($styles, text-align);
 }

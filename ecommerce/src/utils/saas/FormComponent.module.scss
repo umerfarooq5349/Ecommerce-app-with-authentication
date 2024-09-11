@@ -4,15 +4,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 600px; // Adjust max-width as needed
-  margin: 30px auto;
+  width: 600px;
+  //Adjustmax-widthasneededmargin: 30px auto;
   padding: $padding-large;
   border-radius: $border-radius-large;
   position: relative;
-  background-color: $background-alt-500;
+  background-color: $background-alt;
   color: $text-color-light;
   border: 1px solid $border-color-dark;
-
   label {
     position: relative;
     flex: 1;
@@ -20,23 +19,37 @@
     .input {
       @include inputStyle(default);
 
+      &:required + span,
       &:focus + span,
+      &:active + span,
       &:valid + span {
-        color: $text-color-accent;
+        color: $text-color-dark;
         top: 0px;
         font-size: 0.7em;
         font-weight: 600;
       }
+
+      &:focus,
+      &:active {
+        border: 2px solid $border-color-dark;
+        outline: none;
+      }
     }
 
     .input + span {
-      color: $input-placeholder-color;
+      color: $input-border;
       position: absolute;
       left: 10px;
+
       top: 0px;
+      margin-top: 2px;
       font-size: $font-size-small;
       cursor: text;
       transition: $transition-speed $transition-ease;
+    }
+
+    textarea {
+      background-color: red;
     }
   }
 
@@ -53,11 +66,12 @@
 
 .title {
   font-size: $font-size-heading;
-  font-weight: 600;
-  letter-spacing: -1px;
+  font-weight: bolder;
+
+  letter-spacing: 3px;
   position: relative;
   display: flex;
-  align-items: center;
+
   padding-left: 30px;
   color: $text-color-dark;
 
@@ -65,11 +79,12 @@
   &::after {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
+    // height: 16px;
+    // width: 16px;
+    right: 0px;
     left: 0px;
-    background-color: $accent-color;
+    border-radius: 50%;
+    background-color: $primary-color;
   }
 
   &::before {
@@ -85,6 +100,10 @@
   }
 }
 
+.message {
+  color: $text-color-dark;
+  font-size: $font-size-large;
+}
 .flex {
   display: flex;
   width: 100%;
@@ -105,15 +124,16 @@
   align-items: center;
   gap: $gap-small;
 
-  .centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .input {
+    width: fit-content;
   }
 }
 
 .submit {
-  @include buttonStyle(primary);
+  @include buttonStyle(secondary);
+  &:hover {
+    background-color: darken($background-color-dark, 10%);
+  }
 }
 
 @keyframes pulse {

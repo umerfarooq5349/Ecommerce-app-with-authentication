@@ -1,141 +1,140 @@
-@import "./theme/theme.scss";
+@import "./theme/theme.scss"; // Import your theme or global styles
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 600px; // Adjust max-width as needed
-  margin: 30px auto;
-  padding: 20px;
-  border-radius: 20px;
-  position: relative;
-  background-color: $form-bg-color;
-  color: #fff;
-  border: 1px solid $form-border-color;
-
-  label {
-    position: relative;
-    flex: 1;
-
-    .input {
-      background-color: $input-bg-color;
-      color: #fff;
-      width: 100%;
-      padding: 20px 5px 5px 10px;
-      outline: 0;
-      border: 1px solid $input-border-color;
-      border-radius: 10px;
-      font-size: medium;
-      &:placeholder-shown + span {
-        display: none;
-
-        font-size: 0.9em;
-      }
-
-      &:focus + span,
-      &:valid + span {
-        color: $title-color;
-        top: 0px;
-        display: inline;
-
-        font-size: 0.7em;
-        font-weight: 600;
-      }
-      &:active,
-      &:focus {
-        border: 3px solid $title-color;
-      }
-      //   &:empty {
-      //     border: 3px solid red;
-      //   }
-    }
-
-    .input + span {
-      color: $input-placeholder-color;
-      position: absolute;
-      left: 10px;
-      top: 0px;
-
-      font-size: 0.9em;
-      cursor: text;
-      transition: 0.3s ease;
-    }
-  }
-}
-
-.title {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  color: $title-color;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: $title-color;
-  }
-
-  &::before {
-    width: 18px;
-    height: 18px;
-  }
-
-  &::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-    -webkit-animation: pulse 1s linear infinite;
-  }
-}
-
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-
-  .input {
-    flex: 1;
-  }
-
-  label {
-    flex: 1;
-  }
-}
-
-.flexCenter {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  width: 70%;
+  padding: $padding-large;
+  margin: 0 auto;
 
-  .centered {
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: $font-size-large;
+    font-weight: bolder;
+    letter-spacing: -1px;
+    padding-left: 30px;
+    color: $text-color-light;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      left: 0;
+      background-color: $background-color-light;
+    }
+
+    &::before {
+      width: 18px;
+      height: 18px;
+    }
+
+    &::after {
+      width: 18px;
+      height: 18px;
+      animation: pulse 1s linear infinite;
+    }
+  }
+
+  .subContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: $border-radius-large;
+    box-shadow: $box-shadow-dark;
+    overflow: hidden;
+    background-color: $background-color-light;
+  }
+
+  .form {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: $padding-large;
+    background-color: $background-alt;
+
+    label {
+      position: relative;
+      flex: 1;
+
+      .input {
+        @include inputStyle(default);
+        width: 100%;
+        &:placeholder-shown + span {
+          display: none;
+          font-size: 0.9em;
+        }
+
+        &:focus,
+        &:valid {
+          outline: none;
+          border: 1px solid $border-color-dark;
+        }
+
+        &:focus + span,
+        &:valid + span {
+          color: $text-color-dark;
+          top: 0;
+          margin-top: 4px;
+          display: inline;
+          font-size: 0.7em;
+          font-weight: 600;
+        }
+      }
+
+      .input + span {
+        color: $text-color-dark;
+        position: absolute;
+        left: 10px;
+        top: 0;
+        font-size: 0.9em;
+        cursor: text;
+      }
+    }
+  }
+
+  .imageContainer {
+    flex: 1;
+    position: relative;
+    background-image: url("/assets/login.jpg"); /* Image URL */
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 20px;
+
+    .socialBtn {
+      @include buttonStyle(secondary);
+
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($background-color-dark, 10%);
+      }
+
+      svg {
+        margin-right: 10px;
+      }
+    }
   }
 }
 
-.submit {
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transition: 0.3s ease;
-  background-color: $submit-bg-color;
+.submitBtn {
+  @include buttonStyle(secondary);
 
   &:hover {
-    background-color: $submit-hover-bg-color;
+    background-color: darken($background-color-dark, 10%);
   }
 }
 
@@ -148,5 +147,51 @@
   to {
     transform: scale(1.8);
     opacity: 0;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+
+  .subContainer {
+    flex-direction: column; /* Stack form and image on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: $padding-small;
+  }
+
+  .subContainer {
+    flex-direction: column;
+  }
+
+  .form {
+    padding: $padding-small;
+  }
+
+  .imageContainer {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .form {
+    gap: 5px;
+    padding: $padding-small;
+  }
+
+  .imageContainer {
+    height: 200px; /* Smaller height for mobile */
+    background-position: top;
   }
 }

@@ -1,7 +1,7 @@
 import CustomLoader from "@/components/bikeAnimiation/bikeAnimiation";
 
 const Loading = () => {
-  return <CustomLoader></CustomLoader>;
+  return <CustomLoader text="Hold on"></CustomLoader>;
 };
 
 export default Loading;

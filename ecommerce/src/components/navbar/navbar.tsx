@@ -1,60 +1,15 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
-import Link from "next/link";
-
-import styles from "@/utils/saas/navbar.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { usePathname } from "next/navigation";
+import NavLinks from "./navLinks";
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
+  const path = usePathname();
 
-  if (status === "loading") {
-    return <div></div>;
-  }
-  console.log(session?.user.name);
-  const handleLogout = () => {
-    signOut({ callbackUrl: "/login" });
-  };
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.brand}>
-        <Link href="/">My Store</Link>
-      </div>
-      <div className={styles.body}>
-        <ul>
-          {session ? (
-            <>
-              <li>
-                <div> {session.user.name!.toUpperCase()}</div>
-              </li>
-              <li>
-                <div> {session.user.role}</div>
-              </li>
-              <li>
-                <Link href="/AddProduct">Add Product</Link>
-              </li>
-              <li>
-                <Link href="/" onClick={handleLogout}>
-                  <FontAwesomeIcon icon={faSignOut} />
-                </Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link href="/login">Login</Link>
-              </li>
-              <li>
-                <Link href="/signup">SignUp</Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
-    </div>
+  return path === "/login" || path === "/signup" ? (
+    <div> </div>
+  ) : (
+    <NavLinks></NavLinks>
   );
 };
 

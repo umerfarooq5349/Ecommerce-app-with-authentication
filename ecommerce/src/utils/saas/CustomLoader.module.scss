@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-direction: column;
   .circle {
     display: flex;
     align-items: center;
@@ -12,12 +12,11 @@
     position: relative;
     width: 20px;
     height: 20px;
-    border: solid 2px $light-color;
+    border: solid 2px red;
     border-radius: 50%;
     margin: 0 10px;
     background-color: transparent;
-    animation: circle-keys $animation;
-
+    animation: circle-keys;
     .dot {
       position: absolute;
       transform: translate(-50%, -50%);

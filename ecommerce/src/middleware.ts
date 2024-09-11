@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { getsession } from "next-auth/jwt";
 import { auth } from "./auth";
+// import { alert } from "./utils/alerts/alert";
 
 export async function middleware(request: NextRequest) {
   const session = await auth();
@@ -16,11 +17,11 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    if (url.pathname.startsWith("/AddProduct")) {
+    if (url.pathname.startsWith("/addproduct")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
     // Redirect unauthenticated users trying to access protected routes
-    if (url.pathname.startsWith("/Total-Items")) {
+    if (url.pathname.startsWith("/total-items")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   } else {
@@ -32,7 +33,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
     if (
-      url.pathname.startsWith("/AddProduct") &&
+      url.pathname.startsWith("/addproduct") &&
       session.user.role != "admin"
     ) {
       console.log(`you are not authurize to access this page`);
@@ -46,5 +47,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/login", "/signup", "/AddProduct", "/Total-Items/:path*"],
+  matcher: ["/login", "/signup", "/addproduct", "/total-items/:path*"],
 };

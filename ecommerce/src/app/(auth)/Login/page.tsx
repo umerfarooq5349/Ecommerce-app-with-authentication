@@ -1,10 +1,15 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import { login } from "@/app/api/auth/route";
+
 import styles from "@/utils/saas/login.module.scss";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { alert } from "@/utils/alerts/alert";
+import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import Swal from "sweetalert2";
+import { alert } from "@/utils/alerts/alert";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,12 +27,22 @@ const Login = () => {
       });
 
       if (result?.error) {
-        alert(result.error);
+        Swal.fire({
+          title: result.error,
+          timer: 5000,
+          timerProgressBar: true,
+        });
       } else {
+        alert("Login successful", 3000);
         router.push("/");
       }
     } catch (error) {
-      alert("An error occurred during sign-in.");
+      Swal.fire({
+        title: "this is error message",
+        timer: 5000,
+        timerProgressBar: true,
+      });
+      // alert("An error occurred during sign-in.", 5000);
     }
   };
   const handlegoogleLogin = async () => {
@@ -40,22 +55,21 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className={styles.title}>Login</h2>
+    <div className={styles.container}>
+      <div className={styles.subContainer}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label>
+            <input
+              type="email"
+              className={styles.input}
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <span>Email</span>
+          </label>
 
-        <label>
-          <input
-            type="email"
-            className={styles.input}
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <span>Email</span>
-        </label>
-        <div className={styles.flex}>
           <label>
             <input
               type="password"
@@ -67,23 +81,28 @@ const Login = () => {
             />
             <span>Password</span>
           </label>
-        </div>
-        <button className={styles.submit} type="submit">
-          Log in
-        </button>
 
-        <Link href="/signup">
-          <p>
-            Do nott have an account? <b>Signup</b>
-          </p>
-        </Link>
-      </form>
-      <button className={styles.submit} onClick={handlegoogleLogin}>
-        Log in with Google
-      </button>
-      <button className={styles.submit} onClick={handlegitLogin}>
-        Log in with Github
-      </button>
+          <button className={styles.submitBtn} type="submit">
+            Log in
+          </button>
+        </form>
+        <div className={styles.imageContainer}>
+          <h2 className={styles.title}>Login</h2>
+          <button className={styles.socialBtn} onClick={handlegoogleLogin}>
+            <FontAwesomeIcon icon={faGoogle} size="xl" />
+            Log in with Google
+          </button>
+          <button className={styles.socialBtn} onClick={handlegitLogin}>
+            <FontAwesomeIcon icon={faFacebookF} size="xl"></FontAwesomeIcon>
+            Log in with Facebook
+          </button>
+          <Link href="/signup">
+            <p>
+              Do nott have an account? <b>Signup</b>
+            </p>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

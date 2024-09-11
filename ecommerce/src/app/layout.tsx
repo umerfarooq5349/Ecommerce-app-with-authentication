@@ -8,7 +8,7 @@ import Footer from "@/components/footer/footer";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
-import ClientSessionProvider from "@/components/clientSideProvider/ClientSessionProvider"; // Import the new provider component
+
 import AuthProvider from "@/utils/context/AuthProvider";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
@@ -27,12 +27,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <div className={styles.main}>
+        <div className="main">
           <AuthProvider>
             <Navbar />
             {children}
+            <Footer />
           </AuthProvider>
-          <Footer />
         </div>
       </body>
     </html>

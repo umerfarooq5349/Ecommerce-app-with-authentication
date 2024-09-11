@@ -1,0 +1,33 @@
+@import "./theme/theme.scss";
+
+.navLink {
+  @include linkStyle(default);
+  color: $text-color-light;
+  margin: $margin-large $margin-regular;
+  padding: $padding-small 0;
+  position: relative;
+  display: flex;
+  // color: red;
+  flex-direction: column;
+  justify-content: center; // Centering horizontally
+  // Removed justify-items
+  &:hover {
+    color: $text-color-accent;
+  }
+
+  &::before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: $link-hover-color;
+    transition: width 300ms ease-in-out; // Simplified transition
+  }
+
+  &:hover::before {
+    width: 100%; // Expand to the full width of the parent on hover
+    color: $border-color-accent;
+  }
+}

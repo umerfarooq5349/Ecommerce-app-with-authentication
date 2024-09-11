@@ -1,6 +1,7 @@
 import styles from "@/utils/saas/itemCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useSession } from "next-auth/react";
 
 interface ItemCardProps {
   name: string;
@@ -33,6 +34,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
     deleteBtn(); // Call the deleteBtn function
   };
 
+  const { data: session } = useSession();
   return (
     <div className={styles.card} onClick={onclickBtn}>
       <div className={styles.content}>
@@ -49,9 +51,13 @@ const ItemCard: React.FC<ItemCardProps> = ({
           <button className={styles.seeMore} onClick={handleUpdateClick}>
             See More
           </button>
-          <button className={styles.delete} onClick={handleDeleteClick}>
-            <FontAwesomeIcon icon={faTrash} /> Delete
-          </button>
+          {session && session.user.role === "admin" ? (
+            <button className={styles.delete} onClick={handleDeleteClick}>
+              <FontAwesomeIcon icon={faTrash} /> Delete
+            </button>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>

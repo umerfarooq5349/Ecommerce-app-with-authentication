@@ -1,9 +1,9 @@
 import styles from "@/utils/saas/loadingBike.module.scss";
 
-const BikeAnimiation = () => {
+const BikeAnimiation = ({ text }: { text: string }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.loading}>Hold on</div>
+      <div className={styles.loading}>{text}</div>
 
       <svg
         className={styles.bike}

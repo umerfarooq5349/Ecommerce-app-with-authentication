@@ -1,54 +1,89 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap");
 .container {
   height: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
+  width: 100%;
   flex-direction: column;
-  margin-top: 10px;
-  padding-bottom: 20px;
+  margin-top: 8px;
+  padding-bottom: 24px;
 }
 .container h1 {
-  padding: 20px 0;
+  padding: 24px 0;
+  color: #392467;
+  text-align: center;
 }
 .container .body {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  max-width: 1000px;
   justify-content: center;
-  gap: 20px;
-  padding: 0 20px;
+  gap: 24px;
+  padding: 0 16px;
+}
+@media screen and (max-width: 1200px) {
+  .container .body {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 992px) {
+  .container .body {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 }
 @media screen and (max-width: 768px) {
   .container .body {
-    width: 100%;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container .body {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
 .sidebar {
-  color: #fff;
+  color: #ffd1e3;
   width: 300px;
   z-index: 1;
   position: fixed;
   text-align: center;
+  display: flex;
   align-items: center;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #333;
+  background-color: #a367b1;
+  padding: 16px;
+  overflow-y: auto;
 }
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 50%;
+    width: 100%;
     height: auto;
     bottom: auto;
-    top: 0;
     left: 0;
+    top: auto;
   }
 }
 
 .sidebarclose {
-  display: none;
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #5d3587;
+  color: #ffd1e3;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+@media screen and (max-width: 768px) {
+  .sidebarclose {
+    display: block;
+  }
 }/*# sourceMappingURL=total-Items.module.css.map */

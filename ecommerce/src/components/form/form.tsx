@@ -88,32 +88,35 @@ const Foorm = (formData: FormData) => {
           <span>Stock</span>
         </label>
       </div>
-      <label>
-        <input
-          type="text"
-          name="brand"
-          placeholder=""
-          value={formData.brand}
-          onChange={formData.handleChange}
-          required
-          className={styles.input}
-        />
-        <span>Brand</span>
-      </label>
-      <label>
-        <input
-          type="text"
-          name="category"
-          placeholder=""
-          value={formData.category}
-          onChange={formData.handleChange}
-          required
-          className={styles.input}
-        />
-        <span>Category</span>
-      </label>
+
+      <div className={styles.flex}>
+        <label>
+          <input
+            type="text"
+            name="brand"
+            placeholder=""
+            value={formData.brand}
+            onChange={formData.handleChange}
+            required
+            className={styles.input}
+          />
+          <span>Brand</span>
+        </label>
+        <label>
+          <input
+            type="text"
+            name="category"
+            placeholder=""
+            value={formData.category}
+            onChange={formData.handleChange}
+            required
+            className={styles.input}
+          />
+          <span>Category</span>
+        </label>
+      </div>
       <div className={styles.flexCenter}>
-        <label className={styles.centered}>
+        <label>
           <input
             type="file"
             name="thumbnail"

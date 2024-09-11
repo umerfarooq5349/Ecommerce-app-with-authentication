@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { deleteItem, getAllItems } from "../api/item";
 import ItemCard from "@/components/card/itemCard";
-import styles from "@/utils/saas/total-Items.module.scss";
+import styles from "@/utils/saas/total-items.module.scss";
 import Sidebar from "@/components/sideBar/sidbar"; // Import the Sidebar component
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
 import { Productts } from "@/utils/model/item";
+import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
+import { useSession } from "next-auth/react";
 
 const TotalProducts = () => {
   const router = useRouter();
@@ -17,7 +19,7 @@ const TotalProducts = () => {
   const [selectedItemId, setSelectedItemId] = useState<number | undefined>(
     undefined
   );
-
+  const { data: session } = useSession();
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -81,7 +83,6 @@ const TotalProducts = () => {
 
   return (
     <div className={styles.container}>
-      <h1>All Products</h1>
       <div className={styles.body}>
         {updateItem && (
           <div className={styles.sidebar} id="sidebar">
@@ -89,7 +90,7 @@ const TotalProducts = () => {
           </div>
         )}
         {allItems.length === 0 ? (
-          <p>No items available.</p>
+          <BikeAnimiation text="No items Available" />
         ) : (
           allItems.map((item: Productts) => (
             <ItemCard
@@ -102,7 +103,7 @@ const TotalProducts = () => {
               updateBtn={() => updateBtn(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
               onclickBtn={() => {
-                router.push(`/Total-Items/${item._id}`);
+                router.push(`/total-items/${item._id}`);
               }}
             />
           ))
