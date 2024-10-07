@@ -36,6 +36,7 @@ const NavLinks = () => {
       title: "Are you sure?",
       text: "You are going to logout",
       icon: "warning",
+      // background: "#ccc url(/images/trees.png)",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",

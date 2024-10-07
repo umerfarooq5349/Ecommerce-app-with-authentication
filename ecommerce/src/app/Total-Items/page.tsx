@@ -6,20 +6,18 @@ import styles from "@/utils/saas/total-items.module.scss";
 import Sidebar from "@/components/sideBar/sidbar"; // Import the Sidebar component
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-
 import { Productts } from "@/utils/model/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
 
 const TotalProducts = () => {
   const router = useRouter();
-
   const [allItems, setAllItems] = useState<Productts[]>([]);
-  const [updateItem, setUpdateItem] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<number | undefined>(
     undefined
   );
   const { data: session } = useSession();
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -32,9 +30,8 @@ const TotalProducts = () => {
     fetchItems();
   }, []);
 
-  const updateBtn = async (itemId: number) => {
+  const handleShowDetails = async (itemId: number) => {
     console.log(`See more ${itemId}`);
-    setUpdateItem(true);
     setSelectedItemId(itemId);
   };
 
@@ -57,7 +54,7 @@ const TotalProducts = () => {
         });
         setAllItems(allItems.filter((item) => item._id !== itemId));
         if (selectedItemId === itemId) {
-          setSelectedItemId(undefined); // Clear the selected item ID if it matches the deleted item ID
+          setSelectedItemId(undefined);
         }
       }
     });
@@ -66,11 +63,11 @@ const TotalProducts = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        updateItem &&
-        event.target instanceof Element && // Check if target is an Element
+        selectedItemId &&
+        event.target instanceof Element &&
         !event.target.closest("#sidebar")
       ) {
-        setUpdateItem(false);
+        setSelectedItemId(undefined); // Close the sidebar if clicking outside
       }
     };
 
@@ -79,14 +76,14 @@ const TotalProducts = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  });
+  }, [selectedItemId]);
 
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        {updateItem && (
+        {selectedItemId && (
           <div className={styles.sidebar} id="sidebar">
-            <Sidebar id={selectedItemId || 0}></Sidebar>
+            <Sidebar id={selectedItemId || 0} />
           </div>
         )}
         {allItems.length === 0 ? (
@@ -100,9 +97,10 @@ const TotalProducts = () => {
               brand={item.brand}
               key={item._id}
               stock={item.stock}
-              updateBtn={() => updateBtn(item._id || 0)}
+              showDetailsBtn={() => handleShowDetails(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
               onclickBtn={() => {
+                // If you need to navigate, ensure it doesn’t conflict with sidebar visibility
                 router.push(`/total-items/${item._id}`);
               }}
             />

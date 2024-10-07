@@ -294,10 +294,6 @@ $hero-styles: (
   &::placeholder {
     color: map-get($styles, placeholder-color);
   }
-
-  &:focus {
-    // border-color: darken(map-get($styles, border), 10%);
-  }
 }
 
 // Mixin for Card Styles

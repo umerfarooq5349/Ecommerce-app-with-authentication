@@ -3,147 +3,203 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 600px;
-  //Adjustmax-widthasneededmargin: 30px auto;
+  background-color: $form-bg-color;
   padding: $padding-large;
   border-radius: $border-radius-large;
+  box-shadow: $box-shadow-light;
+  transition: box-shadow 0.5s ease-in-out;
   position: relative;
-  background-color: $background-alt;
-  color: $text-color-light;
-  border: 1px solid $border-color-dark;
-  label {
-    position: relative;
-    flex: 1;
 
-    .input {
-      @include inputStyle(default);
-
-      &:required + span,
-      &:focus + span,
-      &:active + span,
-      &:valid + span {
-        color: $text-color-dark;
-        top: 0px;
-        font-size: 0.7em;
-        font-weight: 600;
-      }
-
-      &:focus,
-      &:active {
-        border: 2px solid $border-color-dark;
-        outline: none;
-      }
-    }
-
-    .input + span {
-      color: $input-border;
-      position: absolute;
-      left: 10px;
-
-      top: 0px;
-      margin-top: 2px;
-      font-size: $font-size-small;
-      cursor: text;
-      transition: $transition-speed $transition-ease;
-    }
-
-    textarea {
-      background-color: red;
-    }
-  }
-
-  .thumbnail_preview {
-    margin-top: 10px;
-    width: 100%;
-    max-width: 350px;
-    border-radius: $border-radius-medium;
-    border: 2px solid $input-border;
-    object-fit: cover;
-    align-self: center; // Center the thumbnail preview
-  }
-}
-
-.title {
-  font-size: $font-size-heading;
-  font-weight: bolder;
-
-  letter-spacing: 3px;
-  position: relative;
-  display: flex;
-
-  padding-left: 30px;
-  color: $text-color-dark;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    // height: 16px;
-    // width: 16px;
-    right: 0px;
-    left: 0px;
-    border-radius: 50%;
-    background-color: $primary-color;
-  }
-
-  &::before {
-    width: 18px;
-    height: 18px;
-  }
-
-  &::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-    -webkit-animation: pulse 1s linear infinite;
-  }
-}
-
-.message {
-  color: $text-color-dark;
-  font-size: $font-size-large;
-}
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-
-  .input {
-    flex: 1;
-  }
-
-  label {
-    flex: 1;
-  }
-}
-
-.flexCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: $gap-small;
-
-  .input {
-    width: fit-content;
-  }
-}
-
-.submit {
-  @include buttonStyle(secondary);
   &:hover {
-    background-color: darken($background-color-dark, 10%);
+    box-shadow: $box-shadow-dark;
+  }
+
+  .title {
+    font-size: $font-size-heading; // Increase the size for better visual hierarchy
+    font-weight: bold;
+    color: $text-color-dark;
+    margin-bottom: $margin-large;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap-regular;
+    justify-content: space-between;
+
+    .formLeft,
+    .formRight {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .formLeft {
+      display: flex;
+      flex-direction: column;
+      flex: 2;
+      // flex-wrap: wrap;
+      gap: $gap-regular;
+      margin-bottom: $margin-large;
+
+      .message {
+        font-size: $font-size-regular;
+        color: $text-color-dark;
+        text-align: center;
+      }
+      .flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        label {
+          position: relative;
+          .input {
+            @include inputStyle(default);
+
+            &:required + span,
+            &:focus + span,
+            &:active + span,
+            &:valid + span {
+              color: $text-color-dark;
+              top: 0px;
+              font-size: 0.7em;
+              font-weight: 600;
+            }
+
+            &:focus,
+            &:active {
+              border: 2px solid $border-color-dark;
+              outline: none;
+            }
+          }
+
+          .input + span {
+            color: $input-border;
+            position: absolute;
+            left: 10px;
+            top: 0px;
+            margin-top: 2px;
+            font-size: $font-size-small;
+            cursor: text;
+            transition: $transition-speed $transition-ease;
+          }
+          textarea {
+            width: 100%;
+            resize: none;
+          }
+        }
+      }
+      label {
+        position: relative;
+        .input {
+          @include inputStyle(default);
+
+          &:required + span,
+          &:focus + span,
+          &:active + span,
+          &:valid + span {
+            color: $text-color-dark;
+            top: 0px;
+            font-size: 0.7em;
+            font-weight: 600;
+          }
+
+          &:focus,
+          &:active {
+            border: 2px solid $border-color-dark;
+            outline: none;
+          }
+        }
+
+        .input + span {
+          color: $input-border;
+          position: absolute;
+          left: 10px;
+          top: 0px;
+          margin-top: 2px;
+          font-size: $font-size-small;
+          cursor: text;
+          transition: $transition-speed $transition-ease;
+        }
+        textarea {
+          @include inputStyle(default);
+          width: 100%;
+          resize: none;
+        }
+      }
+    }
+
+    .formRight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      padding: $padding-large;
+      border-radius: $border-radius-large;
+
+      .fileUpload {
+        width: 100%;
+        label {
+          display: flex;
+          flex-direction: column;
+          font-size: $font-size-regular;
+          color: $text-color-dark;
+          input {
+            margin-top: $margin-small;
+          }
+        }
+      }
+      .customUploadButton {
+        @include buttonStyle(secondary);
+        width: 100%;
+        text-align: center;
+        &:hover {
+          background-color: darken($border-color-dark, 10%);
+        }
+      }
+      .fileUploadHidden {
+        display: none;
+      }
+      .thumbnail_preview {
+        width: 100%;
+        max-width: 300px;
+        position: relative;
+        height: auto;
+        aspect-ratio: 1;
+        background-color: $background-alt;
+        border-radius: $border-radius-large;
+        overflow: hidden;
+
+        .image {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  button {
+    @include buttonStyle(primary);
+    width: 100%;
+    margin-top: $margin-large;
+    padding: $padding-regular;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
   }
 }
 
-@keyframes pulse {
-  from {
-    transform: scale(0.9);
-    opacity: 1;
-  }
+@media (max-width: 768px) {
+  .form {
+    padding: $padding-regular;
 
-  to {
-    transform: scale(1.8);
-    opacity: 0;
+    .container {
+      flex-direction: column;
+      gap: $gap-small;
+    }
   }
 }
