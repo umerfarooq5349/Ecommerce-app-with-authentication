@@ -1,6 +1,6 @@
 import styles from "@/utils/saas/itemCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCartArrowDown, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
 
 interface ItemCardProps {
@@ -64,7 +64,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
               <FontAwesomeIcon icon={faTrash} /> Delete
             </button>
           ) : (
-            <div></div>
+            <button className={styles.seeMore} onClick={() => {}}>
+              <FontAwesomeIcon icon={faCartArrowDown} /> Add to Cart
+            </button>
           )}
         </div>
       </div>

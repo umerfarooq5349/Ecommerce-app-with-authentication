@@ -1,7 +1,7 @@
-import User from "../model/users_model";
-import catchAsync from "../utils/catchAsync";
+import User from "../../model/users_model";
+import catchAsync from "../../utils/catchAsync";
 import jwt from "jsonwebtoken";
-import AppError from "./appErros";
+import AppError from "../errors/appErrors";
 import { promisify } from "util";
 import { NextFunction, Request, Response } from "express";
 

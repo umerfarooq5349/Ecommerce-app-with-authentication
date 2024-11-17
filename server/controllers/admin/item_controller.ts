@@ -1,7 +1,7 @@
-import Item from "../model/item_model";
+import Item from "../../model/item_model";
 import { Request, Response } from "express";
-import catchAsync from "../utils/catchAsync";
-import AppError from "./appErros";
+import catchAsync from "../../utils/catchAsync";
+import AppError from "../errors/appErrors";
 
 const getItems = catchAsync(async (req: Request, res: Response) => {
   const item = await Item.find();

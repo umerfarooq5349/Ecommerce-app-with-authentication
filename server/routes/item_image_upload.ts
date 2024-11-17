@@ -3,7 +3,7 @@ import {
   uploadImage,
   storage,
   fileFilter,
-} from "./../controllers/item_image_upload_controller";
+} from "../controllers/admin/item_image_upload_controller";
 import multer from "multer";
 
 const uploadStorage = multer({

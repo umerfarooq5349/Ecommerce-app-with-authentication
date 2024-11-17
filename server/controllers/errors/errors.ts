@@ -1,4 +1,4 @@
-import AppError from "./appErros";
+import AppError from "./appErrors";
 import { Request, Response, NextFunction } from "express";
 
 const errorHandlerMiddleware = (

@@ -3,12 +3,12 @@ import {
   deleteItem,
   getItem,
   updateItem,
-} from "../controllers/item_controller";
-import { getItems, addItem } from "../controllers/item_controller";
+} from "../controllers/admin/item_controller";
+import { getItems, addItem } from "../controllers/admin/item_controller";
 import {
   protectedRoute,
   restrictTo,
-} from "./../controllers/authurization_controller";
+} from "../controllers/auth/authurization_controller";
 
 const itemRouter = Express.Router();
 

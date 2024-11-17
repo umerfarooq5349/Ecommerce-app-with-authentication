@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import User from "../model/users_model";
-import catchAsync from "../utils/catchAsync";
+import User from "./../../model/users_model";
+import catchAsync from "./../../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import AppError from "./appErros";
-import { signToken } from "./../utils/signinToken"; // Ensure correct import
+import AppError from "./../errors/appErrors";
+import { signToken } from "./../../utils/signinToken"; // Ensure correct import
 
 interface UserDocument extends mongoose.Document {
   _id: string;

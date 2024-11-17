@@ -1,14 +1,14 @@
 import Express from "express";
 import itemRouter from "./routes/item_routes";
 import cors from "cors";
-import { errorHandlerMiddleware } from "./controllers/errors";
+import { errorHandlerMiddleware } from "./controllers/errors/errors";
 import item_image_upload_router from "./routes/item_image_upload";
 import authRouter from "./routes/auth";
 import cookieParser from "cookie-parser";
 const app = Express();
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Allow requests from this origin
+  origin: true, // Allow requests from this origin
   credentials: true, // Allow cookies to be sent
 };
 

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import multer from "multer";
 import path from "path";
-import AppError from "./appErros";
-import catchAsync from "../utils/catchAsync";
+import AppError from "../errors/appErrors";
+import catchAsync from "../../utils/catchAsync";
 
 export const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,7 +19,7 @@ export const fileFilter = function (
   cb: CallableFunction
 ) {
   // Allowed file extensions
-  const fileTypes = /jpg|png|jpeg/;
+  const fileTypes = /jpg|png|jpeg|gif/;
 
   const mimetype = fileTypes.test(file.mimetype);
   console.log(`MIME type: ${mimetype}`);
