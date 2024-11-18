@@ -5,6 +5,7 @@ import { errorHandlerMiddleware } from "./controllers/errors/errors";
 import item_image_upload_router from "./routes/item_image_upload";
 import authRouter from "./routes/auth";
 import cookieParser from "cookie-parser";
+import cartRouter from "./routes/addToCartRoute";
 const app = Express();
 
 const corsOptions = {
@@ -29,6 +30,7 @@ app.use("/uploads", Express.static("uploads"));
 app.use("/api/items", itemRouter);
 app.use("/api/upload", item_image_upload_router);
 app.use("/api", authRouter);
+app.use("/api/client/cart", cartRouter);
 
 app.use(errorHandlerMiddleware);
 

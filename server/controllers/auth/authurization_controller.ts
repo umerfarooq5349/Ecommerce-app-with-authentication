@@ -12,12 +12,13 @@ interface AuthenticatedRequest extends Request {
 const protectedRoute = catchAsync(async (req, res, next) => {
   //geting token and check it is textUnderlinePosition:
   let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
-  }
+  token = req.cookies.jwt;
+  // if (
+  //   req.headers.authorization &&
+  //   req.headers.authorization.startsWith("Bearer")
+  // ) {
+  //   token = req.headers.authorization.split(" ")[1];
+  // }
 
   // verify token
   if (!token) {
@@ -27,14 +28,14 @@ const protectedRoute = catchAsync(async (req, res, next) => {
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
-  console.log(`decoded: ${decoded}`);
+  // console.log(`decoded: ${decoded.id}`);
 
   // check if user still exists
   const logedIn_user = await User.findById(decoded.id);
   if (!logedIn_user) {
     return next(new AppError("User not found", 404));
   }
-
+  req.body.currentUser = logedIn_user;
   // check if user changed password after token issued
 
   next();
