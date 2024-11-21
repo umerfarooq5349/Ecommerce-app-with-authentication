@@ -37,6 +37,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/auth/login",
   },
+  session: { strategy: "jwt" },
+  //
+  //   sessionToken: {
+  //     name: "umer",
+  //     options: {
+  //       httpOnly: true,
+  //       // secure: process.env.NODE_ENV === "production", // Secure cookies in production
+  //       domain: "localhost:8080", // Domain where cookies are valid
+  //       path: "/", // Path of the cookies
+  //       sameSite: "lax", // Allow cookies to be sent for cross-origin navigation
+  //     },
+  //   },
+  // },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {

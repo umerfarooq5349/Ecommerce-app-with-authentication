@@ -63,7 +63,10 @@ const NavLinks = () => {
               oneLink={{ title: "Add Product", route: "/addproduct" }}
             />
           )}
+          {/* client */}
           <OneLink key="profile" oneLink={{ title: userName!, route: "/" }} />
+          <OneLink key="cart" oneLink={{ title: "Cart", route: "/cart" }} />
+
           <div onClick={handleLogout} role="button" tabIndex={0}>
             <OneLink key="logout" oneLink={{ title: "Logout", route: "" }} />
           </div>

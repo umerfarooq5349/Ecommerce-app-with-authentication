@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Productts } from "@/utils/model/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const TotalProducts = () => {
   const router = useRouter();
@@ -78,6 +79,18 @@ const TotalProducts = () => {
     };
   }, [selectedItemId]);
 
+  const addToCartBtn = async (item: Productts) => {
+    try {
+      const response = await axios.post("/api/cart", {
+        item,
+      });
+
+      console.log(`Added item ${item} to cart`);
+    } catch (error) {
+      console.error("Failed to add item to cart", error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.body}>
@@ -99,9 +112,10 @@ const TotalProducts = () => {
               stock={item.stock}
               showDetailsBtn={() => handleShowDetails(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
-              onclickBtn={() => {
+              addTocartBtn={() => {
                 // If you need to navigate, ensure it doesn’t conflict with sidebar visibility
-                router.push(`/total-items/${item._id}`);
+                // router.push(`/total-items/${item._id}`);
+                addToCartBtn(item);
               }}
             />
           ))

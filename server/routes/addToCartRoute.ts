@@ -2,9 +2,8 @@ import Express from "express";
 import {
   addToCartItem,
   cartTotalPrice,
-  deleteCartItems,
   getCartItems,
-  removeFromCartList,
+  modifyCartItem,
 } from "../controllers/client/addToCartController";
 import { protectedRoute } from "../controllers/auth/authurization_controller";
 
@@ -17,9 +16,6 @@ cartRouter.route("/").get(protectedRoute, getCartItems).post(
 );
 
 cartRouter.route("/total").get(protectedRoute, cartTotalPrice);
-cartRouter
-  .route("/:itemId")
-  .delete(protectedRoute, deleteCartItems)
-  .post(protectedRoute, removeFromCartList);
+cartRouter.route("/:itemId").delete(protectedRoute, modifyCartItem);
 
 export default cartRouter;

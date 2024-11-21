@@ -11,7 +11,7 @@ interface ItemCardProps {
   stock: number;
   showDetailsBtn(): void;
   deleteBtn(): void;
-  onclickBtn(): void;
+  addTocartBtn(): void;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -22,29 +22,37 @@ const ItemCard: React.FC<ItemCardProps> = ({
   stock,
   showDetailsBtn,
   deleteBtn,
-  onclickBtn,
+  addTocartBtn,
 }) => {
-  const handleshowDetailsBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Stop event propagation
-    showDetailsBtn(); // Call the showDetailsBtn function
-  };
+  // const handleshowDetailsBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.stopPropagation(); // Stop event propagation
+  //   showDetailsBtn(); // Call the showDetailsBtn function
+  // };
 
-  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Stop event propagation
-    deleteBtn(); // Call the deleteBtn function
-  };
+  // const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.stopPropagation(); // Stop event propagation
+  //   deleteBtn(); // Call the deleteBtn function
+  // };
 
-  const handleCardOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation(); // Stop event propagation
-    if (session && session.user.role === "admin") {
-      onclickBtn(); // Call the deleteBtn function
-    }
-    console.log(`you are not  admin`);
-  };
+  // const handleCardOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   e.stopPropagation(); // Stop event propagation
+  //   if (session && session.user.role === "admin") {
+  //     onclickBtn(); // Call the deleteBtn function
+  //   }
+  //   console.log(`you are not  admin`);
+  // };
 
+  // const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.stopPropagation(); // Stop event propagation
+
+  //   console.log("Added to cart");
+  // };
   const { data: session } = useSession();
   return (
-    <div className={styles.card} onClick={handleCardOnClick}>
+    <div
+      className={styles.card}
+      // onClick={showDetailsBtn}
+    >
       <div className={styles.content}>
         <img src={imageUrl} alt={name} className={styles.itemImage} />
         <div className={styles.itemInfo}>
@@ -56,15 +64,15 @@ const ItemCard: React.FC<ItemCardProps> = ({
           {stock > 0 ? `In Stock: ${stock}` : "Out of Stock"}
         </div>
         <div className={styles.buttons}>
-          <button className={styles.seeMore} onClick={handleshowDetailsBtn}>
+          <button className={styles.seeMore} onClick={showDetailsBtn}>
             See More
           </button>
           {session && session.user.role === "admin" ? (
-            <button className={styles.delete} onClick={handleDeleteClick}>
+            <button className={styles.delete} onClick={deleteBtn}>
               <FontAwesomeIcon icon={faTrash} /> Delete
             </button>
           ) : (
-            <button className={styles.seeMore} onClick={() => {}}>
+            <button className={styles.seeMore} onClick={addTocartBtn}>
               <FontAwesomeIcon icon={faCartArrowDown} /> Add to Cart
             </button>
           )}
