@@ -4,21 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import styles from "@/utils/saas/cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-
-type CartItem = {
-  _id: string;
-  userId: string;
-  itemId: {
-    _id: string;
-    title: string;
-    thumbnail: string;
-  };
-  addedAt: string;
-  discount: number;
-  isAvailable: boolean;
-  price: number;
-  quantity: number;
-};
+import { CartItem } from "@/utils/types/cartItem.types";
+import Image from "next/image";
+import { cartProduct } from "@/utils/types/dumydata";
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState<CartItem[]>([]);
@@ -26,8 +14,9 @@ const Cart = () => {
   // Fetch cart products
   const fetchCartProducts = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/api/cart/`);
-      setCartProducts(data.data);
+      // const { data } = await axios.get(`/api/cart/`);
+      // setCartProducts(data.data);
+      setCartProducts(cartProduct);
     } catch (error) {
       console.error("Failed to fetch cart products:", error);
     }
@@ -81,8 +70,15 @@ const Cart = () => {
               <tr key={item._id}>
                 <td>
                   <div className={styles.item}>
-                    <img src={item.itemId.thumbnail} alt={item.itemId.title} />
-                    <span>{item.itemId.title}</span>
+                    <Image
+                      className={styles.itemImage}
+                      src={item.itemId.thumbnail}
+                      alt={item.itemId.title}
+                      width={100}
+                      height={100}
+                      // fill
+                    />
+                    <p className={styles.itemTitle}>{item.itemId.title}</p>
                   </div>
                 </td>
                 <td>{new Date(item.addedAt).toLocaleString()}</td>
@@ -90,22 +86,27 @@ const Cart = () => {
                 <td>{item.isAvailable ? "Available" : "Out of Stock"}</td>
                 <td>${item.price}</td>
                 <td>
-                  <FontAwesomeIcon
-                    icon={faMinus}
-                    size="xl"
-                    onClick={() => handleQuantityChange(item, false)}
-                  />
-                  {item.quantity}
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    size="xl"
-                    onClick={() => handleQuantityChange(item, true)}
-                  />
-                  <FontAwesomeIcon
-                    icon={faXmark}
-                    size="xl"
-                    onClick={() => handleQuantityChange(item, false, true)}
-                  />
+                  <div className={styles.quantityBtn}>
+                    <FontAwesomeIcon
+                      icon={faMinus}
+                      size="xl"
+                      className={styles.minusBtn}
+                      onClick={() => handleQuantityChange(item, false)}
+                    />
+                    {item.quantity}
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      size="xl"
+                      className={styles.plusBtn}
+                      onClick={() => handleQuantityChange(item, true)}
+                    />
+                    <FontAwesomeIcon
+                      icon={faXmark}
+                      size="xl"
+                      className={styles.removeBtn}
+                      onClick={() => handleQuantityChange(item, false, true)}
+                    />
+                  </div>
                 </td>
               </tr>
             ))}

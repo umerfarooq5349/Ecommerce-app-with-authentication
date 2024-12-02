@@ -2,13 +2,12 @@ html,
 body {
   height: 100%;
   margin: 0;
-
-  background-color: #392467;
+  background-color: #28282b;
 
   a {
 
     text-decoration: none;
-    color: #ffd1e3;
+    color: #ecb365;
 
 
   }

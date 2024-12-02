@@ -1,9 +1,9 @@
 // Color Palette
-$primary-color: #392467; // Dark Purple
-$secondary-color: #5d3587; // Medium Purple
-$accent-color: #a367b1; // Light Purple
-$highlight-color: #ffd1e3; // Light Pink
-$accent-color-low: #a367b176; // Light Purple
+$primary-color: #0c3b36; // Deep Green
+$secondary-color: #f6cc90; // Soft Olive
+$accent-color: #ecb365; // Golden Yellow
+$highlight-color: #e6d5b8; // Warm Sand
+$accent-color-low: rgba($accent-color, 0.45); // Golden Yellow with low opacity
 
 // Danger and Success Colors
 $danger-color: #e74c3c; // Red for danger
@@ -23,6 +23,7 @@ $background-color-light: $highlight-color;
 $background-accent: $secondary-color;
 $background-alt-500: $accent-color-low;
 $background-alt: $accent-color;
+$grey-bg: #b0adad;
 $form-bg-color: $accent-color;
 
 // Button Colors
@@ -46,8 +47,8 @@ $input-placeholder-color: lighten($primary-color, 20%);
 
 // Link Colors
 $link-color: $accent-color;
-$link-hover-color: $highlight-color;
-$link-active-color: darken($highlight-color, 10%);
+$link-hover-color: darken($highlight-color, 10%);
+$link-active-color: darken($highlight-color, 20%);
 
 // Shadow
 $box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -61,6 +62,8 @@ $transition-ease: ease-in-out;
 $border-radius-small: 4px;
 $border-radius-medium: 8px;
 $border-radius-large: 12px;
+$border-radius-xl: 25px;
+$border-radius-2xl: 50px;
 
 // Font Family
 $font-family: "Roboto", sans-serif;
@@ -189,7 +192,7 @@ $card-styles: (
     border: 1px solid $border-color-light,
     border-radius: $border-radius-large,
     box-shadow: $box-shadow-light,
-    padding: $padding-large,
+    // padding: $padding-large,
   ),
   danger: (
     background-color: $danger-light-color,

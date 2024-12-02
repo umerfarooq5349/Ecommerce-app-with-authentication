@@ -1,112 +1,131 @@
 @import "./theme/theme.scss";
 
 .card {
-  @include cardStyle(default);
+  // background-color: $grey-bg;
   display: flex;
   flex-direction: column;
-  gap: $gap-regular;
-  border-radius: $border-radius-large;
-  position: relative;
-  border: 1px solid $border-color-light;
-  padding: $padding-large;
-  background-color: $background-color-light;
-  box-shadow: $box-shadow-light;
-  transition: transform $transition-speed $transition-ease,
-    box-shadow $transition-speed $transition-ease;
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: $box-shadow-dark;
-  }
-}
-
-.itemImage {
-  object-fit: cover;
-  // position: relative;
-  width: 100%;
-  height: 250px;
   border-radius: $border-radius-medium;
-  transition: transform $transition-speed $transition-ease;
+  -webkit-border-radius: $border-radius-medium;
+  -moz-border-radius: $border-radius-medium;
+  -ms-border-radius: $border-radius-medium;
+  -o-border-radius: $border-radius-medium;
+  .cardHeader {
+    position: relative;
+    height: 300px;
+    width: fill;
+    overflow: hidden;
+    border-radius: $border-radius-medium;
+    -webkit-border-radius: $border-radius-medium;
+    -moz-border-radius: $border-radius-medium;
+    -ms-border-radius: $border-radius-medium;
+    -o-border-radius: $border-radius-medium;
+    .itemImage {
+      object-fit: cover;
+      overflow: hidden;
+      position: absolute;
 
-  &:hover {
-    transform: scale(1.02);
+      &:hover {
+        overflow: hidden;
+        transform: scale(1.03);
+        -webkit-transform: scale(1.03);
+        -moz-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        -o-transform: scale(1.03);
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+      }
+    }
+
+    .headerBtn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+      margin: $margin-small;
+      justify-content: space-between;
+      z-index: 1;
+
+      .button {
+        background-color: $grey-bg;
+        color: $text-color-accent;
+        background-color: $background-color-dark;
+        padding: $padding-small;
+        border-radius: $border-radius-medium;
+        -webkit-border-radius: $border-radius-medium;
+        -moz-border-radius: $border-radius-medium;
+        -ms-border-radius: $border-radius-medium;
+        -o-border-radius: $border-radius-medium;
+        &:hover {
+          background-color: darken($color: $background-color-dark, $amount: 5%);
+          box-shadow: $box-shadow-dark;
+
+          transition: 0.3s ease-in-out;
+          -webkit-transition: 0.3s ease-in-out;
+          -moz-transition: 0.3s ease-in-out;
+          -ms-transition: 0.3s ease-in-out;
+          -o-transition: 0.3s ease-in-out;
+        }
+        .delete,
+        .addToCart {
+          // background-color: red;
+          cursor: pointer; // Added cursor pointer
+
+          &:hover {
+            background-color: darken(
+              $color: $background-color-dark,
+              $amount: 5%
+            );
+          }
+        }
+      }
+    }
   }
-}
 
-.itemInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: $margin-small;
-}
+  .cardBody {
+    flex-direction: row;
+    background-color: $background-color-dark;
+    color: $text-color-accent;
+    padding: $padding-regular;
+    margin-top: $margin-small;
+    .itemInfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .outOfStock {
+      color: $danger-color;
+    }
+    .inStock {
+      color: $success-color;
+    }
 
-.itemName,
-.itemBrand {
-  font-size: $font-size-regular;
-  margin: 0;
-  color: $text-color-dark;
-}
+    border-radius: $border-radius-medium;
+    -webkit-border-radius: $border-radius-medium;
+    -moz-border-radius: $border-radius-medium;
+    -ms-border-radius: $border-radius-medium;
+    -o-border-radius: $border-radius-medium;
 
-.itemPrice {
-  font-size: $font-size-large;
-  color: $primary-color;
-  margin: $margin-small 0;
-}
+    .itemPrice {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
 
-.inStock,
-.outOfStock {
-  font-size: $font-size-regular;
-  margin: $margin-small 0;
-}
-
-.inStock {
-  color: $success-color;
-}
-
-.outOfStock {
-  color: $danger-color;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin: $margin-small;
-  gap: $gap-small;
-
-  @media screen and (max-width: 992px) {
-    flex-direction: column;
+      .orignalPrice {
+        text-decoration: line-through;
+        color: lighten($color: $text-color-accent, $amount: 5%);
+      }
+    }
   }
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-
-.seeMore,
-.delete {
-  padding: $padding-small $padding-large;
-  border: none;
-  margin: 0 $margin-small;
-  width: 100%;
-  border-radius: $border-radius-medium;
-  cursor: pointer;
-  font-size: $font-size-regular;
-  transition: background-color $transition-speed $transition-ease;
-  &:hover {
-    background-color: darken($button-color-primary, 10%);
-  }
-}
-
-.seeMore {
-  @include buttonStyle(secondary);
-  // background-color: $button-color-primary;
-  // color: $text-color-light;
-
-  &:hover {
-    background-color: darken($button-color-primary, 10%);
-  }
-}
-
-.delete {
-  @include buttonStyle(danger);
+  // .cardFooter {
+  // border-radius: $border-radius-medium;
+  // -webkit-border-radius: $border-radius-medium;
+  // -moz-border-radius: $border-radius-medium;
+  // -ms-border-radius: $border-radius-medium;
+  // -o-border-radius: $border-radius-medium;
+  // }
 }

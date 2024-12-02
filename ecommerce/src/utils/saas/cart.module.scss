@@ -1,76 +1,158 @@
-// Table.scss
+@import "./theme/theme.scss";
 
+// Table Container
 .tableContainer {
   width: 100%;
-  overflow-x: auto;
-  padding: 1rem;
+  overflow-x: auto; // Allow horizontal scrolling for smaller screens
+  padding: $padding-small;
 }
 
+// Cart Table Styles
 .cartTable {
   width: 100%;
   border-collapse: collapse;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background-color: $background-color-light;
+  box-shadow: $box-shadow-dark;
+  border-radius: $border-radius-medium;
+
+  th,
+  td {
+    padding: $padding-regular;
+    text-align: center;
+  }
+
+  th {
+    background-color: $border-color-dark;
+    color: $text-color-accent;
+    font-weight: bold;
+  }
+
+  td {
+    font-size: $font-size-regular;
+    color: $text-color-dark;
+    font-weight: 500;
+  }
+
+  tr {
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: lighten($background-color-dark, 5%);
+      td {
+        color: $background-alt;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: $background-color-dark;
+
+      td {
+        color: $background-alt;
+      }
+
+      &:hover {
+        background-color: lighten($background-color-dark, 5%);
+      }
+    }
+  }
+
+  // Item Styles
+  .item {
+    display: flex;
+    align-items: center; // Align image and text vertically
+    gap: $gap-small; // Space between image and text
+    width: 100%;
+    position: relative;
+
+    .itemImage {
+      flex-shrink: 0;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: $border-radius-medium;
+    }
+
+    .itemTitle {
+      margin-top: 14px;
+    }
+  }
+
+  // Stock Status
+  .availability {
+    color: $success-color;
+    font-weight: bold;
+  }
+
+  .out-of-stock {
+    color: $danger-color;
+    font-weight: bold;
+  }
+
+  .quantityBtn {
+    display: flex;
+    gap: $gap-small;
+    background-color: #f3f0f0;
+    padding: $padding-small;
+    border-radius: $border-radius-2xl;
+    -webkit-border-radius: $border-radius-2xl;
+    -moz-border-radius: $border-radius-2xl;
+    -ms-border-radius: $border-radius-2xl;
+    -o-border-radius: $border-radius-2xl;
+    color: $text-color-dark;
+    .minusBtn,
+    .plusBtn,
+    .removeBtn {
+      background-color: $grey-bg;
+      color: $background-color-dark;
+      padding: 4px;
+      border-radius: $border-radius-2xl;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      -webkit-border-radius: $border-radius-2xl;
+      -moz-border-radius: $border-radius-2xl;
+      -ms-border-radius: $border-radius-2xl;
+      -o-border-radius: $border-radius-2xl;
+      -webkit-transition: background-color 0.3s;
+      -moz-transition: background-color 0.3s;
+      -ms-transition: background-color 0.3s;
+      -o-transition: background-color 0.3s;
+      &:hover {
+        background-color: darken($grey-bg, 10%);
+        text-shadow: $box-shadow-dark;
+      }
+    }
+  }
 }
 
-.cartTable th,
-.cartTable td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.cartTable th {
-  background-color: #3b1e54;
-  color: #fff;
-  font-weight: bold;
-}
-
-.cartTable td {
-  font-size: 14px;
-  color: #333;
-}
-
-.cartTable tr:hover {
-  background-color: #f1f1f1;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.item img {
-  width: 100px;
-  height: 100px;
-  border-radius: 4px;
-}
-
-.item span {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.cartTable .availability {
-  color: green;
-  font-weight: bold;
-}
-
-.cartTable .out-of-stock {
-  color: red;
-  font-weight: bold;
-}
-
-.cartTable td:nth-child(even) {
-  background-color: #f1f1f1;
-}
-
+// Responsive Styles
 @media screen and (max-width: 768px) {
-  .cartTable th,
-  .cartTable td {
-    padding: 8px;
-    font-size: 12px;
+  .cartTable {
+    th,
+    td {
+      padding: $padding-small;
+      font-size: $font-size-small;
+    }
+  }
+
+  .item {
+    flex-direction: row; // Keep items in a single row on small screens
+    align-items: center;
+
+    .itemImage {
+      width: 80px;
+      height: 80px;
+    }
+
+    .itemTitle {
+      font-size: $font-size-small;
+      white-space: normal; // Allow text wrapping
+      overflow: visible;
+    }
+  }
+
+  .quantityBtn {
+    flex-direction: row;
+    gap: $gap-small;
+    justify-content: space-between;
   }
 }

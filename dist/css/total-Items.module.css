@@ -10,7 +10,7 @@
 }
 .container h1 {
   padding: 24px 0;
-  color: #392467;
+  color: #0c3b36;
   text-align: center;
 }
 .container .body {
@@ -46,7 +46,7 @@
 }
 
 .sidebar {
-  color: #ffd1e3;
+  color: #e6d5b8;
   width: 300px;
   z-index: 1;
   position: fixed;
@@ -56,7 +56,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #a367b1;
+  background-color: #ecb365;
   padding: 16px;
   overflow-y: auto;
 }
@@ -75,8 +75,8 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #5d3587;
-  color: #ffd1e3;
+  background-color: #f6cc90;
+  color: #e6d5b8;
   border: none;
   padding: 8px;
   cursor: pointer;

@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  background-color: #a367b1;
+  background-color: #ecb365;
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -14,7 +14,7 @@
 .form .title {
   font-size: 32px;
   font-weight: bold;
-  color: #392467;
+  color: #0c3b36;
   margin-bottom: 24px;
   text-align: center;
 }
@@ -38,7 +38,7 @@
 }
 .form .container .formLeft .message {
   font-size: 16px;
-  color: #392467;
+  color: #0c3b36;
   text-align: center;
 }
 .form .container .formLeft .flex {
@@ -50,28 +50,28 @@
   position: relative;
 }
 .form .container .formLeft .flex label .input {
-  background-color: #ffd1e3;
-  border: 1px solid #a367b1;
-  color: #392467;
+  background-color: #e6d5b8;
+  border: 1px solid #ecb365;
+  color: #0c3b36;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
 }
 .form .container .formLeft .flex label .input::placeholder {
-  color: #633eb3;
+  color: #1d9084;
 }
 .form .container .formLeft .flex label .input:required + span, .form .container .formLeft .flex label .input:focus + span, .form .container .formLeft .flex label .input:active + span, .form .container .formLeft .flex label .input:valid + span {
-  color: #392467;
+  color: #0c3b36;
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
 .form .container .formLeft .flex label .input:focus, .form .container .formLeft .flex label .input:active {
-  border: 2px solid #392467;
+  border: 2px solid #0c3b36;
   outline: none;
 }
 .form .container .formLeft .flex label .input + span {
-  color: #a367b1;
+  color: #ecb365;
   position: absolute;
   left: 10px;
   top: 0px;
@@ -88,28 +88,28 @@
   position: relative;
 }
 .form .container .formLeft label .input {
-  background-color: #ffd1e3;
-  border: 1px solid #a367b1;
-  color: #392467;
+  background-color: #e6d5b8;
+  border: 1px solid #ecb365;
+  color: #0c3b36;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
 }
 .form .container .formLeft label .input::placeholder {
-  color: #633eb3;
+  color: #1d9084;
 }
 .form .container .formLeft label .input:required + span, .form .container .formLeft label .input:focus + span, .form .container .formLeft label .input:active + span, .form .container .formLeft label .input:valid + span {
-  color: #392467;
+  color: #0c3b36;
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
 .form .container .formLeft label .input:focus, .form .container .formLeft label .input:active {
-  border: 2px solid #392467;
+  border: 2px solid #0c3b36;
   outline: none;
 }
 .form .container .formLeft label .input + span {
-  color: #a367b1;
+  color: #ecb365;
   position: absolute;
   left: 10px;
   top: 0px;
@@ -119,9 +119,9 @@
   transition: 0.3s ease-in-out;
 }
 .form .container .formLeft label textarea {
-  background-color: #ffd1e3;
-  border: 1px solid #a367b1;
-  color: #392467;
+  background-color: #e6d5b8;
+  border: 1px solid #ecb365;
+  color: #0c3b36;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
@@ -129,7 +129,7 @@
   resize: none;
 }
 .form .container .formLeft label textarea::placeholder {
-  color: #633eb3;
+  color: #1d9084;
 }
 .form .container .formRight {
   display: flex;
@@ -146,15 +146,15 @@
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  color: #392467;
+  color: #0c3b36;
 }
 .form .container .formRight .fileUpload label input {
   margin-top: 8px;
 }
 .form .container .formRight .customUploadButton {
-  background-color: #5d3587;
+  background-color: #f6cc90;
   border: none;
-  color: #ffd1e3;
+  color: #e6d5b8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   padding: 16px;
@@ -165,20 +165,20 @@
   text-align: center;
 }
 .form .container .formRight .customUploadButton:hover {
-  background-color: #a367b1;
+  background-color: #ecb365;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .form .container .formRight .customUploadButton:active {
-  background-color: #442762;
+  background-color: #f2b661;
 }
 .form .container .formRight .customUploadButton:disabled {
-  background-color: #633eb3;
-  color: #a367b1;
+  background-color: #1d9084;
+  color: #ecb365;
   cursor: not-allowed;
 }
 .form .container .formRight .customUploadButton:hover {
-  background-color: #241741;
+  background-color: #03110f;
 }
 .form .container .formRight .fileUploadHidden {
   display: none;
@@ -189,7 +189,7 @@
   position: relative;
   height: auto;
   aspect-ratio: 1;
-  background-color: #a367b1;
+  background-color: #ecb365;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -199,9 +199,9 @@
   height: 100%;
 }
 .form button {
-  background-color: #392467;
+  background-color: #0c3b36;
   border: none;
-  color: #ffd1e3;
+  color: #e6d5b8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   padding: 16px;
@@ -213,20 +213,20 @@
   padding: 16px;
 }
 .form button:hover {
-  background-color: #a367b1;
+  background-color: #ecb365;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .form button:active {
-  background-color: #241741;
+  background-color: #03110f;
 }
 .form button:disabled {
-  background-color: #9061c1;
-  color: #ffd1e3;
+  background-color: #fef7ee;
+  color: #e6d5b8;
   cursor: not-allowed;
 }
 .form button:hover {
-  background-color: #241741;
+  background-color: #03110f;
 }
 
 @media (max-width: 768px) {

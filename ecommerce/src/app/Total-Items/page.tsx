@@ -10,6 +10,7 @@ import { Productts } from "@/utils/model/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import { homeProducts } from "@/utils/types/dumydata";
 
 const TotalProducts = () => {
   const router = useRouter();
@@ -22,8 +23,9 @@ const TotalProducts = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const itemsData = await getAllItems();
-        setAllItems(itemsData.data);
+        // const itemsData = await getAllItems();
+        // setAllItems(itemsData.data);
+        setAllItems(homeProducts);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -81,10 +83,10 @@ const TotalProducts = () => {
 
   const addToCartBtn = async (item: Productts) => {
     try {
-      const response = await axios.post("/api/cart", {
-        item,
-      });
-
+      // const response = await axios.post("/api/cart", {
+      //   item,
+      // });
+      console.log(session?.user.email);
       console.log(`Added item ${item} to cart`);
     } catch (error) {
       console.error("Failed to add item to cart", error);
@@ -110,6 +112,7 @@ const TotalProducts = () => {
               brand={item.brand}
               key={item._id}
               stock={item.stock}
+              discount={item.discountPercentage}
               showDetailsBtn={() => handleShowDetails(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
               addTocartBtn={() => {

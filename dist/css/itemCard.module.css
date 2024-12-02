@@ -1,155 +1,108 @@
 .card {
-  background-color: #ffd1e3;
-  border: 1px solid #ffd1e3;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  border-radius: 12px;
-  position: relative;
-  border: 1px solid #ffd1e3;
-  padding: 24px;
-  background-color: #ffd1e3;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-.card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.itemImage {
-  object-fit: cover;
-  width: 100%;
-  height: 250px;
   border-radius: 8px;
-  transition: transform 0.3s ease-in-out;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
-.itemImage:hover {
-  transform: scale(1.02);
+.card .cardHeader {
+  position: relative;
+  height: 300px;
+  width: fill;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
-
-.itemInfo {
+.card .cardHeader .itemImage {
+  object-fit: cover;
+  overflow: hidden;
+  position: absolute;
+}
+.card .cardHeader .itemImage:hover {
+  overflow: hidden;
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+.card .cardHeader .headerBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  flex-direction: row;
+  margin: 8px;
   justify-content: space-between;
-  align-items: center;
+  z-index: 1;
+}
+.card .cardHeader .headerBtn .button {
+  background-color: #b0adad;
+  color: #ecb365;
+  background-color: #0c3b36;
+  padding: 8px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.card .cardHeader .headerBtn .button:hover {
+  background-color: #082623;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+.card .cardHeader .headerBtn .button .delete,
+.card .cardHeader .headerBtn .button .addToCart {
+  cursor: pointer;
+}
+.card .cardHeader .headerBtn .button .delete:hover,
+.card .cardHeader .headerBtn .button .addToCart:hover {
+  background-color: #082623;
+}
+.card .cardBody {
+  flex-direction: row;
+  background-color: #0c3b36;
+  color: #ecb365;
+  padding: 16px;
   margin-top: 8px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
-
-.itemName,
-.itemBrand {
-  font-size: 16px;
-  margin: 0;
-  color: #392467;
+.card .cardBody .itemInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
-.itemPrice {
-  font-size: 24px;
-  color: #392467;
-  margin: 8px 0;
-}
-
-.inStock,
-.outOfStock {
-  font-size: 16px;
-  margin: 8px 0;
-}
-
-.inStock {
-  color: #2ecc71;
-}
-
-.outOfStock {
+.card .cardBody .outOfStock {
   color: #e74c3c;
 }
-
-.buttons {
+.card .cardBody .inStock {
+  color: #2ecc71;
+}
+.card .cardBody .itemPrice {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  margin: 8px;
-  gap: 8px;
 }
-@media screen and (max-width: 992px) {
-  .buttons {
-    flex-direction: column;
-  }
-}
-@media screen and (max-width: 768px) {
-  .buttons {
-    flex-direction: column;
-  }
-}
-
-.seeMore,
-.delete {
-  padding: 8px 24px;
-  border: none;
-  margin: 0 8px;
-  width: 100%;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease-in-out;
-}
-.seeMore:hover,
-.delete:hover {
-  background-color: #241741;
-}
-
-.seeMore {
-  background-color: #5d3587;
-  border: none;
-  color: #ffd1e3;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  margin: 8px;
-}
-.seeMore:hover {
-  background-color: #a367b1;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.seeMore:active {
-  background-color: #442762;
-}
-.seeMore:disabled {
-  background-color: #633eb3;
-  color: #a367b1;
-  cursor: not-allowed;
-}
-.seeMore:hover {
-  background-color: #241741;
-}
-
-.delete {
-  background-color: #e74c3c;
-  border: none;
-  color: #ffd1e3;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  border-radius: 12px;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  margin: 8px;
-}
-.delete:hover {
-  background-color: #d62c1a;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.delete:active {
-  background-color: #d62c1a;
-}
-.delete:disabled {
-  background-color: #f8c9c4;
-  color: #ffd1e3;
-  cursor: not-allowed;
+.card .cardBody .itemPrice .orignalPrice {
+  text-decoration: line-through;
+  color: #efbe7c;
 }/*# sourceMappingURL=itemCard.module.css.map */

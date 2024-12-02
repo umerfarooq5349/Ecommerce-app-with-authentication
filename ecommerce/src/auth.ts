@@ -57,7 +57,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token._id = user._id; // Ensure _id exists
         token.name = user.name;
         token.email = user.email;
+
         token.role = user.role;
+        // token.role = "admin";
         token.active = user.active;
         token.photo = user.photo;
       }
