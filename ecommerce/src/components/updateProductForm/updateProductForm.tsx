@@ -36,7 +36,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ id }) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [formData, id]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

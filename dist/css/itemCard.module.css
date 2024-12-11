@@ -46,6 +46,13 @@
   justify-content: space-between;
   z-index: 1;
 }
+.card .cardHeader .headerBtn .leftSide,
+.card .cardHeader .headerBtn .rightSide {
+  display: flex;
+  flex-direction: row;
+  margin: 8px;
+  gap: 12px;
+}
 .card .cardHeader .headerBtn .button {
   background-color: #b0adad;
   color: #ecb365;
@@ -66,13 +73,10 @@
   -ms-transition: 0.3s ease-in-out;
   -o-transition: 0.3s ease-in-out;
 }
-.card .cardHeader .headerBtn .button .delete,
-.card .cardHeader .headerBtn .button .addToCart {
+.card .cardHeader .headerBtn .delete:hover,
+.card .cardHeader .headerBtn .update:hover,
+.card .cardHeader .headerBtn .addToCart:hover {
   cursor: pointer;
-}
-.card .cardHeader .headerBtn .button .delete:hover,
-.card .cardHeader .headerBtn .button .addToCart:hover {
-  background-color: #082623;
 }
 .card .cardBody {
   flex-direction: row;

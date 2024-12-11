@@ -120,6 +120,9 @@ const TotalProducts = () => {
                 // router.push(`/total-items/${item._id}`);
                 addToCartBtn(item);
               }}
+              updateBtn={() => {
+                router.push(`/total-items/${item._id}`);
+              }}
             />
           ))
         )}
