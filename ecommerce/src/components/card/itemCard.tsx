@@ -1,10 +1,6 @@
 import styles from "@/utils/saas/itemCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartArrowDown,
-  faEdit,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartArrowDown, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -18,7 +14,6 @@ interface ItemCardProps {
   showDetailsBtn(): void;
   deleteBtn(): void;
   addTocartBtn(): void;
-  updateBtn(): void;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -31,7 +26,6 @@ const ItemCard: React.FC<ItemCardProps> = ({
   showDetailsBtn,
   deleteBtn,
   addTocartBtn,
-  updateBtn,
 }) => {
   // const handleshowDetailsBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   e.stopPropagation(); // Stop event propagation
@@ -61,24 +55,14 @@ const ItemCard: React.FC<ItemCardProps> = ({
     <div className={styles.card} onClick={showDetailsBtn}>
       <div className={styles.cardHeader}>
         <div className={styles.headerBtn}>
-          <div className={`${styles.button} ${styles.leftSide}`}>
-            {discount}% Off
-          </div>
+          <div className={styles.button}>{discount}% Off</div>
 
           {session && session.user.role === "admin" ? (
-            <div className={`${styles.rightSide}`}>
-              <div
-                className={`${styles.update} ${styles.button}`}
-                onClick={updateBtn}
-              >
-                <FontAwesomeIcon icon={faEdit} /> Update
-              </div>
-              <div
-                className={`${styles.delete} ${styles.button}`}
-                onClick={deleteBtn}
-              >
-                <FontAwesomeIcon icon={faTrash} /> Delete
-              </div>
+            <div
+              className={`${styles.delete} ${styles.button}`}
+              onClick={deleteBtn}
+            >
+              <FontAwesomeIcon icon={faTrash} /> Delete
             </div>
           ) : (
             <div

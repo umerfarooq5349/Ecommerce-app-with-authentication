@@ -49,14 +49,6 @@
       justify-content: space-between;
       z-index: 1;
 
-      .leftSide,
-      .rightSide {
-        display: flex;
-        flex-direction: row;
-        margin: $margin-small;
-        gap: 12px;
-      }
-
       .button {
         background-color: $grey-bg;
         color: $text-color-accent;
@@ -77,12 +69,17 @@
           -ms-transition: 0.3s ease-in-out;
           -o-transition: 0.3s ease-in-out;
         }
-      }
-      .delete,
-      .update,
-      .addToCart {
-        &:hover {
-          cursor: pointer;
+        .delete,
+        .addToCart {
+          // background-color: red;
+          cursor: pointer; // Added cursor pointer
+
+          &:hover {
+            background-color: darken(
+              $color: $background-color-dark,
+              $amount: 5%
+            );
+          }
         }
       }
     }
