@@ -8,9 +8,6 @@
   transition: box-shadow 0.5s ease-in-out;
   position: relative;
 }
-.form:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
 .form .title {
   font-size: 32px;
   font-weight: bold;
