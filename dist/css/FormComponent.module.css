@@ -1,17 +1,28 @@
 .form {
   display: flex;
   flex-direction: column;
-  background-color: #ecb365;
+  background-color: #f5f6f5;
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.5s ease-in-out;
   position: relative;
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  -moz-transition: box-shadow 0.5s ease-in-out;
+  -ms-transition: box-shadow 0.5s ease-in-out;
+  -o-transition: box-shadow 0.5s ease-in-out;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+.form:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .form .title {
   font-size: 32px;
   font-weight: bold;
-  color: #0c3b36;
+  color: #2d5356;
   margin-bottom: 24px;
   text-align: center;
 }
@@ -24,51 +35,51 @@
 .form .container .formLeft,
 .form .container .formRight {
   flex: 1;
-  min-width: 300px;
 }
-.form .container .formLeft {
+.form .container .formRight {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 2;
   gap: 16px;
-  margin-bottom: 24px;
 }
-.form .container .formLeft .message {
+.form .container .formRight .message {
   font-size: 16px;
-  color: #0c3b36;
+  color: #2d5356;
   text-align: center;
 }
-.form .container .formLeft .flex {
+.form .container .formRight .flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 12px;
 }
-.form .container .formLeft .flex label {
+.form .container .formRight .flex label {
   position: relative;
 }
-.form .container .formLeft .flex label .input {
-  background-color: #e6d5b8;
-  border: 1px solid #ecb365;
-  color: #0c3b36;
+.form .container .formRight .flex label .input {
+  background-color: #f9d185;
+  border: 1px solid #d09423;
+  color: #2d5356;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
 }
-.form .container .formLeft .flex label .input::placeholder {
-  color: #1d9084;
+.form .container .formRight .flex label .input::placeholder {
+  color: #509499;
 }
-.form .container .formLeft .flex label .input:required + span, .form .container .formLeft .flex label .input:focus + span, .form .container .formLeft .flex label .input:active + span, .form .container .formLeft .flex label .input:valid + span {
-  color: #0c3b36;
+.form .container .formRight .flex label .input:required + span, .form .container .formRight .flex label .input:focus + span, .form .container .formRight .flex label .input:active + span, .form .container .formRight .flex label .input:valid + span {
+  color: #2d5356;
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
-.form .container .formLeft .flex label .input:focus, .form .container .formLeft .flex label .input:active {
-  border: 2px solid #0c3b36;
+.form .container .formRight .flex label .input:focus, .form .container .formRight .flex label .input:active {
+  border: 2px solid #d09423;
   outline: none;
 }
-.form .container .formLeft .flex label .input + span {
-  color: #ecb365;
+.form .container .formRight .flex label .input + span {
+  color: #f9d185;
   position: absolute;
   left: 10px;
   top: 0px;
@@ -77,36 +88,37 @@
   cursor: text;
   transition: 0.3s ease-in-out;
 }
-.form .container .formLeft .flex label textarea {
+.form .container .formRight .flex label textarea {
   width: 100%;
   resize: none;
 }
-.form .container .formLeft label {
+.form .container .formRight label {
   position: relative;
 }
-.form .container .formLeft label .input {
-  background-color: #e6d5b8;
-  border: 1px solid #ecb365;
-  color: #0c3b36;
+.form .container .formRight label .input {
+  background-color: #f9d185;
+  border: 1px solid #d09423;
+  color: #2d5356;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
 }
-.form .container .formLeft label .input::placeholder {
-  color: #1d9084;
+.form .container .formRight label .input::placeholder {
+  color: #509499;
 }
-.form .container .formLeft label .input:required + span, .form .container .formLeft label .input:focus + span, .form .container .formLeft label .input:active + span, .form .container .formLeft label .input:valid + span {
-  color: #0c3b36;
+.form .container .formRight label .input:required + span, .form .container .formRight label .input:focus + span, .form .container .formRight label .input:active + span, .form .container .formRight label .input:valid + span {
+  color: #2d5356;
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
-.form .container .formLeft label .input:focus, .form .container .formLeft label .input:active {
-  border: 2px solid #0c3b36;
+.form .container .formRight label .input:focus, .form .container .formRight label .input:active {
+  border: 2px solid #2d5356;
   outline: none;
+  -webkit-appearance: none;
 }
-.form .container .formLeft label .input + span {
-  color: #ecb365;
+.form .container .formRight label .input + span {
+  color: #d09423;
   position: absolute;
   left: 10px;
   top: 0px;
@@ -114,91 +126,64 @@
   font-size: 12px;
   cursor: text;
   transition: 0.3s ease-in-out;
+  -webkit-appearance: none;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
 }
-.form .container .formLeft label textarea {
-  background-color: #e6d5b8;
-  border: 1px solid #ecb365;
-  color: #0c3b36;
+.form .container .formRight label textarea {
+  background-color: #f9d185;
+  border: 1px solid #d09423;
+  color: #2d5356;
   padding: 16px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
   width: 100%;
   resize: none;
 }
-.form .container .formLeft label textarea::placeholder {
-  color: #1d9084;
+.form .container .formRight label textarea::placeholder {
+  color: #509499;
 }
-.form .container .formRight {
+.form .container .formLeft {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 24px;
   border-radius: 12px;
 }
-.form .container .formRight .fileUpload {
+.form .container .formLeft .fileUpload {
   width: 100%;
 }
-.form .container .formRight .fileUpload label {
+.form .container .formLeft .fileUpload label {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  color: #0c3b36;
+  color: #2d5356;
 }
-.form .container .formRight .fileUpload label input {
-  margin-top: 8px;
-}
-.form .container .formRight .customUploadButton {
-  background-color: #f6cc90;
-  border: none;
-  color: #e6d5b8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  margin: 8px;
-  width: 100%;
-  text-align: center;
-}
-.form .container .formRight .customUploadButton:hover {
-  background-color: #ecb365;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.form .container .formRight .customUploadButton:active {
-  background-color: #f2b661;
-}
-.form .container .formRight .customUploadButton:disabled {
-  background-color: #1d9084;
-  color: #ecb365;
-  cursor: not-allowed;
-}
-.form .container .formRight .customUploadButton:hover {
-  background-color: #03110f;
-}
-.form .container .formRight .fileUploadHidden {
-  display: none;
-}
-.form .container .formRight .thumbnail_preview {
-  width: 100%;
-  max-width: 300px;
+.form .container .formLeft .thumbnail_preview {
+  background-color: red;
+  width: 400px;
   position: relative;
   height: auto;
   aspect-ratio: 1;
-  background-color: #ecb365;
+  background-color: #2d5356;
   border-radius: 12px;
   overflow: hidden;
 }
-.form .container .formRight .thumbnail_preview .image {
+.form .container .formLeft .thumbnail_preview .image {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
+.form .container .formLeft .thumbnail_preview:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 .form button {
-  background-color: #0c3b36;
+  background-color: #2d5356;
   border: none;
-  color: #e6d5b8;
+  color: #f9d185;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   padding: 16px;
@@ -210,20 +195,20 @@
   padding: 16px;
 }
 .form button:hover {
-  background-color: #ecb365;
+  background-color: #d09423;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .form button:active {
-  background-color: #03110f;
+  background-color: #1b3335;
 }
 .form button:disabled {
-  background-color: #fef7ee;
-  color: #e6d5b8;
+  background-color: #f7e0c0;
+  color: #f9d185;
   cursor: not-allowed;
 }
 .form button:hover {
-  background-color: #03110f;
+  background-color: #1b3335;
 }
 
 @media (max-width: 768px) {

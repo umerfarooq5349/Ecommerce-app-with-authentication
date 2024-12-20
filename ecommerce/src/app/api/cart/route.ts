@@ -36,7 +36,12 @@ export async function POST(req: NextRequest) {
   try {
     // Parse request body
     const body = await req.json();
-    const { _id, price, discountPercentage } = body.item || body;
+    const {
+      _id,
+      price,
+      quantity = 1,
+      discountPercentage,
+    } = body.cartProduct || body.item || body;
     console.log(body.item, body);
     if (!_id || !price || discountPercentage === undefined) {
       return sendResponce(false, "Invalid data provided", 400, null);
@@ -47,6 +52,7 @@ export async function POST(req: NextRequest) {
       req,
       secret: process.env.AUTH_SECRET!,
     });
+    console.log(token);
 
     if (!token?._id) {
       return sendResponce(false, "Authentication failed", 401, null);
@@ -59,7 +65,7 @@ export async function POST(req: NextRequest) {
         itemId: _id,
         price,
         discount: discountPercentage,
-        quantity: 1,
+        quantity,
         isAvailable: true,
       },
       {

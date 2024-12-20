@@ -18,6 +18,7 @@ const getItem = catchAsync(async (req: Request, res: Response) => {
 });
 const addItem = catchAsync(async (req: Request, res: Response) => {
   const item = await Item.create(req.body);
+  console.log(item);
 
   res.status(200).json({ status: "success", data: item });
 });

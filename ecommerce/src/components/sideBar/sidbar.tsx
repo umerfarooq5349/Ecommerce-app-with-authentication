@@ -8,7 +8,7 @@ import { getItem } from "@/app/api/item"; // Import the getItem function
 
 // Define the SidebarProps interface
 interface SidebarProps {
-  id: number; // Accepts an ID
+  id: number | string; // Accepts an ID
 }
 
 // Define the Sidebar component

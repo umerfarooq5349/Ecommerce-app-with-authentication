@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { Productts } from "@/utils/model/item";
+import { Products } from "@/utils/model/item";
 import { UserModel } from "@/utils/model/user";
 import { Route } from "next";
 import { useRouter } from "next/router";
@@ -28,7 +28,7 @@ export const getAllItems = async () => {
   }
 };
 
-export const addItem = async (item: Productts) => {
+export const addItem = async (item: Products) => {
   try {
     const response = await api.post("/items/", item);
     return response.data;
@@ -54,6 +54,8 @@ export const deleteItem = async (item: any) => {
 export const getItem = async (item: any) => {
   const itemId = item;
   try {
+    console.log("called", itemId);
+
     const response = await api.get(`/items/${itemId}`);
     return response.data;
   } catch (e) {
@@ -62,7 +64,7 @@ export const getItem = async (item: any) => {
   }
 };
 
-export const updateItem = async (id: number, updatedData: Productts) => {
+export const updateItem = async (id: number, updatedData: Products) => {
   try {
     const response = await api.put(`/items/${id}`, updatedData);
     console.log(`Success: ${response}`);

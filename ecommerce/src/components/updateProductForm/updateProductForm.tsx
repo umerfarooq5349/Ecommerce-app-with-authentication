@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Foorm from "../form/form";
 import { getItem, updateItem, uploadProductImage } from "@/app/api/item"; // Import getItem function
-import { Productts } from "@/utils/model/item";
-import { homeProducts } from "@/utils/types/dumydata";
+import { Products } from "@/utils/model/item";
+// import { homeProducts } from "@/utils/types/dumydata";
 
 interface UpdateProductFormProps {
   id: number;
@@ -25,10 +25,10 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ id }) => {
     const fetchData = async () => {
       try {
         if (id) {
-          // const itemData = await getItem(id);
-          // setFormData(itemData.data);
-          setFormData(homeProducts.find((item) => item._id === id) || formData);
-          console.log(homeProducts.find((item) => item._id === id));
+          const itemData = await getItem(id);
+          setFormData(itemData.data);
+          // setFormData(homeProducts.find((item) => item._id === id) || formData);
+          // console.log(homeProducts.find((item) => item._id === id));
         }
       } catch (error) {
         throw new Error("error getting item");
@@ -80,7 +80,7 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ id }) => {
       });
 
       // console.log(updatedItem);
-      // setFormData(updatedItem);
+      setFormData(formData);
     } catch (error) {
       console.error("Error updating item:", error);
       Swal.fire({
@@ -113,40 +113,3 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ id }) => {
 };
 
 export default UpdateProductForm;
-function _id(
-  value: {
-    thumbnail: string;
-    title: string;
-    price: number;
-    brand: string;
-    stock: number;
-    _id: number;
-    description: string;
-    discountPercentage: number;
-    category: string;
-  },
-  index: number,
-  array: {
-    thumbnail: string;
-    title: string;
-    price: number;
-    brand: string;
-    stock: number;
-    _id: number;
-    description: string;
-    discountPercentage: number;
-    category: string;
-  }[]
-): value is {
-  thumbnail: string;
-  title: string;
-  price: number;
-  brand: string;
-  stock: number;
-  _id: number;
-  description: string;
-  discountPercentage: number;
-  category: string;
-} {
-  throw new Error("Function not implemented.");
-}

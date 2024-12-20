@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
   } else {
     // If the user is authenticated, redirect them away from login/signup pages
     console.log("session");
-    console.log(session);
+    // console.log(session);
     if (
       url.pathname.startsWith("/login") ||
       url.pathname.startsWith("/signup")

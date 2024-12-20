@@ -1,6 +1,10 @@
 import styles from "@/utils/saas/itemCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartArrowDown, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartArrowDown,
+  faEdit,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -13,7 +17,8 @@ interface ItemCardProps {
   discount: number;
   showDetailsBtn(): void;
   deleteBtn(): void;
-  addTocartBtn(): void;
+  // update or add to cart
+  actionBtn(): void;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -25,7 +30,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
   discount,
   showDetailsBtn,
   deleteBtn,
-  addTocartBtn,
+  actionBtn,
 }) => {
   // const handleshowDetailsBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   e.stopPropagation(); // Stop event propagation
@@ -58,18 +63,28 @@ const ItemCard: React.FC<ItemCardProps> = ({
           <div className={styles.button}>{discount}% Off</div>
 
           {session && session.user.role === "admin" ? (
-            <div
-              className={`${styles.delete} ${styles.button}`}
-              onClick={deleteBtn}
-            >
-              <FontAwesomeIcon icon={faTrash} /> Delete
-            </div>
+            <>
+              <div className={styles.headerRightBtn}>
+                <div
+                  className={`${styles.delete} ${styles.button}`}
+                  onClick={actionBtn}
+                >
+                  <FontAwesomeIcon icon={faEdit} /> Update
+                </div>
+                <div
+                  className={`${styles.delete} ${styles.button}`}
+                  onClick={deleteBtn}
+                >
+                  <FontAwesomeIcon icon={faTrash} /> Delete
+                </div>
+              </div>
+            </>
           ) : (
             <div
               className={`${styles.addToCart} ${styles.button}`}
-              onClick={addTocartBtn}
+              onClick={actionBtn}
             >
-              <FontAwesomeIcon icon={faCartArrowDown} />
+              <FontAwesomeIcon icon={faCartArrowDown} /> Cart
             </div>
           )}
 

@@ -51,7 +51,7 @@ const AddProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
-      e.preventDefault();
+      // e.preventDefault();
       addItem(formData)
         .then(() => {
           Swal.fire({
@@ -71,6 +71,8 @@ const AddProduct = () => {
           });
         });
     } catch (error: any) {
+      console.log(error);
+
       throw new Error("Error in Adding new item");
     }
   };

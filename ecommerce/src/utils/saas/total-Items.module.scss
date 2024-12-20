@@ -21,6 +21,7 @@
     grid-template-columns: repeat(3, 1fr); // 3 columns by default
     width: 100%;
     justify-content: center;
+    align-items: center;
     gap: $gap-large;
     padding: 0 $padding-regular;
 

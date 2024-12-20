@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","src", "src/app/total-items/[updateItemID]/layout.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","src", "src/app/total-items/update/[updateItemID]/layout.tsx"],
   "exclude": ["node_modules"]
 }

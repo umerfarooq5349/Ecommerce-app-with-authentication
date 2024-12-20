@@ -6,26 +6,26 @@ import styles from "@/utils/saas/total-items.module.scss";
 import Sidebar from "@/components/sideBar/sidbar"; // Import the Sidebar component
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { Productts } from "@/utils/model/item";
+import { Products } from "@/utils/model/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import { homeProducts } from "@/utils/types/dumydata";
+// import { homeProducts } from "@/utils/types/dumydata";
 
 const TotalProducts = () => {
   const router = useRouter();
-  const [allItems, setAllItems] = useState<Productts[]>([]);
-  const [selectedItemId, setSelectedItemId] = useState<number | undefined>(
-    undefined
-  );
+  const [allItems, setAllItems] = useState<Products[]>([]);
+  const [selectedItemId, setSelectedItemId] = useState<
+    number | string | undefined
+  >(undefined);
   const { data: session } = useSession();
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        // const itemsData = await getAllItems();
-        // setAllItems(itemsData.data);
-        setAllItems(homeProducts);
+        const itemsData = await getAllItems();
+        setAllItems(itemsData.data);
+        // setAllItems(homeProducts);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -33,12 +33,13 @@ const TotalProducts = () => {
     fetchItems();
   }, []);
 
-  const handleShowDetails = async (itemId: number) => {
+  const handleShowDetails = async (itemId: number | string) => {
     console.log(`See more ${itemId}`);
-    setSelectedItemId(itemId);
+    // setSelectedItemId(itemId);
+    router.push(`/total-items/${itemId}`);
   };
 
-  const handleDelete = async (itemId: number) => {
+  const handleDelete = async (itemId: number | string) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You are going to delete this item",
@@ -63,29 +64,11 @@ const TotalProducts = () => {
     });
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectedItemId &&
-        event.target instanceof Element &&
-        !event.target.closest("#sidebar")
-      ) {
-        setSelectedItemId(undefined); // Close the sidebar if clicking outside
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [selectedItemId]);
-
-  const addToCartBtn = async (item: Productts) => {
+  const addToCartBtn = async (item: Products) => {
     try {
-      // const response = await axios.post("/api/cart", {
-      //   item,
-      // });
+      const response = await axios.post("/api/cart", {
+        item,
+      });
       console.log(session?.user.email);
       console.log(`Added item ${item} to cart`);
     } catch (error) {
@@ -96,15 +79,15 @@ const TotalProducts = () => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        {selectedItemId && (
+        {/* {selectedItemId && (
           <div className={styles.sidebar} id="sidebar">
             <Sidebar id={selectedItemId || 0} />
           </div>
-        )}
+        )} */}
         {allItems.length === 0 ? (
           <BikeAnimiation text="No items Available" />
         ) : (
-          allItems.map((item: Productts) => (
+          allItems.map((item: Products) => (
             <ItemCard
               imageUrl={item.thumbnail}
               name={item.title}
@@ -115,10 +98,10 @@ const TotalProducts = () => {
               discount={item.discountPercentage}
               showDetailsBtn={() => handleShowDetails(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
-              addTocartBtn={() => {
-                // If you need to navigate, ensure it doesn’t conflict with sidebar visibility
-                // router.push(`/total-items/${item._id}`);
-                addToCartBtn(item);
+              actionBtn={() => {
+                session?.user.role === "admin"
+                  ? router.push(`/total-items/update/${item._id}`)
+                  : addToCartBtn(item);
               }}
             />
           ))

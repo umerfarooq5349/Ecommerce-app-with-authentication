@@ -48,7 +48,37 @@ const FormComponent = (formData: FormData) => {
       <p className={styles.title}>{formData.heading} Product</p>
       <div className={styles.container}>
         <div className={styles.formLeft}>
-          <p className={styles.message}>Fill in the product details below.</p>
+          {/* Custom Button for Upload */}
+          {/* <div
+            className={styles.customUploadButton}
+            onClick={handleCustomUploadClick}
+          >
+            {formData.heading === "Add" ? "Upload Image" : "Change Image"}
+          </div> */}
+
+          {/* Hidden File Input */}
+          <input
+            type="file"
+            ref={hiddenFileInput}
+            onChange={handleImageUpload}
+            style={{ display: "none" }} // Hidden file input
+          />
+
+          {/* Display either the uploaded image, the thumbnail from props, or the placeholder */}
+          <div
+            className={styles.thumbnail_preview}
+            onClick={handleCustomUploadClick}
+          >
+            <Image
+              src={formData.thumbnail || selectedImage || placeholderImage}
+              alt="Selected image"
+              fill
+              className={styles.image}
+            />
+          </div>
+        </div>
+        <div className={styles.formRight}>
+          {/* <p className={styles.message}>Fill in the product details below.</p> */}
           <div className={styles.flex}>
             <label>
               <input
@@ -140,33 +170,6 @@ const FormComponent = (formData: FormData) => {
             />
             <span>Description</span>
           </label>
-        </div>
-        <div className={styles.formRight}>
-          {/* Custom Button for Upload */}
-          <div
-            className={styles.customUploadButton}
-            onClick={handleCustomUploadClick}
-          >
-            {formData.heading === "Add" ? "Upload Image" : "Change Image"}
-          </div>
-
-          {/* Hidden File Input */}
-          <input
-            type="file"
-            ref={hiddenFileInput}
-            onChange={handleImageUpload}
-            style={{ display: "none" }} // Hidden file input
-          />
-
-          {/* Display either the uploaded image, the thumbnail from props, or the placeholder */}
-          <div className={styles.thumbnail_preview}>
-            <Image
-              src={formData.thumbnail || selectedImage || placeholderImage}
-              alt="Selected image"
-              fill
-              className={styles.image}
-            />
-          </div>
         </div>
       </div>
       <button type="submit" className={styles.submit}>

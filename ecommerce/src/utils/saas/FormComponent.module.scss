@@ -1,6 +1,7 @@
 @import "./theme/theme.scss";
 
 .form {
+  // width: 1200px;
   display: flex;
   flex-direction: column;
   background-color: $form-bg-color;
@@ -9,7 +10,14 @@
   box-shadow: $box-shadow-light;
   transition: box-shadow 0.5s ease-in-out;
   position: relative;
-
+  -webkit-transition: box-shadow 0.5s ease-in-out;
+  -moz-transition: box-shadow 0.5s ease-in-out;
+  -ms-transition: box-shadow 0.5s ease-in-out;
+  -o-transition: box-shadow 0.5s ease-in-out;
+  -webkit-border-radius: $border-radius-large;
+  -moz-border-radius: $border-radius-large;
+  -ms-border-radius: $border-radius-large;
+  -o-border-radius: $border-radius-large;
   &:hover {
     box-shadow: $box-shadow-dark;
   }
@@ -27,20 +35,23 @@
     flex-wrap: wrap;
     gap: $gap-regular;
     justify-content: space-between;
+    // width: 1200px;
 
     .formLeft,
     .formRight {
       flex: 1;
-      min-width: 300px;
+      // min-width: 300px;
     }
 
-    .formLeft {
+    .formRight {
       display: flex;
       flex-direction: column;
+
+      justify-content: space-between;
       flex: 2;
       // flex-wrap: wrap;
       gap: $gap-regular;
-      margin-bottom: $margin-large;
+      // margin-bottom: $margin-large;
 
       .message {
         font-size: $font-size-regular;
@@ -51,6 +62,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        gap: 12px;
 
         label {
           position: relative;
@@ -69,13 +81,13 @@
 
             &:focus,
             &:active {
-              border: 2px solid $border-color-dark;
+              border: 2px solid $border-color-accent;
               outline: none;
             }
           }
 
           .input + span {
-            color: $input-border;
+            color: $input-background;
             position: absolute;
             left: 10px;
             top: 0px;
@@ -109,6 +121,7 @@
           &:active {
             border: 2px solid $border-color-dark;
             outline: none;
+            -webkit-appearance: none;
           }
         }
 
@@ -121,6 +134,11 @@
           font-size: $font-size-small;
           cursor: text;
           transition: $transition-speed $transition-ease;
+          -webkit-appearance: none;
+          -webkit-transition: $transition-speed $transition-ease;
+          -moz-transition: $transition-speed $transition-ease;
+          -ms-transition: $transition-speed $transition-ease;
+          -o-transition: $transition-speed $transition-ease;
         }
         textarea {
           @include inputStyle(default);
@@ -130,13 +148,14 @@
       }
     }
 
-    .formRight {
+    .formLeft {
       display: flex;
+
       justify-content: center;
       align-items: center;
       flex-direction: column;
 
-      padding: $padding-large;
+      // padding: $padding-large;
       border-radius: $border-radius-large;
 
       .fileUpload {
@@ -146,36 +165,40 @@
           flex-direction: column;
           font-size: $font-size-regular;
           color: $text-color-dark;
-          input {
-            margin-top: $margin-small;
-          }
+          // input {
+          //   // margin-top: $margin-small;
+          // }
         }
       }
-      .customUploadButton {
-        @include buttonStyle(secondary);
-        width: 100%;
-        text-align: center;
-        &:hover {
-          background-color: darken($border-color-dark, 10%);
-        }
-      }
-      .fileUploadHidden {
-        display: none;
-      }
+      // .customUploadButton {
+      //   @include buttonStyle(primary);
+      //   width: 100%;
+      //   text-align: center;
+      //   &:hover {
+      //     background-color: darken($border-color-dark, 10%);
+      //   }
+      // }
+      // .fileUploadHidden {
+      //   display: none;
+      // }
       .thumbnail_preview {
-        width: 100%;
-        max-width: 300px;
+        background-color: red;
+        width: 400px;
+        // max-width: 500px;
         position: relative;
         height: auto;
         aspect-ratio: 1;
-        background-color: $background-alt;
+        background-color: $background-color-dark;
         border-radius: $border-radius-large;
         overflow: hidden;
-
         .image {
           object-fit: cover;
           width: 100%;
           height: 100%;
+        }
+        &:hover {
+          cursor: pointer;
+          box-shadow: $box-shadow-dark;
         }
       }
     }

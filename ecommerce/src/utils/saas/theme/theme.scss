@@ -1,9 +1,12 @@
 // Color Palette
-$primary-color: #0c3b36; // Deep Green
-$secondary-color: #f6cc90; // Soft Olive
-$accent-color: #ecb365; // Golden Yellow
-$highlight-color: #e6d5b8; // Warm Sand
+$primary-color: #2d5356; // Deep Green
+$secondary-color: #ecb365; // Soft Olive
+$accent-color: #d09423; // Golden Yellow
+$highlight-color: #f9d185; // Warm Sand
+$black-color: #292929;
+$white-color: #e6e6e6;
 $accent-color-low: rgba($accent-color, 0.45); // Golden Yellow with low opacity
+$gray-color: #edeeed;
 
 // Danger and Success Colors
 $danger-color: #e74c3c; // Red for danger
@@ -23,8 +26,8 @@ $background-color-light: $highlight-color;
 $background-accent: $secondary-color;
 $background-alt-500: $accent-color-low;
 $background-alt: $accent-color;
-$grey-bg: #b0adad;
-$form-bg-color: $accent-color;
+$gray-bg: #b0adad;
+$form-bg-color: $gray-color;
 
 // Button Colors
 $button-color-primary: $primary-color;
