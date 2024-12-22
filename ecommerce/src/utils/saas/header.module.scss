@@ -1,0 +1,51 @@
+@import "./theme/theme.scss";
+
+.header {
+  height: 20vh;
+  background-color: $background-color-dark;
+  color: $text-color-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-regular 0;
+  font-size: $font-size-large;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: $background-accent;
+    margin-right: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    animation: pulse 1s linear infinite;
+    -webkit-animation: pulse 1s linear infinite;
+  }
+  &::before {
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+  }
+
+  &::after {
+    animation: pulse 1s linear infinite;
+    -webkit-animation: pulse 1s linear infinite;
+    z-index: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

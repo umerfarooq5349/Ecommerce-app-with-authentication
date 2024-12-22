@@ -72,11 +72,17 @@
   gap: 16px;
 }
 .card .cardHeader .headerBtn .headerRightBtn .delete,
-.card .cardHeader .headerBtn .headerRightBtn .addToCart {
+.card .cardHeader .headerBtn .headerRightBtn .update {
   cursor: pointer;
 }
 .card .cardHeader .headerBtn .headerRightBtn .delete:hover,
-.card .cardHeader .headerBtn .headerRightBtn .addToCart:hover {
+.card .cardHeader .headerBtn .headerRightBtn .update:hover {
+  background-color: #244345;
+}
+.card .cardHeader .headerBtn .addToCart {
+  cursor: pointer;
+}
+.card .cardHeader .headerBtn .addToCart:hover {
   background-color: #244345;
 }
 .card .cardBody {

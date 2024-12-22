@@ -50,8 +50,6 @@ $input-placeholder-color: lighten($primary-color, 20%);
 
 // Link Colors
 $link-color: $accent-color;
-$link-hover-color: darken($highlight-color, 10%);
-$link-active-color: darken($highlight-color, 20%);
 
 // Shadow
 $box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -150,9 +148,6 @@ $button-styles: (
 $link-styles: (
   default: (
     color: $link-color,
-
-    hover-color: $link-hover-color,
-    active-color: $link-active-color,
   ),
   danger: (
     color: $danger-color,

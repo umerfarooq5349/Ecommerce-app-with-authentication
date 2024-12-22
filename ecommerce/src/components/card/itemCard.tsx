@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import React from "react";
 
 interface ItemCardProps {
   name: string;
@@ -15,10 +16,14 @@ interface ItemCardProps {
   brand: string;
   stock: number;
   discount: number;
-  showDetailsBtn(): void;
+  showDetailsBtn?(): void;
   deleteBtn(): void;
   // update or add to cart
-  actionBtn(): void;
+  actionBtn(
+    event:
+      | React.MouseEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ): void;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
@@ -66,7 +71,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
             <>
               <div className={styles.headerRightBtn}>
                 <div
-                  className={`${styles.delete} ${styles.button}`}
+                  className={`${styles.update} ${styles.button}`}
                   onClick={actionBtn}
                 >
                   <FontAwesomeIcon icon={faEdit} /> Update

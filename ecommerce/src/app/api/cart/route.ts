@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
+// import auth from '@/@'
 // const api = axios.create({
 //   baseURL: "http://localhost:8080/api",
 //   headers: {
@@ -20,14 +21,21 @@ export async function GET(req: NextRequest, res: NextResponse) {
       req,
       secret: process.env.AUTH_SECRET!,
     });
+    // console.log("im in");
+    // console.log(token);
+
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_SERVER}/api/client/cart/`,
       { headers: { Authorization: `Bearer ${token?._id}` } }
       // withCredentials: true,
     );
+    // console.log(response.data.data);
+
     return sendResponce(true, "Here is your cart", 200, response.data.data);
   } catch (error) {
-    return sendResponce(false, "Can not find response", 400, "", { error });
+    return sendResponce(false, "Can not find response", 400, undefined, {
+      error,
+    });
   }
 }
 
@@ -42,7 +50,7 @@ export async function POST(req: NextRequest) {
       quantity = 1,
       discountPercentage,
     } = body.cartProduct || body.item || body;
-    console.log(body.item, body);
+    // console.log(body.item, body);
     if (!_id || !price || discountPercentage === undefined) {
       return sendResponce(false, "Invalid data provided", 400, null);
     }
@@ -52,10 +60,10 @@ export async function POST(req: NextRequest) {
       req,
       secret: process.env.AUTH_SECRET!,
     });
-    console.log(token);
+    console.log(token?._id);
 
     if (!token?._id) {
-      return sendResponce(false, "Authentication failed", 401, null);
+      return sendResponce(false, "Please login first!", 401, null);
     }
 
     // Send data to external API

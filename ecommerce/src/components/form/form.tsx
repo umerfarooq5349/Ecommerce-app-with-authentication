@@ -45,7 +45,7 @@ const FormComponent = (formData: FormData) => {
 
   return (
     <form className={styles.form} onSubmit={formData.handleSubmit}>
-      <p className={styles.title}>{formData.heading} Product</p>
+      {/* <p className={styles.title}>{formData.heading} Product</p> */}
       <div className={styles.container}>
         <div className={styles.formLeft}>
           {/* Custom Button for Upload */}
@@ -75,6 +75,11 @@ const FormComponent = (formData: FormData) => {
               fill
               className={styles.image}
             />
+            <div className={styles.hoverText}>
+              {formData.heading === "Add"
+                ? "Upload an Image"
+                : "Update Product Image"}
+            </div>
           </div>
         </div>
         <div className={styles.formRight}>

@@ -2,14 +2,18 @@
 
 .navLink {
   @include linkStyle(default);
-  color: $text-color-light;
+  color: $white-color;
   margin: $margin-large $margin-regular;
   padding: $padding-small 0;
   position: relative;
   display: flex;
-  // color: red;
+
+  width: fit-content;
   flex-direction: column;
-  justify-content: center; // Centering horizontally
+  align-items: end;
+  letter-spacing: 2px;
+  justify-content: end; // Centering horizontally
+  text-decoration: none;
   // Removed justify-items
   &:hover {
     color: $text-color-accent;
@@ -22,7 +26,7 @@
     left: 0;
     height: 2px;
     width: 0%;
-    background-color: $link-hover-color;
+    background-color: $link-color;
     transition: width 300ms ease-in-out; // Simplified transition
   }
 
@@ -30,4 +34,10 @@
     width: 100%; // Expand to the full width of the parent on hover
     color: $border-color-accent;
   }
+}
+.activPath {
+  color: $text-color-accent;
+  text-decoration: underline;
+  text-underline-offset: 14px;
+  text-decoration-thickness: 2px;
 }

@@ -2,15 +2,9 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background-color: #28282b;
-
-  a {
-
-    text-decoration: none;
-    color: #ecb365;
+  background-color: #e6e6e6;
 
 
-  }
 }
 
 .main {
@@ -20,5 +14,6 @@ body {
   align-items: center;
   min-height: 100vh;
   width: 70%;
+  /* background-color: ; */
   margin: auto;
 }

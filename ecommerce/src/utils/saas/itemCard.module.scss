@@ -62,12 +62,12 @@
         &:hover {
           background-color: darken($color: $background-color-dark, $amount: 5%);
           box-shadow: $box-shadow-dark;
-
           transition: 0.3s ease-in-out;
           -webkit-transition: 0.3s ease-in-out;
           -moz-transition: 0.3s ease-in-out;
           -ms-transition: 0.3s ease-in-out;
           -o-transition: 0.3s ease-in-out;
+          // cursor: pointer;
         }
       }
       .headerRightBtn {
@@ -75,16 +75,21 @@
         flex-direction: row;
         gap: $gap-regular;
         .delete,
-        .addToCart {
-          // background-color: red;
+        .update {
           cursor: pointer; // Added cursor pointer
-
           &:hover {
             background-color: darken(
               $color: $background-color-dark,
               $amount: 5%
             );
           }
+        }
+      }
+      .addToCart {
+        cursor: pointer; // Added cursor pointer
+
+        &:hover {
+          background-color: darken($color: $background-color-dark, $amount: 5%);
         }
       }
     }

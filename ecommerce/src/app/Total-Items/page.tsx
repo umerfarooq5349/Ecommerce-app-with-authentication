@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 import { Products } from "@/utils/model/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { alert } from "@/utils/alerts/alert";
 // import { homeProducts } from "@/utils/types/dumydata";
 
 const TotalProducts = () => {
@@ -27,6 +28,11 @@ const TotalProducts = () => {
         setAllItems(itemsData.data);
         // setAllItems(homeProducts);
       } catch (error) {
+        if (error instanceof AxiosError) {
+          alert(error.response?.data.message, 2000);
+        }
+
+        alert((error as Error).message || "Error fetching data", 2000);
         console.error("Error fetching data:", error);
       }
     };
@@ -64,15 +70,31 @@ const TotalProducts = () => {
     });
   };
 
-  const addToCartBtn = async (item: Products) => {
+  const addToCartBtn = async (
+    event:
+      | React.MouseEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLButtonElement>,
+    item: Products
+  ) => {
+    event.stopPropagation();
     try {
       const response = await axios.post("/api/cart", {
         item,
       });
-      console.log(session?.user.email);
-      console.log(`Added item ${item} to cart`);
+
+      alert(response.data.message, 2000);
     } catch (error) {
-      console.error("Failed to add item to cart", error);
+      const err = error as AxiosError;
+
+      if (error instanceof AxiosError) {
+        alert(error.response?.data.message, 2000);
+      }
+
+      alert(
+        (error as AxiosError).response?.data?.message ||
+          "Unable to add to cart",
+        2000
+      );
     }
   };
 
@@ -96,12 +118,16 @@ const TotalProducts = () => {
               key={item._id}
               stock={item.stock}
               discount={item.discountPercentage}
-              showDetailsBtn={() => handleShowDetails(item._id || 0)}
+              showDetailsBtn={() =>
+                session?.user.role === "admin"
+                  ? {}
+                  : handleShowDetails(item._id || 0)
+              }
               deleteBtn={() => handleDelete(item._id || 0)}
-              actionBtn={() => {
+              actionBtn={(event) => {
                 session?.user.role === "admin"
                   ? router.push(`/total-items/update/${item._id}`)
-                  : addToCartBtn(item);
+                  : addToCartBtn(event, item);
               }}
             />
           ))

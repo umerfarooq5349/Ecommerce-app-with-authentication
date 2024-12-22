@@ -10,6 +10,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
 
 import AuthProvider from "@/utils/context/AuthProvider";
+import { HeaderProvider } from "@/context/headerContext";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,13 +28,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <div className="main">
-          <AuthProvider>
+        <AuthProvider>
+          <HeaderProvider>
             <Navbar />
-            {children}
+            <div className="main">{children}</div>
             <Footer />
-          </AuthProvider>
-        </div>
+          </HeaderProvider>
+        </AuthProvider>
       </body>
     </html>
   );

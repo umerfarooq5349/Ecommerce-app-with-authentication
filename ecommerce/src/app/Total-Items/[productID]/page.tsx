@@ -2,6 +2,7 @@
 
 import { getItem } from "@/app/api/item";
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
+import { alert } from "@/utils/alerts/alert";
 import { Products } from "@/utils/model/item";
 import styles from "@/utils/saas/productDetails.module.scss";
 import {
@@ -17,6 +18,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const ProductDetailsPage = ({ params }: { params: { productID: number } }) => {
   const [product, setProduct] = useState<Products>();
@@ -40,6 +42,7 @@ const ProductDetailsPage = ({ params }: { params: { productID: number } }) => {
       const response = await axios.post("/api/cart", {
         item,
       });
+      alert(response.data.message, 1500);
       console.log(`Added item ${cartProduct} to cart`);
       console.log(response);
     } catch (error) {
