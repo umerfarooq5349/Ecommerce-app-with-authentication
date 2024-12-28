@@ -31,8 +31,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <AuthProvider>
           <HeaderProvider>
             <Navbar />
-            <div className="main">{children}</div>
-            <Footer />
+            <div className="main">
+              {children}
+
+              <Footer />
+            </div>
           </HeaderProvider>
         </AuthProvider>
       </body>

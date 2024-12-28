@@ -91,7 +91,7 @@ const TotalProducts = () => {
       }
 
       alert(
-        (error as AxiosError).response?.data?.message ||
+        (error as AxiosError).response?.data?.message! ||
           "Unable to add to cart",
         2000
       );
@@ -131,6 +131,7 @@ const TotalProducts = () => {
               }}
             />
           ))
+          // <BikeAnimiation text="Items Available" />
         )}
       </div>
     </div>

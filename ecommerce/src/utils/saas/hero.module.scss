@@ -1,0 +1,12 @@
+@import "./theme/theme.scss";
+
+.container {
+  background-color: $background-color-dark;
+  // width: 70vw;
+  height: 100vh;
+  color: $white-color;
+  font-size: $font-size-hero;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

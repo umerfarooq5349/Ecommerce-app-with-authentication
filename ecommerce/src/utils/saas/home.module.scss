@@ -2,6 +2,12 @@
 //   background-color: green;
 // }
 
-.heading {
-  color: red;
+.container {
+  width: 100%;
+  // height: inherit;
+  .content {
+    width: 70%;
+
+    margin: auto;
+  }
 }

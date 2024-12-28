@@ -3,89 +3,41 @@
 .container {
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  flex-direction: column;
-  margin-top: $margin-small; // Use theme margin
-  padding-bottom: $padding-large; // Use theme padding
-
-  h1 {
-    padding: $padding-large 0;
-    color: $text-color-dark; // Align h1 text color with theme
-    text-align: center; // Center align heading
-  }
+  // background-color: $background-accent;
 
   .body {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // 3 columns by default
-    width: 100%;
+    grid-template-columns: repeat(4, 1fr); // Default 3 columns
+    width: 90%;
     justify-content: center;
     align-items: center;
     gap: $gap-large;
-    padding: 0 $padding-regular;
+    padding: $padding-regular;
+    background-color: $background-alt; // Use theme for consistent design
 
     @media screen and (max-width: 1200px) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr); // Adjust to 2 columns
+      gap: $gap-regular;
     }
 
     @media screen and (max-width: 992px) {
-      grid-template-columns: repeat(
-        2,
-        1fr
-      ); // 3 columns for tablets and smaller laptops
-      gap: $gap-regular; // Adjust gap for tablets and smaller laptops
+      grid-template-columns: repeat(2, 1fr); // Maintain 2 columns
+      gap: $gap-small;
     }
 
     @media screen and (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr); // 2 columns for mobile devices
-      gap: $gap-small; // Adjust gap for mobile devices
+      grid-template-columns: 1fr; // Stack to single column
+      gap: $gap-small;
     }
 
     @media screen and (max-width: 600px) {
-      grid-template-columns: 1fr; // 1 column for very small mobile devices
-      gap: $gap-small; // Very small gap for very small mobile devices
+      grid-template-columns: 1fr; // Single column for small devices
+      gap: $gap-small;
+      padding: $padding-small;
     }
-  }
-}
-
-.sidebar {
-  color: $text-color-light; // Use light text color from the theme
-  width: 300px;
-  z-index: 1;
-  position: fixed;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $background-alt; // Use theme background color for the sidebar
-  padding: $padding-regular;
-  overflow-y: auto; // Ensure sidebar content scrolls if needed
-
-  @media screen and (max-width: 768px) {
-    width: 100%; // Full width on smaller screens
-    height: auto;
-    bottom: auto;
-    left: 0; // Full width
-    top: auto; // Remove top fixed position
-  }
-}
-
-.sidebarclose {
-  display: block; // Make the sidebar close button visible on mobile
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: $button-color-secondary; // Use theme button color
-  color: $text-color-light;
-  border: none;
-  padding: $padding-small;
-  cursor: pointer;
-  border-radius: $border-radius-medium;
-
-  @media screen and (max-width: 768px) {
-    display: block; // Ensure close button is visible on mobile screens
   }
 }

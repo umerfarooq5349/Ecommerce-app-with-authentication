@@ -58,83 +58,85 @@ const ProductDetailsPage = ({ params }: { params: { productID: number } }) => {
   };
   return (
     <div className={styles.container}>
-      <Link href="/total-items" className={styles.backLink}>
-        <FontAwesomeIcon icon={faArrowLeftLong} /> Back to list
-      </Link>
-      {product ? (
-        <>
-          <div className={styles.left}>
-            <div className={styles.img}>
-              <Image src={product?.thumbnail!} alt={product?.title!} fill />
-            </div>
-          </div>
-
-          <div className={styles.right}>
-            <div className={styles.discount}>
-              Get {product?.discountPercentage}% Off
-            </div>
-
-            <div className={styles.title}>
-              <h5>{product?.title}</h5>
-              <p>{product?.description}</p>
-            </div>
-
-            <div className={styles.itemPrice}>
-              <p className={styles.discountedPrice}>
-                $
-                {(
-                  product?.price! *
-                  (1 - product?.discountPercentage! / 100)
-                ).toFixed(2)}
-              </p>
-              <p className={styles.orignalPrice}>
-                ${product?.price.toFixed(2)}
-              </p>
-            </div>
-
-            <div className={styles.product}>
-              <div className={styles.id}>
-                <h5>Product code:</h5>
-                <p>{product?._id}</p>
-              </div>
-
-              <div className={styles.stock}>
-                <FontAwesomeIcon icon={faCheckSquare} /> In Stock
+      <div className={styles.body}>
+        <Link href="/total-items" className={styles.backLink}>
+          <FontAwesomeIcon icon={faArrowLeftLong} size="xl" /> Back to list
+        </Link>
+        {product ? (
+          <>
+            <div className={styles.left}>
+              <div className={styles.img}>
+                <Image src={product?.thumbnail!} alt={product?.title!} fill />
               </div>
             </div>
 
-            <div className={styles.quantityBtn}>
-              <FontAwesomeIcon
-                icon={faMinus}
-                className={styles.minusBtn}
-                onClick={handleCartDecrement}
-              />
-              {cartQuantity}
-              <FontAwesomeIcon
-                icon={faPlus}
-                className={styles.plusBtn}
-                onClick={handleCartIncrement}
-              />
-            </div>
+            <div className={styles.right}>
+              <div className={styles.discount}>
+                Get {product?.discountPercentage}% Off
+              </div>
 
-            <div className={styles.actionBtn}>
-              <div className={`${styles.buyNow} ${styles.button}`}>
-                <FontAwesomeIcon icon={faCashRegister} /> Buy Now
+              <div className={styles.title}>
+                <h5>{product?.title}</h5>
+                <p>{product?.description}</p>
               </div>
-              <div
-                className={`${styles.addToCart} ${styles.button}`}
-                onClick={() => {
-                  handleAddToCartBtn(product);
-                }}
-              >
-                <FontAwesomeIcon icon={faCartArrowDown} /> Add To Cart
+
+              <div className={styles.itemPrice}>
+                <p className={styles.discountedPrice}>
+                  $
+                  {(
+                    product?.price! *
+                    (1 - product?.discountPercentage! / 100)
+                  ).toFixed(2)}
+                </p>
+                <p className={styles.orignalPrice}>
+                  ${product?.price.toFixed(2)}
+                </p>
+              </div>
+
+              <div className={styles.product}>
+                <div className={styles.id}>
+                  <h5>Product code:</h5>
+                  <p>{product?._id}</p>
+                </div>
+
+                <div className={styles.stock}>
+                  <FontAwesomeIcon icon={faCheckSquare} /> In Stock
+                </div>
+              </div>
+
+              <div className={styles.quantityBtn}>
+                <FontAwesomeIcon
+                  icon={faMinus}
+                  className={styles.minusBtn}
+                  onClick={handleCartDecrement}
+                />
+                {cartQuantity}
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className={styles.plusBtn}
+                  onClick={handleCartIncrement}
+                />
+              </div>
+
+              <div className={styles.actionBtn}>
+                <div className={`${styles.buyNow} ${styles.button}`}>
+                  <FontAwesomeIcon icon={faCashRegister} /> Buy Now
+                </div>
+                <div
+                  className={`${styles.addToCart} ${styles.button}`}
+                  onClick={() => {
+                    handleAddToCartBtn(product);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faCartArrowDown} /> Add To Cart
+                </div>
               </div>
             </div>
-          </div>
-        </>
-      ) : (
-        <BikeAnimiation text="Fetching product data" />
-      )}
+          </>
+        ) : (
+          <BikeAnimiation text="Fetching product data" />
+        )}
+      </div>
     </div>
   );
 };

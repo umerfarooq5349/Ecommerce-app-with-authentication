@@ -46,7 +46,7 @@ $border-color-accent: $accent-color;
 $input-background: $background-color-light;
 $input-border: $border-color-accent;
 $input-text-color: $text-color-dark;
-$input-placeholder-color: lighten($primary-color, 20%);
+$input-placeholder-color: lighten($primary-color, 10%);
 
 // Link Colors
 $link-color: $accent-color;
@@ -294,6 +294,7 @@ $hero-styles: (
 
   &::placeholder {
     color: map-get($styles, placeholder-color);
+    font-weight: 500;
   }
 }
 

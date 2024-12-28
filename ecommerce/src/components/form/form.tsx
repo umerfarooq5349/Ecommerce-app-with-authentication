@@ -45,17 +45,8 @@ const FormComponent = (formData: FormData) => {
 
   return (
     <form className={styles.form} onSubmit={formData.handleSubmit}>
-      {/* <p className={styles.title}>{formData.heading} Product</p> */}
       <div className={styles.container}>
         <div className={styles.formLeft}>
-          {/* Custom Button for Upload */}
-          {/* <div
-            className={styles.customUploadButton}
-            onClick={handleCustomUploadClick}
-          >
-            {formData.heading === "Add" ? "Upload Image" : "Change Image"}
-          </div> */}
-
           {/* Hidden File Input */}
           <input
             type="file"
@@ -83,7 +74,6 @@ const FormComponent = (formData: FormData) => {
           </div>
         </div>
         <div className={styles.formRight}>
-          {/* <p className={styles.message}>Fill in the product details below.</p> */}
           <div className={styles.flex}>
             <label>
               <input
