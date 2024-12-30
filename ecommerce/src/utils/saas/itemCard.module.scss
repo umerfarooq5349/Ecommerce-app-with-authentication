@@ -1,7 +1,7 @@
 @import "./theme/theme.scss";
 
 .card {
-  // background-color: $grey-bg;
+  // background-color: $gray-bg;
   display: flex;
   flex-direction: column;
   border-radius: $border-radius-medium;
@@ -12,7 +12,7 @@
   .cardHeader {
     position: relative;
     height: 300px;
-    width: fill;
+    width: 100%;
     overflow: hidden;
     border-radius: $border-radius-medium;
     -webkit-border-radius: $border-radius-medium;
@@ -45,6 +45,7 @@
       right: 0;
       display: flex;
       flex-direction: row;
+      gap: $gap-regular;
       margin: $margin-small;
       justify-content: space-between;
       z-index: 1;

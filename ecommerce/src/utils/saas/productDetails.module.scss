@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+  padding: $padding-large 0;
 
   .body {
     width: 70%;
@@ -12,16 +13,14 @@
     justify-content: space-between;
     gap: $gap-large;
     position: relative;
-    // background-color: whitesmoke;
+
     padding: $padding-regular;
 
     .backLink {
       position: absolute;
       top: 0;
       left: 0;
-      // background-color: red;
       z-index: 50;
-      //padding: 5px;
       border-radius: $border-radius-small;
       color: $text-color-dark;
       font-size: $font-size-regular;
@@ -32,16 +31,14 @@
       align-items: center;
       gap: 5px;
       text-decoration: none;
+      margin-bottom: $margin-regular;
 
-      -webkit-border-radius: $border-radius-small;
-      -moz-border-radius: $border-radius-small;
-      -ms-border-radius: $border-radius-small;
-      -o-border-radius: $border-radius-small;
       &:hover {
         color: $text-color-accent;
         cursor: pointer;
       }
     }
+
     .left {
       width: 300px;
       position: relative;
@@ -49,10 +46,7 @@
       aspect-ratio: 1;
       border-radius: $border-radius-large;
       overflow: hidden;
-      -webkit-border-radius: $border-radius-large;
-      -moz-border-radius: $border-radius-large;
-      -ms-border-radius: $border-radius-large;
-      -o-border-radius: $border-radius-large;
+
       .img {
         object-fit: contain;
         width: 100%;
@@ -70,13 +64,8 @@
         padding: $padding-regular;
         background-color: $gray-color;
         color: $text-color-dark;
-        // width: fit-content;
         border-radius: $border-radius-2xl;
         font-weight: bold;
-        -webkit-border-radius: $border-radius-2xl;
-        -moz-border-radius: $border-radius-2xl;
-        -ms-border-radius: $border-radius-2xl;
-        -o-border-radius: $border-radius-2xl;
       }
 
       .title {
@@ -165,7 +154,14 @@
           cursor: pointer;
           transition: 0.3s;
           letter-spacing: 2px;
-
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+          -webkit-border-radius: $border-radius-2xl;
+          -moz-border-radius: $border-radius-2xl;
+          -ms-border-radius: $border-radius-2xl;
+          -o-border-radius: $border-radius-2xl;
           &:hover {
             box-shadow: $box-shadow-dark;
           }
@@ -186,6 +182,77 @@
             color: $white-color;
             background-color: darken($background-color-dark, 5%);
           }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(md) {
+    .body {
+      padding: $padding-large;
+      width: 60%;
+
+      .left {
+        width: 100%;
+      }
+
+      .right {
+        .quantityBtn {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .actionBtn {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(sm) {
+    .body {
+      padding: $padding-large;
+
+      .left {
+        align-items: center;
+
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+      }
+
+      .right {
+        .title h5 {
+          font-size: $font-size-small;
+        }
+        .quantityBtn {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .actionBtn {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(xs) {
+    .body {
+      padding: $padding-small;
+      flex-direction: column;
+
+      .left {
+        width: 100%;
+      }
+
+      .right {
+        gap: $gap-small;
+        .quantityBtn {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .actionBtn {
+          flex-direction: column;
+          gap: $gap-small;
         }
       }
     }

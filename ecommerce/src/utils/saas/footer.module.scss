@@ -1,7 +1,91 @@
 @import "./theme/theme.scss";
 
+// .footer {
+//   color: $text-color-light;
+//   font-size: $font-size-large;
+//   margin: $margin-regular $margin-small;
+//   width: 100%;
+//   background-color: $background-color-dark;
+// }
+
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: $gap-regular;
   color: $text-color-light;
-  font-size: $font-size-large;
-  margin: $margin-regular $margin-small;
+
+  padding: $padding-large 0;
+  width: 100%;
+  background-color: $background-color-dark;
+  align-items: center;
+  .footerHeader {
+    text-align: center;
+    h4 {
+      font-size: $font-size-hero;
+      font-weight: bold;
+      margin-bottom: $margin-small;
+    }
+    span {
+      font-size: $font-size-regular;
+      color: $gray-bg;
+    }
+  }
+  .footerLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    justify-items: start;
+    align-items: start;
+    text-align: start;
+    margin: auto;
+    // .aboutCompany {
+    // background-color: blue;
+    // padding: $padding-small 0;
+    // }
+    // .information {
+    // }
+    // .FAQ {
+    // }
+  }
+
+  .footerSocials {
+    // background-color: brown;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+    color: $gray-color;
+    // margain: auto;
+
+    .socialLinks {
+      display: flex;
+      flex-direction: row;
+      gap: $gap-regular;
+      .icon {
+        color: $white-color;
+        &:hover {
+          color: $link-color;
+          cursor: pointer;
+          transform: scale(1.5);
+          transition: 0.3s transform ease-in-out;
+          -webkit-transition: 0.3s transform ease-in-out;
+          -moz-transition: 0.3s transform ease-in-out;
+          -ms-transition: 0.3s transform ease-in-out;
+          -o-transition: 0.3s transform ease-in-out;
+          -webkit-transform: scale(1.5);
+          -moz-transform: scale(1.5);
+          -ms-transform: scale(1.5);
+          -o-transform: scale(1.5);
+        }
+      }
+    }
+    @include breakpoint(xs) {
+      gap: $gap-regular;
+      flex-direction: column;
+    }
+  }
 }

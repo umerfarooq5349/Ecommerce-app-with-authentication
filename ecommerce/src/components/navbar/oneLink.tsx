@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/utils/saas/oneLink.module.scss";
 import { NavLinkType } from "@/utils/types/navbar.types";
 import Link from "next/link";

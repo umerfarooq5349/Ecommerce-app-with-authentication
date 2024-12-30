@@ -42,22 +42,29 @@
 
 .bike__tire {
   animation: bikeTire 3s ease-in-out infinite;
+  -webkit-animation: bikeTire 3s ease-in-out infinite;
 }
 
 .bike__pedalsSpin {
   animation: bikePedalsSpin 3s ease-in-out infinite;
+  stroke: $border-color-dark;
+  -webkit-animation: bikePedalsSpin 3s ease-in-out infinite;
 }
 
 .bike__pedals {
   animation: bikePedals 3s ease-in-out infinite;
+  background-color: $background-color-dark;
+  -webkit-animation: bikePedals 3s ease-in-out infinite;
 }
 
 .bike__spokes {
   animation: bikeSpokes 3s ease-in-out infinite;
+  -webkit-animation: bikeSpokes 3s ease-in-out infinite;
 }
 
 .bike__spokesSpin {
   animation: bikeSpokesSpin 3s ease-in-out infinite;
+  -webkit-animation: bikeSpokesSpin 3s ease-in-out infinite;
 }
 
 /* Animations */
@@ -66,19 +73,35 @@
     animation-timing-function: ease-in;
     stroke-dashoffset: 56.549;
     transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
   }
   33% {
     stroke-dashoffset: 0;
     transform: rotate(0.33turn);
+    -webkit-transform: rotate(0.33turn);
+    -moz-transform: rotate(0.33turn);
+    -ms-transform: rotate(0.33turn);
+    -o-transform: rotate(0.33turn);
   }
   67% {
     animation-timing-function: ease-out;
     stroke-dashoffset: 0;
     transform: rotate(0.67turn);
+    -webkit-transform: rotate(0.67turn);
+    -moz-transform: rotate(0.67turn);
+    -ms-transform: rotate(0.67turn);
+    -o-transform: rotate(0.67turn);
   }
   to {
     stroke-dashoffset: -56.549;
     transform: rotate(1turn);
+    -webkit-transform: rotate(1turn);
+    -moz-transform: rotate(1turn);
+    -ms-transform: rotate(1turn);
+    -o-transform: rotate(1turn);
   }
 }
 
@@ -100,9 +123,17 @@
 @keyframes bikePedalsSpin {
   from {
     transform: rotate(0.1875turn);
+    -webkit-transform: rotate(0.1875turn);
+    -moz-transform: rotate(0.1875turn);
+    -ms-transform: rotate(0.1875turn);
+    -o-transform: rotate(0.1875turn);
   }
   to {
     transform: rotate(3.1875turn);
+    -webkit-transform: rotate(3.1875turn);
+    -moz-transform: rotate(3.1875turn);
+    -ms-transform: rotate(3.1875turn);
+    -o-transform: rotate(3.1875turn);
   }
 }
 
@@ -124,9 +155,17 @@
 @keyframes bikeSpokesSpin {
   from {
     transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
   }
   to {
     transform: rotate(3turn);
+    -webkit-transform: rotate(3turn);
+    -moz-transform: rotate(3turn);
+    -ms-transform: rotate(3turn);
+    -o-transform: rotate(3turn);
   }
 }
 

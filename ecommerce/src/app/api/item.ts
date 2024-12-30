@@ -31,12 +31,14 @@ export const getAllItems = async () => {
 export const addItem = async (item: Products) => {
   try {
     const response = await api.post("/items/", item);
+
     return response.data;
   } catch (e) {
-    const error = e as AxiosError;
-    throw new Error(
-      error.response?.statusText || error.message || `here is main error`
-    );
+    console.log(e);
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data!.message);
+    }
+    throw new Error("Product info is not valid or some error occured");
   }
 };
 

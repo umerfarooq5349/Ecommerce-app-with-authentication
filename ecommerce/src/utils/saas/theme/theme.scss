@@ -75,6 +75,7 @@ $font-size-regular: 16px;
 $font-size-large: 24px;
 $font-size-heading: 32px;
 $font-size-hero: 48px;
+$font-size-hero-2x: 80px;
 
 // Padding and Margin
 $padding-small: 8px;
@@ -88,6 +89,15 @@ $margin-large: 24px;
 $gap-small: 8px;
 $gap-regular: 16px;
 $gap-large: 24px;
+
+$breakpoints: (
+  "xs": "max-width: 575.98px",
+  "sm": "(min-width: 576px) and (max-width: 767.98px)",
+  "md": "(min-width: 768px) and (max-width: 991.98px)",
+  "lg": "(min-width: 992px) and (max-width: 1199.98px)",
+  "xl": "(min-width: 1200px) and (max-width: 1399.98px)",
+  "xxl": "min-width: 1400px",
+);
 
 // Button Styles Map
 $button-styles: (
@@ -322,4 +332,15 @@ $hero-styles: (
   padding: map-get($styles, padding);
   border-radius: map-get($styles, border-radius);
   text-align: map-get($styles, text-align);
+}
+
+@mixin breakpoint($user-value) {
+  $query: map-get($breakpoints, $user-value);
+  @if $query {
+    @media (#{$query}) {
+      @content;
+    }
+  } @else {
+    @error "Oops! Seems like the breakpoint #[#{$user-value}] isn't defined yet";
+  }
 }

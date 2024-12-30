@@ -5,12 +5,13 @@ import { addItem, uploadProductImage } from "@/app/api/item";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Foorm from "../form/form";
-import { Productts } from "@/utils/model/item";
+import { Products } from "@/utils/model/item";
+import { AxiosError } from "axios";
 
 const AddProduct = () => {
   const router = useRouter();
 
-  const [formData, setFormData] = useState<Productts>({
+  const [formData, setFormData] = useState<Products>({
     price: 0,
     description: "",
     title: "",
@@ -37,21 +38,26 @@ const AddProduct = () => {
         const response = await uploadProductImage(image);
         setFormData((prevState: any) => ({
           ...prevState,
-          thumbnail: response.url, // Assuming your API returns the image URL as `url`
+          thumbnail: response.url,
         }));
       } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
+        if (error instanceof AxiosError) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.response?.data.message,
+          });
+        }
+        console.log(error);
+
+        throw new Error("Error uploading image");
       }
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
-      // e.preventDefault();
+      e.preventDefault();
       addItem(formData)
         .then(() => {
           Swal.fire({
@@ -64,15 +70,20 @@ const AddProduct = () => {
           router.push("/");
         })
         .catch((e) => {
+          console.log("submit ", e);
+
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Something went wrong!",
+            text: "Product image is required",
+            // text: e,
           });
         });
     } catch (error: any) {
+      if (error instanceof AxiosError) {
+        throw new Error(error.response?.data.message);
+      }
       console.log(error);
-
       throw new Error("Error in Adding new item");
     }
   };

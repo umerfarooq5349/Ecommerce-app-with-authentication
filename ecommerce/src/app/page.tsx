@@ -8,7 +8,7 @@ export default function Home() {
 
     <div className={styles.container}>
       <Hero />
-      <div className={styles.content}>
+      <div className={styles.content} id="allProducts">
         <TotalProducts />
       </div>
     </div>

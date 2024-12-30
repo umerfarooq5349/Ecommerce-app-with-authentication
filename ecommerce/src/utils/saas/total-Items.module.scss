@@ -7,37 +7,62 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  // background-color: $background-accent;
+  // background-color: orchid;
 
   .body {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); // Default 3 columns
+    grid-template-columns: repeat(3, 1fr);
     width: 90%;
+    // flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: $gap-large;
     padding: $padding-regular;
-    background-color: $background-alt; // Use theme for consistent design
+    // background-color: orangered; // Use theme for consistent design
 
-    @media screen and (max-width: 1200px) {
-      grid-template-columns: repeat(3, 1fr); // Adjust to 2 columns
-      gap: $gap-regular;
-    }
-
-    @media screen and (max-width: 992px) {
-      grid-template-columns: repeat(2, 1fr); // Maintain 2 columns
-      gap: $gap-small;
-    }
-
-    @media screen and (max-width: 768px) {
-      grid-template-columns: 1fr; // Stack to single column
-      gap: $gap-small;
-    }
-
-    @media screen and (max-width: 600px) {
+    // .products {
+    //   background-color: $background-color-dark;
+    //   margin: 50px;
+    //   padding: 50px;
+    // }
+    @include breakpoint(xs) {
+      //575
       grid-template-columns: 1fr; // Single column for small devices
       gap: $gap-small;
       padding: $padding-small;
+      // background-color: olive;
+    }
+    @include breakpoint(sm) {
+      //(min-width: 576px) and (max-width: 767.98px)
+      grid-template-columns: repeat(2, 1fr);
+      gap: $gap-small;
+      padding: $padding-small;
+      // background-color: blueviolet;
+    }
+    @include breakpoint(md) {
+      //(min-width: 768px) and (max-width: 991.98px)
+      grid-template-columns: repeat(2, 1fr);
+      gap: $gap-regular;
+      // background-color: blue;
+    }
+
+    @include breakpoint(lg) {
+      //(min-width: 992px) and (max-width: 1199.98px)
+      grid-template-columns: repeat(3, 1fr);
+      gap: $gap-regular;
+      // background-color: teal;
+    }
+    @include breakpoint(xl) {
+      //(min-width: 1200px) and (max-width: 1399.98px)
+      grid-template-columns: repeat(3, 1fr);
+      gap: $gap-regular;
+      // background-color: burlywood;
+    }
+    @include breakpoint(xxl) {
+      //min-width: 1400px
+      grid-template-columns: repeat(3, 1fr);
+      gap: $gap-regular;
+      // background-color: yellow;
     }
   }
 }

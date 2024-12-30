@@ -1,3 +1,4 @@
+import { error } from "console";
 import { Response } from "express";
 
 export const sendResponse = (
@@ -5,11 +6,13 @@ export const sendResponse = (
   statusCode: number,
   status: string,
   message: string,
-  data?: unknown
+  data?: unknown,
+  error?: unknown
 ) => {
   return res.status(statusCode).json({
     status,
     message,
     data,
+    error,
   });
 };

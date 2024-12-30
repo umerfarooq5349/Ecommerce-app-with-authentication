@@ -90,11 +90,11 @@ const TotalProducts = () => {
         alert(error.response?.data.message, 2000);
       }
 
-      alert(
-        (error as AxiosError).response?.data?.message! ||
-          "Unable to add to cart",
-        2000
-      );
+      // alert(
+      //   (error as AxiosError).response?.data?.message! ||
+      //     "Unable to add to cart",
+      //   2000
+      // );
     }
   };
 
@@ -109,20 +109,16 @@ const TotalProducts = () => {
         {allItems.length === 0 ? (
           <BikeAnimiation text="No items Available" />
         ) : (
-          allItems.map((item: Products) => (
+          allItems.map((item: Products, index) => (
             <ItemCard
+              key={index}
               imageUrl={item.thumbnail}
               name={item.title}
               price={item.price}
               brand={item.brand}
-              key={item._id}
               stock={item.stock}
               discount={item.discountPercentage}
-              showDetailsBtn={() =>
-                session?.user.role === "admin"
-                  ? {}
-                  : handleShowDetails(item._id || 0)
-              }
+              showDetailsBtn={() => handleShowDetails(item._id || 0)}
               deleteBtn={() => handleDelete(item._id || 0)}
               actionBtn={(event) => {
                 session?.user.role === "admin"
