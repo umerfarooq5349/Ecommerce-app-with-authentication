@@ -9,9 +9,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 const featuredProducts = [
+  {
+    title: "Dumy Image",
+    url: "https://images.pexels.com/photos/1845208/pexels-photo-1845208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  },
   { title: "Dumy Image", url: "/assets/login.jpg" },
-  { title: "Dumy Image", url: "/assets/login.jpg" },
-  { title: "Dumy Image", url: "/assets/login.jpg" },
+  {
+    title: "Dumy Image",
+    url: "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  },
 ];
 
 function Hero() {
@@ -53,14 +59,15 @@ function Hero() {
         <div className={styles.right}>
           <div className={styles.featured}>
             {featuredProducts.map((product, index) => (
-              <div className={styles.imageCard} key={index}>
-                <p>{product.title}</p>
-                <Image
-                  className={styles.img}
-                  src={product.url}
-                  fill
-                  alt={product.title}
-                />
+              <div
+                key={index}
+                className={styles.featuredProduct}
+                style={{ backgroundImage: `url(${product.url})` }}
+              >
+                <div className={styles.featuredProductName}>
+                  <h2>{product.title}</h2>
+                  <span>{product.title}</span>
+                </div>
               </div>
             ))}
           </div>

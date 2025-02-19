@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import NavLinks from "./navLinks";
 import { useHeader } from "@/context/headerContext";
 import Header from "../header/header";
+import SubNav from "./subnav";
 
 const Navbar: React.FC = () => {
   const path = usePathname();
@@ -34,6 +35,7 @@ const Navbar: React.FC = () => {
 
   return isAuthPage ? null : (
     <div>
+      <SubNav />
       <NavLinks />
       {path !== "/" && <Header />}
     </div>

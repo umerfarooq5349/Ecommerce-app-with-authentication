@@ -88,4 +88,17 @@
       flex-direction: column;
     }
   }
+  .divider {
+    width: 70%;
+    // text-align: left;
+    // margin-left: 0;
+    // stroke: 2px solid $accent-color;
+    // stroke: $accent-color;
+    // stroke-width: 73px;
+    background-color: #ffffff;
+    color: #ffffff;
+    height: 2px;
+    // border-style: inset;
+    border-width: 1px;
+  }
 }

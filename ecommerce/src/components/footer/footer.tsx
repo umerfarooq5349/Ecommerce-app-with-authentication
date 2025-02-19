@@ -44,6 +44,44 @@ const Footer = () => {
           <OneLink oneLink={{ title: "Checkout", route: "" }} />
         </div>
       </div>
+      <hr className={styles.divider} />
+
+      <div className={styles.footerLinks}>
+        <div className={styles.information}>
+          {/* <p>Other Projects</p> */}
+          <OneLink
+            oneLink={{
+              title: "Be Anonymous",
+              route: "https://be-anonymouse.vercel.app/dashboard",
+            }}
+          />
+          <OneLink
+            oneLink={{
+              title: "Guess the Number",
+              route: "https://guess-the-number-tau-nine.vercel.app/",
+            }}
+          />
+        </div>
+        <div className={styles.FAQ}>
+          {/* <p></p> */}
+          <OneLink
+            oneLink={{
+              title: "Portfolio",
+              route: "https://umer-far-ooq-portfolio.vercel.app/",
+            }}
+          />
+          {/* <OneLink oneLink={{ title: "Checkout", route: "" }} /> */}
+        </div>
+        <div>
+          <OneLink
+            oneLink={{
+              title: "Expanse Tracker",
+              route: "https://expense-tracker-green-phi.vercel.app/summary",
+            }}
+          />
+        </div>{" "}
+        <div></div>
+      </div>
       <div className={styles.footerSocials}>
         <div className={styles.socialLinks}>
           <FontAwesomeIcon

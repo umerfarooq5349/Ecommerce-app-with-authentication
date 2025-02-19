@@ -1,0 +1,40 @@
+@import "./theme/theme.scss";
+
+.container {
+  background-color: $accent-color;
+  display: flex;
+  justify-content: center;
+  align-items: center; // Centers everything vertically
+  text-align: center;
+
+  .body {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row; // Stack items vertically
+    justify-content: space-between; // Centers vertically in flexbox
+    align-items: center;
+    margin-top: $margin-regular;
+    // background-color: red;
+    color: white;
+    font-weight: normal;
+
+    // gap: $gap-regular; // Adds spacing between items
+    p {
+      span {
+        .icon {
+          margin-right: $margin-small;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.09);
+            -webkit-transform: scale(1.09);
+            -moz-transform: scale(1.09);
+            -ms-transform: scale(1.09);
+            -o-transform: scale(1.09);
+            color: $text-color-dark;
+          }
+        }
+      }
+    }
+  }
+}

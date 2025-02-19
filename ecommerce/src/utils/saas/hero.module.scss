@@ -22,10 +22,12 @@
     justify-content: space-between;
     gap: $gap-large;
     .left {
+      // flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       gap: $gap-regular;
+      margin-right: $margin-large;
 
       .cta {
         .ctaTag {
@@ -100,18 +102,13 @@
         display: flex;
         flex-direction: row;
         gap: $gap-large;
-        justify-content: space-between;
-
-        @media (max-width: 768px) {
-          flex-direction: column;
-          align-items: start;
-          gap: $gap-regular;
-        }
+        justify-content: space-evenly;
 
         .rowItem {
           display: flex;
           flex-direction: column;
           align-items: center;
+
           padding: $padding-regular;
 
           h3 {
@@ -129,78 +126,82 @@
     }
 
     .right {
+      flex: 1;
       display: flex;
       flex-wrap: wrap;
       gap: $gap-regular;
       justify-content: center;
+      // background-color: red;
 
       .featured {
+        width: 100%;
         display: flex;
-        gap: $gap-regular;
-        flex-direction: row;
         justify-content: center;
+        height: 500px;
+        gap: 10px;
 
-        .imageCard {
+        .featuredProduct {
+          flex: 0 0 120px;
+          border-radius: 0.5rem;
+          transition: 0.5s ease-in-out;
+          cursor: pointer;
+          // box-shadow: 1px 5px 15px $accent-color;
           position: relative;
-          object-fit: fill;
-          height: 500px;
-          width: 100px;
-          border-radius: $border-radius-medium;
           overflow: hidden;
-          transition: all 0.3s ease-in-out;
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -ms-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out;
-          -webkit-border-radius: $border-radius-medium;
-          -moz-border-radius: $border-radius-medium;
-          -ms-border-radius: $border-radius-medium;
-          -o-border-radius: $border-radius-medium;
-          p {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: $accent-color;
-            z-index: 10;
+          background-size: cover;
+          background-position: center;
+          -webkit-transition: 0.5s ease-in-out;
+          -moz-transition: 0.5s ease-in-out;
+          -ms-transition: 0.5s ease-in-out;
+          -o-transition: 0.5s ease-in-out;
+          .featuredProductName {
+            font-size: 1.5rem;
+            color: $white-color;
+            display: flex;
+            align-items: center;
+            padding: 15px;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            -webkit-transition: opacity 0.3s ease;
-            -moz-transition: opacity 0.3s ease;
-            -ms-transition: opacity 0.3s ease;
-            -o-transition: opacity 0.3s ease;
-          }
-
-          .img {
-            width: 100%;
+            flex-direction: column;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            z-index: 9;
-            -webkit-transition: transform 0.3s ease;
-            -moz-transition: transform 0.3s ease;
-            -ms-transition: transform 0.3s ease;
-            -o-transition: transform 0.3s ease;
+            justify-content: flex-end;
+            background: linear-gradient(
+              45deg,
+              $accent-color-low 0%,
+              rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateY(100%);
+            transition: opacity 0.5s ease-in-out, transform 0.5s 0.2s;
+            visibility: hidden;
+
+            span {
+              display: block;
+              margin-top: 5px;
+              font-size: 1.2rem;
+            }
           }
 
           &:hover {
-            //background: #000;
-            //height: 600px;
-            width: 300px;
-            border-radius: $border-radius-xl;
-            -webkit-border-radius: $border-radius-xl;
-            -moz-border-radius: $border-radius-xl;
-            -ms-border-radius: $border-radius-xl;
-            -o-border-radius: $border-radius-xl;
-            p {
-              opacity: 1;
-            }
+            flex: 0 0 250px;
+            box-shadow: 1px 3px 15px $accent-color-low;
+            transform: translateY(-30px);
+          }
+
+          &:hover .featuredProductName {
+            opacity: 1;
+            transform: translateY(0%);
+            visibility: visible;
           }
         }
+      }
+
+      @include breakpoint(md) {
+        display: none;
+      }
+      @include breakpoint(sm) {
+        display: none;
+      }
+      @include breakpoint(xs) {
+        display: none;
       }
     }
   }
