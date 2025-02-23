@@ -1,15 +1,19 @@
-@import "./theme/theme.scss"; // Import your theme or global styles
+@import "./theme/theme.scss";
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 70%;
-  height: 60vh;
-  padding: $padding-large;
-  margin: 0 auto;
-
+  //height: 80vh;
+  border-radius: $border-radius-large;
+  background: $white-color;
+  box-shadow: $box-shadow-light;
+  animation: fadeIn 0.5s ease-in-out;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  -webkit-animation: fadeIn 0.5s ease-in-out;
   .title {
     display: flex;
     justify-content: center;
@@ -18,8 +22,8 @@
     font-size: $font-size-large;
     font-weight: bolder;
     letter-spacing: -1px;
-    padding-left: 30px;
-    color: $text-color-light;
+    color: $text-color-dark;
+    text-align: center;
 
     &::before,
     &::after {
@@ -28,8 +32,8 @@
       height: 16px;
       width: 16px;
       border-radius: 50%;
-      left: 0;
-      background-color: $background-color-light;
+      left: -25px;
+      background-color: $background-color-dark;
     }
 
     &::before {
@@ -41,102 +45,126 @@
       width: 18px;
       height: 18px;
       animation: pulse 1s linear infinite;
-      -webkit-animation: pulse 1s linear infinite;
     }
-  }
-
-  .subContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: $border-radius-large;
-    box-shadow: $box-shadow-dark;
-    overflow: hidden;
-    background-color: $background-color-light;
   }
 
   .form {
-    flex: 1;
+    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: $padding-large;
-    background-color: $background-alt;
+    gap: $gap-small;
+    padding-bottom: $padding-regular;
+    border-radius: $border-radius-large;
+    padding: $padding-regular;
 
-    label {
-      position: relative;
-      flex: 1;
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+      gap: $gap-small;
 
-      .input {
+      input {
         @include inputStyle(default);
+        border: 1px solid $input-border;
+        border-radius: $border-radius-medium;
+        font-size: $font-size-regular;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
         width: 100%;
-        &:placeholder-shown + span {
-          display: none;
-          font-size: 0.9em;
-        }
 
-        &:focus,
-        &:valid {
+        &:focus {
+          border-color: $accent-color;
+          box-shadow: 0 0 8px rgba($accent-color, 0.4);
           outline: none;
-          border: 3px solid $border-color-accent;
-        }
-
-        &:focus + span,
-        &:valid + span {
-          color: $text-color-dark;
-          top: 0;
-          margin-top: 4px;
-          display: inline;
-          font-size: 0.7em;
-          font-weight: 600;
         }
       }
-
-      .input + span {
-        color: $text-color-dark;
-        position: absolute;
-        left: 10px;
-        top: 0;
-        font-size: 0.9em;
-        cursor: text;
+      .error {
+        color: red;
+        text-align: start;
       }
+    }
+
+    .submitBtn {
+      @include buttonStyle(primary);
+      width: 100%;
     }
   }
 
-  .imageContainer {
-    flex: 1;
-    position: relative;
-    background-image: url("/assets/login.jpg"); /* Image URL */
-    background-size: cover;
-    background-position: center;
-    object-fit: cover;
+  .divider {
+    width: 90%;
+    background-color: $primary-color;
+    height: 2px;
+  }
+
+  .socialContainer {
+    // max-width: 400px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: row;
+    // gap: 92px;
+    // flex-wrap: wrap;
 
     .socialBtn {
       @include buttonStyle(secondary);
+    }
+  }
 
-      transition: background-color 0.3s ease;
+  span {
+    color: $text-color-dark;
+    text-align: center;
 
-      &:hover {
-        background-color: darken($background-color-dark, 10%);
+    .signupLink {
+      @include linkStyle(default);
+      margin-left: $margin-small;
+      position: relative;
+
+      &::before {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background-color: $link-color-primary;
+        transition: width 300ms ease-in-out;
       }
 
-      svg {
-        margin-right: 10px;
+      &:hover::before {
+        width: 100%;
       }
     }
   }
 }
 
-.submitBtn {
-  @include buttonStyle(secondary);
+@include breakpoint("md") {
+  .container {
+    height: auto;
+    padding: $padding-large;
+  }
+  .form {
+    width: 100%;
+    max-width: 100%;
+    padding: $padding-large;
+  }
+}
 
-  &:hover {
-    background-color: darken($background-color-dark, 10%);
+@include breakpoint("sm") {
+  .container {
+    width: 100%;
+    padding: $padding-large;
+  }
+  .form {
+    padding: $padding-large;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -145,55 +173,8 @@
     transform: scale(0.9);
     opacity: 1;
   }
-
   to {
     transform: scale(1.8);
     opacity: 0;
-  }
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-  .container {
-    width: 90%;
-  }
-
-  .subContainer {
-    flex-direction: column; /* Stack form and image on smaller screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    padding: $padding-small;
-  }
-
-  .subContainer {
-    flex-direction: column;
-  }
-
-  .form {
-    padding: $padding-small;
-  }
-
-  .imageContainer {
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.2rem;
-  }
-
-  .form {
-    gap: 5px;
-    padding: $padding-small;
-  }
-
-  .imageContainer {
-    height: 200px; /* Smaller height for mobile */
-    background-position: top;
   }
 }

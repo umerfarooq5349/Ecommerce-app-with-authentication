@@ -1,108 +1,131 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-import styles from "@/utils/saas/login.module.scss";
-import Link from "next/link";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { alert } from "@/utils/alerts/alert";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Swal from "sweetalert2";
-import { alert } from "@/utils/alerts/alert";
+import styles from "@/utils/saas/login.module.scss";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+
+interface LoginPageFormValues {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
+  const [isSocialLogin, setIsSocialLogin] = useState(false);
+  const [isEmailLogin, setIsEmailLogin] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<LoginPageFormValues>({
+    mode: "onChange", // Validate on change
+  });
 
+  const onSubmit: SubmitHandler<LoginPageFormValues> = async (data) => {
+    setIsEmailLogin(true);
     try {
       const result = await signIn("credentials", {
         redirect: false,
-        email,
-        password,
+        email: data.email,
+        password: data.password,
       });
 
       if (result?.error) {
-        Swal.fire({
-          title: result.error,
-          timer: 5000,
-          timerProgressBar: true,
-        });
+        Swal.fire({ title: result.error, timer: 5000, timerProgressBar: true });
+        setIsEmailLogin(false);
       } else {
-        alert("Login successful", 3000);
         router.push("/");
       }
     } catch (error) {
       Swal.fire({
-        title: "this is error message",
+        title: "An error occurred during sign-in.",
         timer: 5000,
         timerProgressBar: true,
       });
-      // alert("An error occurred during sign-in.", 5000);
+      setIsEmailLogin(false);
     }
   };
-  const handlegoogleLogin = async () => {
-    // google login
-    await signIn("google");
-  };
-  const handlegitLogin = async () => {
-    // google login
-    await signIn("facebook");
+
+  const handleSocialLogin = async (provider: "google" | "facebook") => {
+    setIsSocialLogin(true);
+    setIsEmailLogin(false);
+    await signIn(provider);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.subContainer}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <label>
-            <input
-              type="email"
-              className={styles.input}
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <span>Email</span>
-          </label>
-
-          <label>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className={styles.input}
-            />
-            <span>Password</span>
-          </label>
-
-          <button className={styles.submitBtn} type="submit">
-            Log in
-          </button>
-        </form>
-        <div className={styles.imageContainer}>
-          <h2 className={styles.title}>Login</h2>
-          <button className={styles.socialBtn} onClick={handlegoogleLogin}>
-            <FontAwesomeIcon icon={faGoogle} size="xl" />
-            Log in with Google
-          </button>
-          <button className={styles.socialBtn} onClick={handlegitLogin}>
-            <FontAwesomeIcon icon={faFacebookF} size="xl"></FontAwesomeIcon>
-            Log in with Facebook
-          </button>
-          <Link href="/signup">
-            <p>
-              Do nott have an account? <b>Signup</b>
-            </p>
-          </Link>
+      <h2 className={styles.title}>Login</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={styles.inputGroup}>
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: "Enter a valid email",
+              },
+            })}
+            // disabled={isSocialLogin}
+          />
         </div>
+
+        <div className={styles.inputGroup}>
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+            })}
+          />
+          {errors.password && (
+            <span className={styles.error}>{errors.password.message}</span>
+          )}
+        </div>
+
+        <button
+          className={styles.submitBtn}
+          type="submit"
+          disabled={!isValid || isSubmitting || isSocialLogin}
+        >
+          {isSubmitting ? "Logging in..." : "Log in"}
+        </button>
+      </form>
+      <div className={styles.divider}></div>
+      <div className={styles.socialContainer}>
+        <button
+          className={styles.socialBtn}
+          onClick={() => handleSocialLogin("google")}
+          disabled={isEmailLogin || isSubmitting}
+        >
+          <FontAwesomeIcon icon={faGoogle} size="xl" /> Log in with Google
+        </button>
+        <button
+          className={styles.socialBtn}
+          onClick={() => handleSocialLogin("facebook")}
+          disabled={isEmailLogin || isSubmitting}
+        >
+          <FontAwesomeIcon icon={faFacebookF} size="xl" /> Log in with Facebook
+        </button>
       </div>
+      <span>
+        Don&lsquo;t have an account?
+        <Link href="/signup" className={styles.signupLink}>
+          Signup
+        </Link>
+      </span>
     </div>
   );
 };

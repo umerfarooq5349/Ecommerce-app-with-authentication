@@ -6,7 +6,12 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faBoxOpen,
+  faCross,
+  faX,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import { NavLinkType } from "@/utils/types/navbar.types";
 
@@ -68,10 +73,12 @@ const NavLinks = () => {
       <div className={styles.navbarContainer}>{renderLinks()}</div>
       <button
         className={styles.menuButton}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open);
+        }}
         aria-pressed={open}
       >
-        <FontAwesomeIcon icon={open ? faBars : faBoxOpen} />
+        <FontAwesomeIcon icon={open ? faX : faBars} size="xl" beatFade={open} />
       </button>
       {open && <div className={styles.smallScreen}>{renderLinks()}</div>}
     </div>

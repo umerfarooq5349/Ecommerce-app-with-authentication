@@ -49,7 +49,8 @@ $input-text-color: $text-color-dark;
 $input-placeholder-color: lighten($primary-color, 10%);
 
 // Link Colors
-$link-color: $accent-color;
+$link-color-secondary: $secondary-color;
+$link-color-primary: $primary-color;
 
 // Shadow
 $box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -105,13 +106,17 @@ $button-styles: (
     background-color: $button-color-primary,
     border: none,
     outline: none,
-    color: $text-color-light,
+    // font-size:$font
+    color: $highlight-color,
     font-size: $font-size-regular,
     box-shadow: $box-shadow-light,
-    hover-background-color: $button-color-accent,
+    hover-color: $white-color,
+    hover-font-weight: 500,
+
+    hover-background-color: lighten($button-color-primary, 10%),
     hover-box-shadow: $box-shadow-dark,
     active-background-color: darken($button-color-primary, 10%),
-    disabled-background-color: lighten($button-color-secondary, 20%),
+    disabled-background-color: lighten($button-color-primary, 10%),
     disabled-color: $text-color-light,
   ),
   secondary: (
@@ -119,17 +124,18 @@ $button-styles: (
     border: none,
     outline: none,
     font-size: $font-size-regular,
-    color: $text-color-light,
+    color: $text-color-dark,
     box-shadow: $box-shadow-light,
-    hover-background-color: $button-color-accent,
+    hover-background-color: $button-color-light,
     hover-box-shadow: $box-shadow-dark,
+    hover-font-weight: 500,
     active-background-color: darken($button-color-secondary, 10%),
-    disabled-background-color: lighten($button-color-primary, 20%),
-    disabled-color: $text-color-accent,
+    disabled-background-color: $button-color-secondary,
+
+    disabled-color: $text-color-dark,
   ),
   danger: (
     background-color: $button-color-danger,
-
     color: $text-color-light,
     box-shadow: $box-shadow-light,
     border: none,
@@ -157,7 +163,10 @@ $button-styles: (
 // Link Styles Map
 $link-styles: (
   default: (
-    color: $link-color,
+    color: $link-color-primary,
+    text-decoration: underline,
+    text-underline-offset: 14px,
+    text-decoration-thickness: 2px,
   ),
   danger: (
     color: $danger-color,
@@ -174,10 +183,12 @@ $link-styles: (
 // Input Styles Map
 $input-styles: (
   default: (
+    width: 100%,
     background-color: $input-background,
     border: 1px solid $input-border,
     color: $input-text-color,
     placeholder-color: $input-placeholder-color,
+    active-background-color: none,
   ),
   danger: (
     background-color: $danger-light-color,
@@ -263,6 +274,8 @@ $hero-styles: (
     background-color: map-get($styles, hover-background-color);
     cursor: pointer;
     box-shadow: map-get($styles, hover-box-shadow);
+    color: map-get($map: $styles, $key: hover-color);
+    font-weight: map-get($map: $styles, $key: hover-font-weight);
   }
 
   &:active {
@@ -273,6 +286,7 @@ $hero-styles: (
     background-color: map-get($styles, disabled-background-color);
     color: map-get($styles, disabled-color);
     cursor: not-allowed;
+    box-shadow: none;
   }
 }
 
@@ -301,7 +315,18 @@ $hero-styles: (
   padding: $padding-regular;
   border-radius: $border-radius-medium;
   transition: border-color $transition-speed $transition-ease;
-
+  -webkit-transition: border-color $transition-speed $transition-ease;
+  -moz-transition: border-color $transition-speed $transition-ease;
+  -ms-transition: border-color $transition-speed $transition-ease;
+  -o-transition: border-color $transition-speed $transition-ease;
+  -webkit-border-radius: $border-radius-medium;
+  -moz-border-radius: $border-radius-medium;
+  -ms-border-radius: $border-radius-medium;
+  -o-border-radius: $border-radius-medium;
+  &:focus {
+    background: map-get($styles, active-background-color);
+    border: 2px solid $input-border;
+  }
   &::placeholder {
     color: map-get($styles, placeholder-color);
     font-weight: 500;

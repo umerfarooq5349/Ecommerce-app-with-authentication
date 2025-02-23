@@ -1,19 +1,19 @@
+"use client";
 import styles from "@/utils/saas/footer.module.scss";
 import {
   faFacebook,
-  faFacebookSquare,
   faInstagram,
-  faInstagramSquare,
-  faSquareXTwitter,
-  faTwitter,
   faWhatsapp,
-  faWhatsappSquare,
-  faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OneLink from "../navbar/oneLink";
 import { title } from "process";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 const Footer = () => {
+  const pathName = usePathname();
+  if (pathName === "/login" || pathName === "/signup") return null;
+
   return (
     <div className={styles.footer}>
       <div className={styles.footerHeader}>
@@ -84,22 +84,31 @@ const Footer = () => {
       </div>
       <div className={styles.footerSocials}>
         <div className={styles.socialLinks}>
-          <FontAwesomeIcon
-            className={styles.icon}
-            icon={faInstagram}
-            size="xl"
-          />
-          <FontAwesomeIcon
-            className={styles.icon}
-            icon={faFacebook}
-            size="xl"
-          />
-          <FontAwesomeIcon
-            className={styles.icon}
-            icon={faWhatsapp}
-            size="xl"
-          />
-          <FontAwesomeIcon className={styles.icon} icon={faTwitter} size="xl" />
+          <Link href="https://www.instagram.com/umer_faro_oq/" target="_blank">
+            <FontAwesomeIcon
+              icon={faInstagram}
+              size="xl"
+              className={styles.icon}
+            />
+          </Link>
+          <Link
+            href={"https://www.facebook.com/umer.farooq.5349/"}
+            target="_blank"
+          >
+            <FontAwesomeIcon
+              icon={faFacebook}
+              size="xl"
+              className={styles.icon}
+            />
+          </Link>
+
+          <Link href={"https://wa.me/923014044102"} target="_blank">
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              size="xl"
+              className={styles.icon}
+            />
+          </Link>
         </div>
         <p>© 2024 All Rights Reserved</p>
       </div>

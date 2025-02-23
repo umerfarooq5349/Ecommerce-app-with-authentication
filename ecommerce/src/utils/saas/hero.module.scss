@@ -86,7 +86,7 @@
             -ms-border-radius: $border-radius-2xl;
             -o-border-radius: $border-radius-2xl;
             &:hover {
-              background-color: lighten($accent-color, 10%);
+              // background-color: darken($accent-color, 10%);
               transform: scale(1.05);
               box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
               -webkit-transform: scale(1.05);

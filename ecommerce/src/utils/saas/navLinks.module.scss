@@ -26,9 +26,10 @@
     margin: $margin-large $margin-large;
     position: fixed;
     display: block;
+    color: $link-color-secondary;
     outline: none;
     background-color: transparent;
-    z-index: 1000; /* Ensure it stays on top */
+    z-index: 1000;
   }
 
   .smallScreen {
@@ -37,6 +38,7 @@
     top: 0;
     right: 0;
     bottom: 0;
+    padding-left: $padding-regular;
     display: flex;
     background-color: darken($background-alt-500, 30%);
     flex-direction: column;

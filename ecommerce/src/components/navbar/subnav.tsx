@@ -6,6 +6,7 @@ import {
   faInstagram,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 function SubNav() {
   return (
@@ -14,21 +15,34 @@ function SubNav() {
         <p>
           Follow Us on:{" "}
           <span>
-            <FontAwesomeIcon
-              icon={faInstagram}
-              size="xl"
-              className={styles.icon}
-            />
-            <FontAwesomeIcon
-              icon={faFacebook}
-              size="xl"
-              className={styles.icon}
-            />
-            <FontAwesomeIcon
-              icon={faWhatsapp}
-              size="xl"
-              className={styles.icon}
-            />
+            <Link
+              href="https://www.instagram.com/umer_faro_oq/"
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faInstagram}
+                size="xl"
+                className={styles.icon}
+              />
+            </Link>
+            <Link
+              href={"https://www.facebook.com/umer.farooq.5349/"}
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faFacebook}
+                size="xl"
+                className={styles.icon}
+              />
+            </Link>
+
+            <Link href={"https://wa.me/923014044102"} target="_blank">
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                size="xl"
+                className={styles.icon}
+              />
+            </Link>
           </span>
         </p>
         <p>New Products are waiting for you</p>
