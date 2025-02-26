@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { ReviewTypes } from "../utils/interfaces/reviewSchema";
+import { ReviewModel } from "./reviws_model";
 
 const items = new mongoose.Schema({
   title: {
@@ -19,10 +21,7 @@ const items = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  rating: {
-    type: Number,
-    default: 0,
-  },
+
   stock: {
     type: Number,
     default: 10,
@@ -40,6 +39,8 @@ const items = new mongoose.Schema({
     type: String,
     required: [true, "must be a String"],
   },
+  isFeatured: { type: Boolean, default: false },
+  reviews: [{ type: mongoose.Schema.ObjectId, required: true, ref: "Review" }],
 });
 
 const Item = mongoose.model("Item", items);
