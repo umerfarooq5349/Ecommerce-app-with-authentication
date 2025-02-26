@@ -21,12 +21,10 @@ const getReviews = catchAsync(async (req: Request, res: Response) => {
   const { itemId } = req.body;
   const userId = req.body.currentUser._id;
 
-  //  const cartItems = await CartModel.find({ userId })
-  //     .populate("itemId", "title thumbnail")
-  //     .exec();
-
   const reviews = await ReviewModel.find({ userId, itemId });
-  console.log(reviews);
+  if (!reviews.length) {
+    return sendResponse(res, 404, "Failure", "No reviews found");
+  }
   return sendResponse(res, 200, "Success", "reviews", reviews);
 });
 
