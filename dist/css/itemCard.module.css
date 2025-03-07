@@ -107,7 +107,7 @@
   color: #e74c3c;
 }
 .card .cardBody .inStock {
-  color: #2ecc71;
+  color: green;
 }
 .card .cardBody .itemPrice {
   display: flex;

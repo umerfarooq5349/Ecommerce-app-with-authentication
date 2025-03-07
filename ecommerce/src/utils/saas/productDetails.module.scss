@@ -3,18 +3,18 @@
 .container {
   width: 100%;
   padding: $padding-large 0;
+  background-color: $white-color;
 
   .body {
     width: 70%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    // align-items: center;
     justify-content: space-between;
     gap: $gap-large;
     position: relative;
-
-    padding: $padding-regular;
 
     .backLink {
       position: absolute;
@@ -38,150 +38,304 @@
         cursor: pointer;
       }
     }
-
-    .left {
-      width: 300px;
-      position: relative;
-      height: auto;
-      aspect-ratio: 1;
-      border-radius: $border-radius-large;
-      overflow: hidden;
-
-      .img {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .right {
-      flex: 2;
+    .productDetailes {
       display: flex;
-      flex-direction: column;
-      gap: $gap-regular;
+      width: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
 
-      .discount {
-        padding: $padding-regular;
-        background-color: $gray-color;
-        color: $text-color-dark;
-        border-radius: $border-radius-2xl;
-        font-weight: bold;
-      }
+      justify-content: space-between;
+      gap: $gap-large;
+      padding: $padding-regular;
+      .left {
+        width: 300px;
 
-      .title {
-        h5 {
-          color: $gray-bg;
-          margin: 0;
-        }
-        p {
-          color: black;
-          margin: 0;
-        }
-      }
+        height: auto;
+        aspect-ratio: 1;
 
-      .itemPrice {
-        display: flex;
-        align-items: center;
-        gap: $gap-small;
-        .discountedPrice {
-          color: $black-color;
-          font-weight: bold;
-        }
-        .orignalPrice {
-          text-decoration: line-through;
-          color: $gray-bg;
+        border-radius: $border-radius-large;
+        overflow: hidden;
+        -webkit-border-radius: $border-radius-large;
+        -moz-border-radius: $border-radius-large;
+        -ms-border-radius: $border-radius-large;
+        -o-border-radius: $border-radius-large;
+        .img {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          .thumbnail {
+            object-fit: cover;
+          }
         }
       }
 
-      .product {
+      .right {
+        flex: 2;
         display: flex;
         flex-direction: column;
-        gap: $gap-small;
+        gap: $gap-regular;
 
-        .id {
-          display: flex;
-          align-items: center;
-          gap: $gap-small;
+        .discount {
+          @include buttonStyle(success);
+          width: fit-content;
+          &:hover {
+            background-color: $success-color;
+            cursor: auto;
+          }
+        }
+
+        .title {
           h5 {
+            color: $gray-bg;
             margin: 0;
           }
           p {
+            color: $black-color;
             margin: 0;
+          }
+        }
+
+        .itemPrice {
+          display: flex;
+          align-items: center;
+          gap: $gap-small;
+          .discountedPrice {
+            color: $black-color;
+            font-weight: bold;
+          }
+          .orignalPrice {
+            text-decoration: line-through;
             color: $gray-bg;
           }
         }
 
-        .stock {
-          color: $background-color-dark;
+        .product {
+          display: flex;
+          flex-direction: column;
+          gap: $gap-small;
+
+          .id {
+            display: flex;
+            align-items: center;
+            gap: $gap-small;
+            h5 {
+              margin: 0;
+            }
+            p {
+              margin: 0;
+              color: $gray-bg;
+            }
+          }
+
+          .stock {
+            color: $background-color-dark;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+        }
+
+        .quantityBtn {
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: $gap-small;
+          font-weight: bold;
+          padding: $padding-small;
+          border-radius: $border-radius-2xl;
+          background-color: $gray-color;
+          width: fit-content;
+
+          .minusBtn,
+          .plusBtn {
+            background-color: darken($gray-color, 10%);
+            color: $background-color-dark;
+            padding: 4px;
+            border-radius: $border-radius-2xl;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: darken($gray-bg, 5%);
+            }
+          }
+        }
+
+        .actionBtn {
+          display: flex;
+
+          .buyNow {
+            @include buttonStyle(secondary);
+            background-color: $accent-color;
+            color: $white-color;
+          }
+
+          .addToCart {
+            @include buttonStyle(primary);
+            color: $white-color;
+          }
+        }
+      }
+    }
+    // Review Modal Styles
+    .postReview {
+      // background: $white-color;
+      padding: $padding-large;
+      border-radius: $border-radius-xl;
+
+      .modalHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $margin-regular;
+
+        h3 {
+          color: $primary-color;
+          margin: 0;
+        }
+      }
+      .ratingStars {
+        display: flex;
+        justify-content: center;
+        gap: $gap-regular;
+        margin-bottom: $margin-large;
+
+        .starButton {
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+        }
+
+        .starIcon {
+          color: $accent-color;
+          font-size: $font-size-large;
+          transition: transform $transition-speed $transition-ease;
+
+          &:hover {
+            transform: scale(1.2);
+          }
         }
       }
 
-      .quantityBtn {
+      .reviewTextarea {
+        @include inputStyle(default);
+        width: 100%;
+        height: 150px;
+        padding: $padding-regular;
+        margin-bottom: $margin-regular;
+        resize: vertical;
+      }
+
+      .submitReview {
+        @include buttonStyle(primary);
+        width: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: $gap-small;
-        font-weight: bold;
-        padding: $padding-small;
-        border-radius: $border-radius-2xl;
-        background-color: $gray-color;
-        width: fit-content;
 
-        .minusBtn,
-        .plusBtn {
-          background-color: darken($gray-color, 10%);
-          color: $background-color-dark;
-          padding: 4px;
-          border-radius: $border-radius-2xl;
-          cursor: pointer;
-          transition: background-color 0.3s;
-
-          &:hover {
-            background-color: darken($gray-bg, 5%);
-          }
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
         }
       }
+    }
 
-      .actionBtn {
+    .divider {
+      width: 100%;
+
+      background-color: $primary-color;
+
+      height: 2px;
+      // border-style: inset;
+      border-width: 5px;
+    }
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: $gap-regular;
+      flex-wrap: wrap;
+
+      .review {
         display: flex;
-        gap: $gap-regular;
-        .button {
-          padding: $padding-regular;
-          border-radius: $border-radius-2xl;
-          font-weight: 600;
-          cursor: pointer;
-          transition: 0.3s;
-          letter-spacing: 2px;
-          -webkit-transition: 0.3s;
-          -moz-transition: 0.3s;
-          -ms-transition: 0.3s;
-          -o-transition: 0.3s;
-          -webkit-border-radius: $border-radius-2xl;
-          -moz-border-radius: $border-radius-2xl;
-          -ms-border-radius: $border-radius-2xl;
-          -o-border-radius: $border-radius-2xl;
-          &:hover {
-            box-shadow: $box-shadow-dark;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: $padding-regular;
+        background: $gray-color;
+        border-radius: $border-radius-medium;
+        //box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        -webkit-transition: box-shadow 0.3s ease-in-out;
+        -moz-transition: box-shadow 0.3s ease-in-out;
+        -ms-transition: box-shadow 0.3s ease-in-out;
+        -o-transition: box-shadow 0.3s ease-in-out;
+        &:hover {
+          // transform: translateY(-5px);
+          box-shadow: $box-shadow-dark;
+        }
+
+        .reviewHeader {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          margin-bottom: $margin-small;
+
+          .left {
+            display: flex;
+            align-items: center;
+            gap: $gap-small;
+
+            .avatar {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              overflow: hidden;
+              border: 3px solid $primary-color;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              object-fit: cover;
+            }
+
+            .name {
+              font-size: $font-size-regular;
+              font-weight: bold;
+              color: $primary-color;
+            }
+          }
+
+          .right {
+            display: flex;
+            align-items: center;
+            gap: $gap-small;
+            flex-direction: column-reverse;
+
+            .rating {
+              display: flex;
+              align-items: center;
+              gap: $gap-small;
+              color: $accent-color;
+              font-size: $font-size-regular;
+            }
+
+            .date {
+              font-size: $font-size-regular;
+              color: $black-color;
+            }
           }
         }
 
-        .buyNow {
-          background-color: $background-alt;
-          color: $white-color;
-          &:hover {
-            background-color: darken($background-alt, 5%);
-          }
-        }
-
-        .addToCart {
-          background-color: $background-color-dark;
-          color: $text-color-accent;
-          &:hover {
-            color: $white-color;
-            background-color: darken($background-color-dark, 5%);
-          }
+        .content {
+          font-size: 1rem;
+          color: $black-color;
+          text-align: left;
+          line-height: 1.5;
+          margin-bottom: $margin-regular;
         }
       }
     }
@@ -190,7 +344,7 @@
   @include breakpoint(md) {
     .body {
       padding: $padding-large;
-      width: 60%;
+      width: 100%;
 
       .left {
         width: 100%;
@@ -211,7 +365,8 @@
   @include breakpoint(sm) {
     .body {
       padding: $padding-large;
-
+      width: 100%;
+      flex-wrap: wrap;
       .left {
         align-items: center;
 

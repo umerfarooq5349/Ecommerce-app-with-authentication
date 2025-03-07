@@ -1,22 +1,6 @@
 import axios, { AxiosError } from "axios";
-import { Products } from "@/utils/model/item";
-import { UserModel } from "@/utils/model/user";
-import { Route } from "next";
-import { useRouter } from "next/router";
-import { getCookie } from "cookies-next";
-// import { cookies } from "next/headers";
-
-// const cookiesStore = cookies();
-
-console.log(getCookie("jwt"));
-const api = axios.create({
-  baseURL: "http://localhost:8080/api",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${getCookie("jwt")}`,
-  },
-  // withCredentials: true,
-});
+import { ProductType } from "@/utils/types/product.types";
+import { api } from "@/utils/api response/apiRequest";
 
 export const getAllItems = async () => {
   try {
@@ -28,7 +12,7 @@ export const getAllItems = async () => {
   }
 };
 
-export const addItem = async (item: Products) => {
+export const addItem = async (item: ProductType) => {
   try {
     const response = await api.post("/items/", item);
 
@@ -66,7 +50,7 @@ export const getItem = async (item: any) => {
   }
 };
 
-export const updateItem = async (id: number, updatedData: Products) => {
+export const updateItem = async (id: number, updatedData: ProductType) => {
   try {
     const response = await api.put(`/items/${id}`, updatedData);
     console.log(`Success: ${response}`);

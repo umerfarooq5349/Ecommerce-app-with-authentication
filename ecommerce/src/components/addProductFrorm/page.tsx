@@ -5,13 +5,14 @@ import { addItem, uploadProductImage } from "@/app/api/item";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Foorm from "../form/form";
-import { Products } from "@/utils/model/item";
+
 import { AxiosError } from "axios";
+import { ProductType } from "@/utils/types/product.types";
 
 const AddProduct = () => {
   const router = useRouter();
 
-  const [formData, setFormData] = useState<Products>({
+  const [formData, setFormData] = useState<ProductType>({
     price: 0,
     description: "",
     title: "",

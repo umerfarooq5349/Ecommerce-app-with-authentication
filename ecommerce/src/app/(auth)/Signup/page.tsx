@@ -9,13 +9,7 @@ import styles from "@/utils/saas/signup.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
-
-interface SignupFormValues {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
+import { SignupFormType } from "@/utils/types/signup.types";
 
 const Signup = () => {
   const router = useRouter();
@@ -26,11 +20,11 @@ const Signup = () => {
     handleSubmit,
     watch,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<SignupFormValues>({
+  } = useForm<SignupFormType>({
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<SignupFormValues> = async (data) => {
+  const onSubmit: SubmitHandler<SignupFormType> = async (data) => {
     if (data.password !== data.passwordConfirm) {
       Swal.fire({
         title: "Passwords do not match!",

@@ -4,13 +4,13 @@ $secondary-color: #ecb365; // Soft Olive
 $accent-color: #d09423; // Golden Yellow
 $highlight-color: #f9d185; // Warm Sand
 $black-color: #292929;
-$white-color: #e6e6e6;
+$white-color: #fffefe;
 $accent-color-low: rgba($accent-color, 0.45); // Golden Yellow with low opacity
 $gray-color: #edeeed;
 
 // Danger and Success Colors
 $danger-color: #e74c3c; // Red for danger
-$success-color: #2ecc71; // Green for success
+$success-color: green; // Green for success
 $danger-light-color: lighten($danger-color, 20%);
 $success-light-color: lighten($success-color, 20%);
 
@@ -312,7 +312,7 @@ $hero-styles: (
   background-color: map-get($styles, background-color);
   border: map-get($styles, border);
   color: map-get($styles, color);
-  padding: $padding-regular;
+  padding: $padding-small;
   border-radius: $border-radius-medium;
   transition: border-color $transition-speed $transition-ease;
   -webkit-transition: border-color $transition-speed $transition-ease;
@@ -330,6 +330,9 @@ $hero-styles: (
   &::placeholder {
     color: map-get($styles, placeholder-color);
     font-weight: 500;
+  }
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 

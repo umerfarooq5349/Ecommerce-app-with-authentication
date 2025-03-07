@@ -6,16 +6,17 @@ import styles from "@/utils/saas/total-items.module.scss";
 import Sidebar from "@/components/sideBar/sidbar"; // Import the Sidebar component
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import { Products } from "@/utils/model/item";
+
 import BikeAnimiation from "@/components/bikeAnimiation/bikeAnimiation";
 import { useSession } from "next-auth/react";
 import axios, { AxiosError } from "axios";
 import { alert } from "@/utils/alerts/alert";
+import { ProductType } from "@/utils/types/product.types";
 // import { homeProducts } from "@/utils/types/dumydata";
 
 const TotalProducts = () => {
   const router = useRouter();
-  const [allItems, setAllItems] = useState<Products[]>([]);
+  const [allItems, setAllItems] = useState<ProductType[]>([]);
   const [selectedItemId, setSelectedItemId] = useState<
     number | string | undefined
   >(undefined);
@@ -74,7 +75,7 @@ const TotalProducts = () => {
     event:
       | React.MouseEvent<HTMLDivElement>
       | React.MouseEvent<HTMLButtonElement>,
-    item: Products
+    item: ProductType
   ) => {
     event.stopPropagation();
     try {
@@ -109,7 +110,7 @@ const TotalProducts = () => {
         {allItems.length === 0 ? (
           <BikeAnimiation text="No items Available" />
         ) : (
-          allItems.map((item: Products, index) => (
+          allItems.map((item: ProductType, index) => (
             <ItemCard
               key={index}
               imageUrl={item.thumbnail}

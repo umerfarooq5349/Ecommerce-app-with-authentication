@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Foorm from "../form/form";
 import { getItem, updateItem, uploadProductImage } from "@/app/api/item"; // Import getItem function
-import { Products } from "@/utils/model/item";
+
 // import { homeProducts } from "@/utils/types/dumydata";
 
 interface UpdateProductFormProps {

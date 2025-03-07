@@ -6,4 +6,6 @@ export interface ReviewTypes {
   comment: string;
   createdAt?: Date;
   rating: number;
+  name: string;
+  photo: string;
 }

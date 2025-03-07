@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema<UserDocument, UserModel>({
   photo: {
     type: String,
     required: true,
-    default: "image.jpg",
+    default: "/assets/login.jpg",
   },
 });
 

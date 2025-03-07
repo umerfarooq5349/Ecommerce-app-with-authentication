@@ -36,13 +36,28 @@
   background-color: #f9d185;
   border: 1px solid #d09423;
   color: #2d5356;
-  padding: 16px;
+  padding: 8px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  -ms-transition: border-color 0.3s ease-in-out;
+  -o-transition: border-color 0.3s ease-in-out;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.form .container .formRight .flex label .input:focus {
+  background: none;
+  border: 2px solid #d09423;
 }
 .form .container .formRight .flex label .input::placeholder {
   color: #3f7377;
   font-weight: 500;
+}
+.form .container .formRight .flex label .input:disabled {
+  cursor: not-allowed;
 }
 .form .container .formRight .flex label .input:focus, .form .container .formRight .flex label .input:active {
   border: 2px solid #d09423;
@@ -77,15 +92,30 @@
   background-color: #f9d185;
   border: 1px solid #d09423;
   color: #2d5356;
-  padding: 16px;
+  padding: 8px;
   border-radius: 8px;
   transition: border-color 0.3s ease-in-out;
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  -ms-transition: border-color 0.3s ease-in-out;
+  -o-transition: border-color 0.3s ease-in-out;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
   resize: none;
   width: 100%;
+}
+.form .container .formRight label .input:focus {
+  background: none;
+  border: 2px solid #d09423;
 }
 .form .container .formRight label .input::placeholder {
   color: #3f7377;
   font-weight: 500;
+}
+.form .container .formRight label .input:disabled {
+  cursor: not-allowed;
 }
 .form .container .formRight label .input:focus, .form .container .formRight label .input:active {
   border: 2px solid #d09423;
@@ -151,7 +181,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #e6e6e6;
+  color: #fffefe;
   font-size: 24px;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -187,17 +217,20 @@
   font-size: 16px;
 }
 .form button:hover {
-  background-color: #d09423;
+  background-color: #3f7377;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: #fffefe;
+  font-weight: 500;
 }
 .form button:active {
   background-color: #1b3335;
 }
 .form button:disabled {
-  background-color: #f7e0c0;
+  background-color: #3f7377;
   color: #f9d185;
   cursor: not-allowed;
+  box-shadow: none;
 }
 .form button:hover {
   background-color: #1b3335;

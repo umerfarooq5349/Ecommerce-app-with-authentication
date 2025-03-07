@@ -1,0 +1,49 @@
+@import "./theme/theme.scss";
+
+// Star rating styles
+.starIcon {
+  color: $accent-color;
+  font-size: $font-size-regular;
+  transition: all $transition-speed $transition-ease;
+
+  &.interactiveStar {
+    cursor: pointer;
+    font-size: $font-size-large;
+
+    &:hover {
+      transform: scale(1.2);
+      filter: brightness(1.2);
+    }
+  }
+}
+
+.ratingStars {
+  display: flex;
+  justify-content: center;
+  gap: $gap-regular;
+  margin-bottom: $margin-large;
+}
+
+.starButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: $gap-small;
+
+  .starIcon {
+    color: $secondary-color;
+    font-size: $font-size-small;
+  }
+}
+
+.ratingNumber {
+  font-weight: bold;
+  color: $text-color-dark;
+  margin-left: $gap-small;
+}

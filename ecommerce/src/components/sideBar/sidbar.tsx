@@ -3,8 +3,9 @@
 // Import React and necessary dependencies
 import React, { useState, useEffect } from "react";
 import styles from "@/utils/saas/sidebar.module.scss"; // Import the Sidebar styles
-import { Productts } from "@/utils/model/item"; // Import the Product interface
+
 import { getItem } from "@/app/api/item"; // Import the getItem function
+import { ProductType } from "@/utils/types/product.types";
 
 // Define the SidebarProps interface
 interface SidebarProps {
@@ -14,7 +15,7 @@ interface SidebarProps {
 // Define the Sidebar component
 const Sidebar: React.FC<SidebarProps> = ({ id }) => {
   // Define state to store the product data
-  const [product, setProduct] = useState<Productts>({
+  const [product, setProduct] = useState<ProductType>({
     thumbnail: "",
     title: "",
     price: 0,
