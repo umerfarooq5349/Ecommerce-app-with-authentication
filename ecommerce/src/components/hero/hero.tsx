@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "@/utils/saas/hero.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,20 +8,45 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
+import axios, { Axios, AxiosError } from "axios";
+import { featuredProductsTypes } from "@/utils/types/featured";
+import { alert } from "@/utils/alerts/alert";
 
-const featuredProducts = [
-  {
-    title: "Dumy Image",
-    url: "https://images.pexels.com/photos/1845208/pexels-photo-1845208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  },
-  { title: "Dumy Image", url: "/assets/login.jpg" },
-  {
-    title: "Dumy Image",
-    url: "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  },
-];
+// const featuredProducts = [
+//   {
+//     title: "Dumy Image",
+//     url: "https://images.pexels.com/photos/1845208/pexels-photo-1845208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+//   },
+//   { title: "Dumy Image", url: "/assets/login.jpg" },
+//   {
+//     title: "Dumy Image",
+//     url: "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+//   },
+// ];
 
 function Hero() {
+  const [featuredProducts, setFeaturedProducts] = useState<
+    featuredProductsTypes[]
+  >([]);
+
+  const getFeaturedProducts = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER}/api/featured`
+      );
+      // console.log(response.data.data);
+
+      setFeaturedProducts(response.data.data);
+    } catch (e) {
+      const error = e as AxiosError;
+
+      alert("No featured product available yet!", 1500);
+    }
+  }, []);
+  useEffect(() => {
+    getFeaturedProducts();
+  }, [getFeaturedProducts]);
+
   return (
     <div className={styles.container}>
       <div className={styles.body}>
@@ -62,11 +88,13 @@ function Hero() {
               <div
                 key={index}
                 className={styles.featuredProduct}
-                style={{ backgroundImage: `url(${product.url})` }}
+                style={{
+                  backgroundImage: `url(${product.thumbnail})`,
+                }}
               >
                 <div className={styles.featuredProductName}>
                   <h2>{product.title}</h2>
-                  <span>{product.title}</span>
+                  <span>Hot selling product</span>
                 </div>
               </div>
             ))}

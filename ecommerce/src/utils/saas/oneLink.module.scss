@@ -3,19 +3,17 @@
 .navLink {
   @include linkStyle(default);
   color: $white-color;
-  // margin: $margin-large $margin-regular;
   margin-right: $margin-large;
   padding: $padding-small 0;
   position: relative;
   display: flex;
-
   width: fit-content;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end; // Changed from 'end'
   letter-spacing: 2px;
-  justify-content: end; // Centering horizontally
+  justify-content: flex-end;
   text-decoration: none;
-  // Removed justify-items
+
   &:hover {
     color: $text-color-accent;
   }
@@ -28,18 +26,11 @@
     height: 2px;
     width: 0%;
     background-color: $link-color-secondary;
-    transition: width 300ms ease-in-out; // Simplified transition
+    transition: width 300ms ease-in-out;
   }
 
   &:hover::before {
-    width: 100%; // Expand to the full width of the parent on hover
+    width: 100%;
     color: $border-color-accent;
   }
-}
-.activPath {
-  color: $text-color-accent;
-  text-decoration: underline;
-  text-underline-offset: 14px;
-  text-decoration-thickness: 2px;
-  font-weight: bold;
 }

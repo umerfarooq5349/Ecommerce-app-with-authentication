@@ -7,6 +7,7 @@ import authRouter from "./routes/auth";
 import cookieParser from "cookie-parser";
 import cartRouter from "./routes/addToCartRoute";
 import reviewRouter from "./routes/review_routes";
+import featuredRouter from "./routes/featuredRoute";
 const app = Express();
 
 const corsOptions = {
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 app.use("/uploads", Express.static("uploads"));
 
 app.use("/api/items", itemRouter);
+app.use("/api/featured", featuredRouter);
 app.use("/api/upload", item_image_upload_router);
 app.use("/api", authRouter);
 app.use("/api/client/cart", cartRouter);

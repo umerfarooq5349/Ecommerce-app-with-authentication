@@ -166,7 +166,7 @@
             justify-content: flex-end;
             background: linear-gradient(
               45deg,
-              $accent-color-low 0%,
+              $primary-color 0%,
               rgba(255, 255, 255, 0) 100%
             );
             transform: translateY(100%);
@@ -182,7 +182,7 @@
 
           &:hover {
             flex: 0 0 250px;
-            box-shadow: 1px 3px 15px $accent-color-low;
+            box-shadow: 1px 3px 15px $primary-color;
             transform: translateY(-30px);
           }
 

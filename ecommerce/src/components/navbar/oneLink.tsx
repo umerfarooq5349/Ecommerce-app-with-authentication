@@ -12,20 +12,14 @@ import { usePathname } from "next/navigation";
 const OneLink = ({ oneLink }: { oneLink: NavLinkType }) => {
   const path = usePathname();
   return (
-    <div
-    // className={`${styles.navLink} ${
-    //   path === oneLink.route ? styles.activPath : ""
-    // }`}
+    <Link
+      href={oneLink.route}
+      className={`${styles.navLink} ${
+        path === oneLink.route ? styles.activPath : ""
+      }`}
     >
-      <Link
-        href={oneLink.route}
-        className={`${styles.navLink} ${
-          path === oneLink.route ? styles.activPath : ""
-        }`}
-      >
-        {oneLink.title}
-      </Link>
-    </div>
+      {oneLink.title}
+    </Link>
   );
 };
 
